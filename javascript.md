@@ -1,12 +1,3 @@
-﻿Ernesto
-
-
-
-
-
-
--*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-
 1. [Types](#types)
 1. [References](#references)
 1. [Objects](#objects)
