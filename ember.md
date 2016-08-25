@@ -1,6 +1,6 @@
 # Ember
 1. [General Structure](#gstructure)
-1. [Some Other Section](#next)
+1. [CSS](#css)
 
 ## General Structure
 <a name="gstructure"></a><a name="1.1"></a>
@@ -12,18 +12,67 @@
   + Custom methods
   + `actions` go last
 
-- [1.2] Next subsection would go here
 
-## Some other Section
-<a name="next"></a><a name="2.1"></a>
+## CSS
+<a name="css"></a>
 
-- [2.1](#next) Some next section here
- + can be a list
- + should code etc. go in a list to keep it ordered?
-   - (something about the code below?)
-```javascript
-//or it can be something else ```
-   - (or something about the code above?)
- + otherwise what happens when you have more?
- ```javascript
- //2nd example```
+<a name="2.1"></a>
+### Usage
+CSS is permitted (and encouraged) in apps and addons under certain circumstances
+
+### Why
+> Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
+
+### Properties Allowed:
+- Box Model
+ - e.g., `padding`, `height`, `margin`, `border-width`
+- Display
+ - e.g., `display:flex`, `flex-direction: column`
+- Animations and Transitions
+
+### Examples of Properties to Not use
+- Colors
+ - e.g., `color`, `background`
+- Text styles
+ - e.g., `font-weight`, `font=family`
+
+```scss
+// BAD
+// base/social.scss
+.chats {
+  padding: 1rem;
+  display: flex;
+  background: $color1;
+
+  .chatMsg {
+    font-weight: 700;
+    text-transform: uppercase;    
+    background: $color2;
+    color: $color1;
+    transition: all 1s ease-in-out;
+  }
+}
+
+// GOOD
+// base/social.scss
+.chats {
+  background: $color1;
+
+  .chatMsg {
+    font-weight: 700;
+    text-transform: uppercase;    
+    background: $color2;
+    color: $color1;
+  }
+}
+
+// app/style/appName.scss
+.chats {
+  padding: 1rem;
+  display: flex;
+
+  .chatMsg {
+    transition: all 1s ease-in-out;
+  }
+}
+```
