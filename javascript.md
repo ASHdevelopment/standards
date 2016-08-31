@@ -158,7 +158,7 @@ const obj = {
 ```
 
 ### 1.1 Dangling Commas
-There is no hard standard for dangling commas.
+There is no hard standard for dangling commas...
 
 ```javascript
 //ok
