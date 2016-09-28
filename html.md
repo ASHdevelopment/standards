@@ -6,10 +6,10 @@
  1. [Buttons](#buttons)
  1. [Do NOT Use](#do-not-use)
 
-# 1. Attribute Ordering within Tags
+## 1. Attribute Ordering within Tags
  > Makes code easier to read and easier for a new developer to jump in and find what they are looking for.
 
-  ## 1.1 Attribute Order
+  ### 1.1 Attribute Order
    Ordering from the beginning of the tag to the close of the tag is as follows:
 
   1. id/for
@@ -32,7 +32,7 @@
  ```
 
 
-# 2. Quotes
+## 2. Quotes
   > Hint - it's easier to type single quotes.
 
 + Use whatever is comfortable to you
@@ -59,24 +59,24 @@
 ```
 
 
-# 3. Buttons
+## 3. Buttons
   > Buttons can submit a form, be a link styled like a button, or simply just a button.
 
- ## 3.1 Submit Buttons
+ ### 3.1 Submit Buttons
 
    When a button is needed to submit a form, ``<input>`` should be the tag used.
 
   ```html
       <input type='submit'>Submit</input>
   ```
- ## 3.2 Links
+ ### 3.2 Links
   For a link to another page just needs to be styled like a button, use the ``<a>`` tag like you normally would.
 
   ```html
         <a href='#' class='primaryButton'>Link</a>
   ```
 
- ## 3.3  Button
+ ### 3.3  Button
 
  If the button doesn't fit any of the scenarios above, it should just simply be a  ``<button>`` tag.
 
@@ -87,7 +87,7 @@
 ---
 
 
-# 4. Do NOT Use
+## 4. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
 
 *DO NOT* use the following elements when writing HTML:
