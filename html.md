@@ -7,7 +7,7 @@
  1. [Do NOT Use](#do-not-use)
 
 # 1. Attribute Ordering within Tags
- > Why?
+ > Makes code easier to read and easier for a new developer to jump in and find what they are looking for.
 
   ## 1.1 Attribute Order
    Ordering from the beginning of the tag to the close of the tag is as follows:
