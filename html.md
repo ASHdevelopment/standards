@@ -1,4 +1,3 @@
-
 # HTML
 
  1. [Attribute Ordering](#attribute-ordering-within-tags)
