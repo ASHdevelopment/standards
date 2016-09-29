@@ -18,13 +18,12 @@ Default to `const`. If you need to change the value later on, then you can use `
 #### When in legacy code (non-Ember projects)
 Do **not** use `const` or `let`.
 
-## 1.2 Instantiate variables at top of functions
+### 1.2 Instantiate variables at top of functions
 
 > Avoids issues with hoisting and temporal dead zones
 
 ```javascript
 //bad
-//TODO: Show example of something this fixes
 function foo() {
 	this.year = 1993;
 
@@ -42,11 +41,16 @@ function foo() {
 }
 ```
 
-## 1.3 Declare variables across several lines
+### 1.3 Declare variables across several lines
 
-> Simplify changeset diffs, reduce risk of creating global variables.
+> Simplify changeset diffs, reduce risk of creating global variables, helps with breakpoints.
 
 ```javascript
+//very bad
+function foo() {
+	const foo = 1, bar = 2, baz = 3;
+}
+
 //bad
 function foo() {
 	const foo = 1,
@@ -62,7 +66,7 @@ function foo() {
 }
 ```
 
-## 1.4 Group together `const` and `let` declarations
+### 1.4 Group together `const` and `let` declarations
 > To avoid complications...
 
 ```javascript
@@ -83,7 +87,7 @@ function keptTheSameAddress() {
 }
 ```
 
-## 1.5 Variable Casing
+### 1.5 Variable Casing
 When using `const`, do *not* capitalize the variable name.
 
 > It's unnecessary.
@@ -91,21 +95,14 @@ When using `const`, do *not* capitalize the variable name.
 
 ```javascript
 //bad
-function foo() {
-	const foo = 1;
-	let bar = 2;
-	const baz = 3;
-	let bae = 4;
-}
+const FOO = 1;
+const BAR = 3;
 
 //good
-function foo() {
-	const foo = 1;
-	const baz = 3;
-	let bar = 2;
-	let bae = 4;
-}
+const foo = 1;
+const baz = 3;
 ```
+
 ## <a name="strings">Strings</a>
 
 ### 2.1 String Literals (ES6 only)
