@@ -181,3 +181,16 @@ const obj = {
 	jude: true
 };
 ```
+
+### 1.1 Strings Literals
+> This ensures readability in strings where variables are inserted
+
+Always use backticks when inserting variables into strings
+
+```javascript
+//bad
+var string = 'The ASH UI team is ' + awesomeAdjective + '!';
+
+//good
+var string = `The ASH UI team is ${awesomeAdjective}!`;
+```
