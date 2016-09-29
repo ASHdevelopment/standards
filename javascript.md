@@ -1,16 +1,12 @@
-1. [Types](#types)
-1. [References](#references)
-1. [Objects](#objects)
-1. [Arrays](#arrays)
-1. [Destructuring](#destructuring)
-1. [Strings](#strings)
-1. [Functions](#functions)
-1. [Arrow Functions](#arrow-functions)
-
-
 # Javascript
 
-## Variables
+1. [Variables](#variables)
+1. [Strings](#strings)
+1. [Arrays](#arrays)
+1. [Objects](#objects)
+1. [Functions](#functions)
+
+## <a name="variables">Variables</a>
 
 ### 1.1 `const/let/var`
 #### When working in ES6 (Ember Projects, gulpfile, etc.)
@@ -22,8 +18,7 @@ Default to `const`. If you need to change the value later on, then you can use `
 #### When in legacy code (non-Ember projects)
 Do **not** use `const` or `let`.
 
-## 1.1 Instantiate variables at top of functions
-Self-explanatory
+## 1.2 Instantiate variables at top of functions
 
 > Avoids issues with hoisting and temporal dead zones
 
@@ -47,8 +42,7 @@ function foo() {
 }
 ```
 
-## 1.1 Declare variables across several lines
-Self-explanatory
+## 1.3 Declare variables across several lines
 
 > Simplify changeset diffs, reduce risk of creating global variables.
 
@@ -68,10 +62,32 @@ function foo() {
 }
 ```
 
-## 1.1 Group together `const` and `let` declarations
-Self-explanatory
+## 1.4 Group together `const` and `let` declarations
+> To avoid complications...
 
-> Why? Because, you dummy.
+```javascript
+//bad
+function sheNever() {
+	const foo = 1;
+	let bar = 2;
+	const baz = 3;
+	let bae = 4;
+}
+
+//good
+function keptTheSameAddress() {
+	const foo = 1;
+	const baz = 3;
+	let bar = 2;
+	let bae = 4;
+}
+```
+
+## 1.5 Variable Casing
+When using `const`, do *not* capitalize the variable name.
+
+> It's unnecessary.
+
 
 ```javascript
 //bad
@@ -90,11 +106,104 @@ function foo() {
 	let bae = 4;
 }
 ```
+## <a name="strings">Strings</a>
 
-## 1.1 Arrow Functions
-### You can only use these within ES6. Ignore this section when working with ES5.
+### 2.1 String Literals (ES6 only)
+> This ensures readability in strings where variables are inserted
 
-Arrow functions and how they are special in terms of lexical scoping.
+Always use string literals when concatenating strings together.
+
+```javascript
+//bad
+const string = 'The ASH UI team is ' + awesomeAdjective + '!';
+
+//good
+const string = `The ASH UI team is ${awesomeAdjective}!`;
+```
+
+## <a name="arrays">Arrays</a>
+
+### 3.1 Dangling Commas
+There is no hard standard for dangling commas.
+
+> Yes it looks ugly and weird but it has benefits in simplifying diffs.
+
+```javascript
+//ok
+const arr = [
+	'foo',
+	'bar',
+];
+const obj = {
+	hey: true,
+	jude: true,
+};
+
+//also ok
+const arr = [
+	'foo',
+	'bar'
+];
+const obj = {
+	hey: true,
+	jude: true
+};
+```
+
+## <a name="objects">Objects</a>
+
+### 4.1 Method Declarations
+**When able to code in ES6**, use shorthand method declarations. Otherwise normal method declarations are OK.
+
+```javascript
+//bad unless stuck in ES5
+const obj = {
+    doThisThing: function() {
+        return true;
+    }
+};
+
+//good (but only in ES6)
+const obj = {
+    doThisThing() {
+        return true;
+    }
+};
+```
+
+### 4.2 Dangling Commas
+There is no hard standard for dangling commas.
+
+> Yes it looks ugly and weird but it has benefits in simplifying diffs.
+
+```javascript
+//ok
+const arr = [
+	'foo',
+	'bar',
+];
+const obj = {
+	hey: true,
+	jude: true,
+};
+
+//also ok
+const arr = [
+	'foo',
+	'bar'
+];
+const obj = {
+	hey: true,
+	jude: true
+};
+```
+
+## <a name="functions">Functions</a>
+
+### 5.1 Arrow Functions
+#### You can only use these within ES6. Ignore this section when working with ES5.
+
+Arrow functions cut down and have special properties in terms of lexical scoping.
 
 This preserve the value of `this` which removes the need for you to "save" the value of this (commonly as `that` or `self`).
 
@@ -136,61 +245,4 @@ thing.on('click', e => {
 thing.on('click', function(e) {
 	$(this).addClass('newClass');
 });
-```
-
-### 1.1 Method Declarations
-**When able to code in ES6**, use shorthand method declarations. Otherwise normal method declarations are OK.
-
-```javascript
-//bad unless stuck in ES5
-const obj = {
-    doThisThing: function() {
-        return true;
-    }
-};
-
-//good (but only in ES6)
-const obj = {
-    doThisThing() {
-        return true;
-    }
-};
-```
-
-### 1.1 Dangling Commas
-There is no hard standard for dangling commas...
-
-```javascript
-//ok
-const arr = [
-	'foo',
-	'bar',
-];
-const obj = {
-	hey: true,
-	jude: true,
-};
-
-//also ok
-const arr = [
-	'foo',
-	'bar'
-];
-const obj = {
-	hey: true,
-	jude: true
-};
-```
-
-### 1.1 Strings Literals
-> This ensures readability in strings where variables are inserted
-
-Always use backticks when inserting variables into strings
-
-```javascript
-//bad
-var string = 'The ASH UI team is ' + awesomeAdjective + '!';
-
-//good
-var string = `The ASH UI team is ${awesomeAdjective}!`;
 ```
