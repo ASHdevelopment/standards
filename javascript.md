@@ -5,6 +5,7 @@
 1. [Arrays](#arrays)
 1. [Objects](#objects)
 1. [Functions](#functions)
+1. [Iteration](#iteration)
 
 ## <a name="variables">Variables</a>
 
@@ -227,7 +228,7 @@ const myObject = {
 }
 ```
 
-### Exceptions
+#### Exceptions
 Use normal syntax for things like event listeners where do **not** want to preserve `this`.
 
 ```javascript
@@ -242,4 +243,31 @@ thing.on('click', e => {
 thing.on('click', function(e) {
 	$(this).addClass('newClass');
 });
+```
+
+## <a name="iteration">Iteration</a>
+
+### 6.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
+
+**When working with large datasets**, use the classic `for` loop as it allows you to `break;` out of the iteration, which prevents the expense of looping through unnecessary items after a certain criteria has been met. **You cannot do this with iterative methods**
+
+```javascript
+const array = [1, 2, 3, ... 10,000];
+
+// Bad
+const newArray = array.map((item, index) => {
+	if (index < 50) {
+		return item * 3;
+	}
+});
+
+// Good
+const newArray = [];
+
+for (let i = 0; i < array.length; i++) {
+	if (i === 50) {
+		break;
+	}
+	newArray.push(array[i] * 3);
+}
 ```
