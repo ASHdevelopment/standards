@@ -255,7 +255,7 @@ thing.on('click', function(e) {
 const array = [1, 2, 3, ... 10,000];
 
 // Bad
-const newArray = array.map((item, index) => {
+const newArray = array.filter((item, index) => {
 	if (index < 50) {
 		return item * 3;
 	}
