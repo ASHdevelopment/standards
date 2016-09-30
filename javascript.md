@@ -253,10 +253,9 @@ thing.on('click', function(e) {
 
 ```javascript
 const array = [1, 2, 3, ... 10,000];
-
-// Bad
 const newArray = [];
 
+// Bad
 array.forEach((item, index) => {
 	if (index < 50) {
 		newArray.push(item * 3);
@@ -264,8 +263,6 @@ array.forEach((item, index) => {
 });
 
 // Good
-const newArray = [];
-
 for (let i = 0; i < array.length; i++) {
 	if (i === 50) {
 		break;
