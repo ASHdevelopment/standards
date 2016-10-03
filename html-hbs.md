@@ -15,7 +15,7 @@
 N/A
 
 **Good**
-```
+```handlebars
 {{ash-plugin
 	message="this is the message"
 }}
@@ -23,7 +23,7 @@ N/A
 
 or
 
-```
+```handlebars
 {{ash-plugin
 	message='this is the message'
 }}
@@ -34,12 +34,12 @@ or
 > Line properties vertically
 
 **Bad**
-```
+```handlebars
 {{ash-plugin message="this is the message" isNew=true list=[1,4,5,8] foo=(action 'bar')}}
 ```
 
 **Good**
-```
+```handlebars
 {{ash-plugin
 	message="this is the message"
 	isNew=true
