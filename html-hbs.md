@@ -30,7 +30,7 @@ or
 ```
 ## Properties
 <a name="properties--alignment"></a><a name="1.1"></a>
-### [1.1](#properties--alignment): Alignment
+### [2.1](#properties--alignment): Alignment
 > Line properties vertically
 
 **Bad**
