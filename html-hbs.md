@@ -2,12 +2,12 @@
 # HTML-bars/Handle-bars
 
 ## Table of Contents
-1. [quotes](#quotes)
-1. [properties](#properties)
-	- [alignment](#properties--alignment)
+1. [Quotes](#quotes)
+1. [Properties](#properties)
+	- [Alignment](#properties--alignment)
 
-## quotes
-Double or single quotes
+## Quotes
+> Double or single quotes
 * Flexible, use what's comfortable
 * DO NOT go back to change code to fit your styling
 
@@ -30,8 +30,8 @@ or
 ```
 ## Properties
 <a name="properties--alignment"></a><a name="1.1"></a>
-### [1.1](#properties--alignment): alignment
-* line properties vertically
+### [1.1](#properties--alignment): Alignment
+> Line properties vertically
 
 **Bad**
 ```
