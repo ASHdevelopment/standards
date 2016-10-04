@@ -6,6 +6,7 @@
 1. [Objects](#objects)
 1. [Functions](#functions)
 1. [Iteration](#iteration)
+1. [JSON](#json)
 
 ## <a name="variables">Variables</a>
 
@@ -270,3 +271,5 @@ for (let i = 0; i < array.length; i++) {
 	newArray.push(array[i] * 3);
 }
 ```
+
+## <a name="json">JSON</a>
