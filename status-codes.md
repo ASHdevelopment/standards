@@ -8,12 +8,12 @@ On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
 ### On-Success:
 
-HTTP Status: 204
-Response Body: Empty(No Content)
-HTTP Status: 200
-Response Body: {}
-HTTP Status: 200
-Response Body: JSON Object
+* HTTP Status: 204
+  + Response Body: Empty(No Content)
+* HTTP Status: 200
+  + Response Body: {}
+* HTTP Status: 200
+  + Response Body: JSON Object
 
 ### Why?
 
