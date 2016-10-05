@@ -6,7 +6,7 @@ The purpose of this document is to help both sides client/server-sides of develo
 
 On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
-#On-Success:
+###On-Success:
 
 HTTP Status: 204
 Response Body: Empty(No Content)
@@ -15,9 +15,8 @@ Response Body: {}
 HTTP Status: 200
 Response Body: JSON Object
 
-#On-Failure:
+###On-Failure:
 
-Return a Http Status Code with the Error from the server as well as the error message.
 
 ###Why?
 
@@ -27,7 +26,7 @@ The Ember App Expects a 204 with No Content because, is terminated by the first 
 
 On a DELETE from any Ember-App using Ember-Data I will be happy with:
 
-#On-Success:
+###On-Success:
 HTTP Status: 204
 Response Body: Empty(No Content)
 
