@@ -1,12 +1,12 @@
-#Status-Codes Standards
+# Status-Codes Standards
 
 The purpose of this document is to help both sides client/server-sides of development understand what Ember accepts.
 
-##PUT
+## PUT
 
 On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
-###On-Success:
+### On-Success:
 
 HTTP Status: 204
 Response Body: Empty(No Content)
@@ -15,26 +15,25 @@ Response Body: {}
 HTTP Status: 200
 Response Body: JSON Object
 
-###On-Failure:
-
-
-###Why?
+### Why?
 
 The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body. A 200 response always has a payload, though an origin server MAY generate a payload body of zero length.
 
-##DELETE
+## DELETE
 
 On a DELETE from any Ember-App using Ember-Data I will be happy with:
 
-###On-Success:
+### On-Success:
 HTTP Status: 204
 Response Body: Empty(No Content)
 
-###Why?
+### Why?
 
 The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
 
+## On-Failure
 
+For any error, the server should respond with the correct status code as well as a message in the response body.
 # Links
 - https://httpstatuses.com/
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
