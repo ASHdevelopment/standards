@@ -63,28 +63,23 @@
 
  ### 3.1 Submit Buttons
 
-   When a button is needed to submit a form, ``<input>`` should be the tag used.
+   When a button is needed to submit a form, ``<button>`` should be the tag used with a ``type='submit'``.
 
   ```html
-      <input type='submit'>Submit</input>
+<button class='primaryButton' type='submit'>Submit</button>
   ```
  ### 3.2 Links
   For a link to another page just needs to be styled like a button, use the ``<a>`` tag like you normally would.
 
   ```html
-        <a href='#' class='primaryButton'>Link</a>
-  ```
+  <a href='#' class='primaryButton'>Link</a>```
 
  ### 3.3  Button
 
  If the button doesn't fit any of the scenarios above, it should just simply be a  ``<button>`` tag.
 
   ```html
-      <button class='primaryButton' type='button'>Button</button>
-  ```
-
----
-
+<button class='primaryButton' type='button'>Button</button>```
 
 ## 4. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
