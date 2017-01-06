@@ -277,9 +277,9 @@ for (let i = 0; i < array.length; i++) {
 
 ## <a name="#trycatch">Try/Catch</a>
 
-### 7.1 Try/Catch Block
+### 7.1 Try/Catch Block, The Ideal Approach
 
-The best way to use the try/catch block is only when you have to, and avoid nested more than two deep. 
+The best way to use the try/catch block is only when you have to, and avoid nesting more than two deep. 
 
 - The “try…catch…finally” statement is used to handle exceptions.
 - The “try” clause identifies code that could potentially generate exceptions.
