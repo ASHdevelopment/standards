@@ -7,6 +7,7 @@
 1. [Functions](#functions)
 1. [Iteration](#iteration)
 1. [JSON](#json)
+1. [Try/Catch](#try/catch)
 
 ## <a name="variables">Variables</a>
 
@@ -273,3 +274,6 @@ for (let i = 0; i < array.length; i++) {
 ```
 
 ## <a name="json">JSON</a>
+
+## <a name="#try/catch">Try/Catch</a>
+### 7.1 Try/Catch Block
