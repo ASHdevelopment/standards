@@ -81,15 +81,16 @@ HTTP server responds to a `GET` request to `/posts/1` (e.g. the response to a
 only display the object with the matching ID.
 
  ### Errors
-  If a response is considered a failure, the JSON payload is expected to include
-  a top-level key `errors`, detailing any specific issues. For example:
-  ```js
-  {
-    "errors": {
-      "msg": "Something went wrong"
-    }
+ 
+If a response is considered a failure, the JSON payload is expected to include
+a top-level key `errors`, detailing any specific issues. For example:
+```js
+{
+  "errors": {
+    "msg": "Something went wrong"
   }
-  ```
+}
+```
 
 # Links
 - https://github.com/emberjs/data/blob/master/addon/adapters/rest.js
