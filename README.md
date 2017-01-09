@@ -1,4 +1,4 @@
-# American Specialty Health Code Standards
+# American Specialty Health - Code Standards
 
 This is the home of the ASH UI Team's code standards. We meet every other Wednesday for an hour to talk about best practices and standards for the team.
 
