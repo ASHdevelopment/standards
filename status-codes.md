@@ -1,4 +1,4 @@
-# Status-Codes Standards
+# Status-Codes and REST Standards
 
 The purpose of this document is to help both sides client/server-sides of development understand what Ember accepts.
 
