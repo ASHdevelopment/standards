@@ -80,10 +80,11 @@ HTTP server responds to a `GET` request to `/posts/1` (e.g. the response to a
 `findRecord` query) with more than one object in the array, Ember Data will
 only display the object with the matching ID.
 
- ### Errors
+### Errors
  
 If a response is considered a failure, the JSON payload is expected to include
 a top-level key `errors`, detailing any specific issues. For example:
+
 ```js
 {
   "errors": {
