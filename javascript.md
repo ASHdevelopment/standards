@@ -279,7 +279,10 @@ for (let i = 0; i < array.length; i++) {
 
 ### 7.1 Try/Catch Block, The Ideal Approach
 
-The best way to use the try/catch block is only when you have to, and avoid nesting more than two deep. 
+try catch is used in situation where host objects or ECMAScript may throw errors.
+
+One should avoid throw errors as the way to pass error conditions around in applications.
+The throw statement should only be used "For this should never happen, crash and burn. Do not recover elegantly in any way"
 
 - The “try…catch…finally” statement is used to handle exceptions.
 - The “try” clause identifies code that could potentially generate exceptions.
