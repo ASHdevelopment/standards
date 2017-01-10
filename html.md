@@ -3,6 +3,7 @@
  1. [Attribute Ordering](#attribute-ordering-within-tags)
  1. [Quotes](#quotes)
  1. [Buttons](#buttons)
+ 1. [Comments](#comments)
  1. [Do NOT Use](#do-not-use)
 
 ## 1. Attribute Ordering within Tags
@@ -83,7 +84,47 @@
 <button class='primaryButton' type='button'>Button</button>
 ```
 
-## 4. Do NOT Use
+## 4. Comments
+  > Comments, why? Because they are handy little helpers!
+
+### 4.1 When Things Get Nesty
+
+ Add comments on closing tags when 3 levels of the same type of tags are used in a row
+
+ **Bad**
+ ```html
+ <section class="nestyness">
+   <div class='class1'>
+     <div class='class2'>
+       <div class='class3'>
+         <div class='class4'>
+           <p class='classP'>This is paragraph content.</p>
+           <p class='classP'>This is paragraph content.</p>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>
+ ```
+
+ **Good**
+ ```html
+ <section class="nestyness">
+   <div class='class1'>
+     <div class='class2'>
+       <div class='class3'>
+         <div class='class4'>
+           <p class='classP'>This is paragraph content.</p>
+           <p class='classP'>This is paragraph content.</p>
+         </div>
+      </div>
+    </div><!--end class2-->
+  </div><!--end class3-->
+</section>
+ ```
+
+
+## 5. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
 
 *DO NOT* use the following elements when writing HTML:
