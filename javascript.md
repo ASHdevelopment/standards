@@ -8,6 +8,7 @@
 1. [Iteration](#iteration)
 1. [JSON](#json)
 1. [Try/Catch](#trycatch)
+1. [libraries](#libraries)
 
 ## <a name="variables">Variables</a>
 
@@ -290,3 +291,20 @@ The throw statement should only be used "For this should never happen, crash and
 - The “finally” clause is always executed, no matter what.
 - The “throw” statement is used to generate exceptions.
 - Custom exception objects should inherit from the existing “Error” types.
+
+## <a name="#libraries">Libraries</a>
+
+### 8.1 jQuery
+
+#### Use in all QUnit tests
+> Why? It is quicker to write unit tests in jQuery, unit tests are not production code, and besides, QUnit was developed by the jQuery team. So why not?
+
+#### Use $.ajax() rather than XMLHttpRequest() for server requests
+> Why? The jquery AJAX wrapper is much simpler to write and the speed hit is minute compared to an entire project written in jQuery
+
+**Note:** AJAX Calls in non-Ember projects should utilize `$$ash.ajax`.
+
+#### Write in Vanilla JavaScript wherever possible
+> Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
+
+**Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
