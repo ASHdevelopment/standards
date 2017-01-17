@@ -8,7 +8,7 @@
 1. [Iteration](#iteration)
 1. [JSON](#json)
 1. [Try/Catch](#trycatch)
-1. [libraries](#libraries)
+1. [Libraries](#libraries)
 
 ## <a name="variables">Variables</a>
 
