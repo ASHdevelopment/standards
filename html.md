@@ -89,7 +89,7 @@
 
 ### 4.1 When Things Get Nesty
 
- Add comments on closing tags when 3 levels of the same type of tags are used in a row
+ Add comments on closing tags when 3 levels of the same type of tags are used in a row. Start counting from the most nested tag outwards and on the 3rd type of that closing tag begin comments.
 
  **Bad**
  ```html
