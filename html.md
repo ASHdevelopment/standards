@@ -119,7 +119,7 @@
          </div>
       </div>
     </div><!--end class2-->
-  </div><!--end class3-->
+  </div><!--end class1-->
 </section>
  ```
 
