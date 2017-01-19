@@ -230,6 +230,20 @@ const myObject = {
 	}
 }
 ```
+When there is only one parameter, do not encased it in parenthesis.
+
+```javascript
+
+//bad
+let itemsLength = items.map((item)=>{
+ return item.length;
+});
+
+//good
+let itemsLength = items.map( item =>{
+ return item.length;
+});
+```
 
 #### Exceptions
 Use normal syntax for things like event listeners where do **not** want to preserve `this`.
