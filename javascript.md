@@ -292,7 +292,35 @@ for (let i = 0; i < array.length; i++) {
 
 ## <a name="#trycatch">Try/Catch</a>
 
-### 7.2 Try/Catch Usage
+### 7.1 Try...Catch Basics
+> Helps catch errors before they cause the code to blow up
+
+There are 3 clauses that can be used when writing a try...catch statement:
+
+1. try - contains statments to be executed
+1. catch - contains the statements to be executed if an exception is thrown in th try block
+1. finally - contains statements that are exectured after the try statement is complete regardless of whether or not an exception was thrown or caught
+
+Each try block must have at least one try and one catch clause or a finally clause, or both.
+
+```javascript
+try {
+    myroutine(); // may throw three types of exceptions
+} catch (e) {
+    if (e instanceof TypeError) {
+        // statements to handle TypeError exceptions
+    } else if (e instanceof RangeError) {
+        // statements to handle RangeError exceptions
+    } else if (e instanceof EvalError) {
+        // statements to handle EvalError exceptions
+    } else {
+       // statements to handle any unspecified exceptions
+       logMyErrors(e); // pass exception object to error handler
+    }
+}
+```
+
+### 7.2 Try...Catch for Nesting
 
 Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
 
