@@ -278,19 +278,9 @@ for (let i = 0; i < array.length; i++) {
 
 ## <a name="#trycatch">Try/Catch</a>
 
-### 7.1 Try/Catch Block, The Ideal Approach
+### 7.2 Try/Catch Usage
 
-try catch is used in situation where host objects or ECMAScript may throw errors.
-
-One should avoid throw errors as the way to pass error conditions around in applications.
-The throw statement should only be used "For this should never happen, crash and burn. Do not recover elegantly in any way"
-
-- The “try…catch…finally” statement is used to handle exceptions.
-- The “try” clause identifies code that could potentially generate exceptions.
-- The “catch” clause is only executed when an exception occurs.
-- The “finally” clause is always executed, no matter what.
-- The “throw” statement is used to generate exceptions.
-- Custom exception objects should inherit from the existing “Error” types.
+Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
 
 ## <a name="#libraries">Libraries</a>
 
