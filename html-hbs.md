@@ -53,7 +53,7 @@ or
 
 **Bad**
 ```handlebars
-<!-- this is not an appropriate handlebars comment -->
+<!-- this is NOT an appropriate handlebars comment -->
 ```
 
 **Good**
