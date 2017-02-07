@@ -1,6 +1,7 @@
 # Ember
 1. [General Structure](#gstructure)
 1. [CSS](#css)
+1. [actions](#actions)
 
 ## General Structure
 <a name="gstructure"></a><a name="1.1"></a>
@@ -75,4 +76,46 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
     transition: all 1s ease-in-out;
   }
 }
+```
+
+## Actions
+<a name="actions"></a>
+
+### Location
+
+ - Form Actions should be placed on the form element
+
+```html
+//Bad
+<form>
+  <input id="firstName" type="text" />
+  <input id="lastName" type="text" />
+  <button {{action 'SubmitForm'}}> Submit</button>
+</form>
+
+//Good
+<form {{action 'SubmitForm' on='submit'}}>
+  <input id="firstName" type="text" />
+  <input id="lastName" type="text" />
+  <button> Submit</button>
+</form>
+
+```
+- Button actions that are **not** in a `<form>` should be placed on the `<button>` itself
+
+```html
+//Bad
+<form>
+ <input id="firstName" type="text" />
+ <input id="lastName" type="text" />
+ <button {{action 'SubmitForm'}}> Submit</button>
+</form>
+
+//Good
+<form {{action 'SubmitForm' on='submit'}}>
+ <input id="firstName" type="text" />
+ <input id="lastName" type="text" />
+ <button> Submit</button>
+</form>
+
 ```
