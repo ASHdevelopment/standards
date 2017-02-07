@@ -5,6 +5,7 @@
     - [Formatting](#css--formatting)
     - [Property Ordering](#css--ordering)
     - [Flexbox](#css--flexbox)
+    - [Shorthand]("css-shorthand")
 1. [SCSS](#scss)
     - [Nesting](#scss--nesting)
     - [Variables](#scss--variables)
@@ -73,6 +74,38 @@ Properties should be ordered as follows:
 > Why? The use of flexbox is encouraged, however certain standards must be followed in order to maintain a consistent experience across all browsers (looking at you, IE10)
 
 * Always use the flex shorthand over specifying `flex-shrink`, `flex-grow`, or `flex-basis` individually
+
+
+<a name="css--shorthand"></a><a name="1.4"></a>
+### [1.4](#css-shorthand): Shorthand
+> Why? The use of CSS shorthands increases readability in our sass partials
+
+* **Favor CSS shorthands whenever possible**
+* Only include values that are absolutely necessary
+* If a majority of the properties are being changed, use shorthand ALWAYS
+
+**Bad**
+```scss
+//try not to style each property seperately when shorthands can be used
+.selector {
+  margin-top: 0;
+  margin-right: 2em;
+  margin-bottom: 10em;
+  margin-left: 2em;
+}
+
+//don't include any values that are not necessary
+.selector {
+  margin: 0 2em 10em 2em; //last value is not necessary
+}
+```
+
+**Good**
+```scss
+.selector {
+  margin: 0 2em 10em; //2nd value targets left and right margins
+}
+```
 
 
 ## SCSS
