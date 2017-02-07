@@ -5,6 +5,7 @@
 1. [Quotes](#quotes)
 1. [Properties](#properties)
 	- [Alignment](#properties--alignment)
+1. [Comments](#comments)
 
 ## Quotes
 > Double or single quotes
@@ -47,3 +48,16 @@ or
 	foo=(action 'bar')
 }}
 ```
+## Comments
+* Only acceptable comment structure is curly brackets with exclaimation point after the opening curly baracket.
+
+**Bad**
+```handlebars
+<!-- this is not an appropriate handlebars comment -->
+```
+
+**Good**
+```handlebars
+{{! this IS and appropriate handlebars comment }}
+```
+
