@@ -3,6 +3,7 @@
  1. [Attribute Ordering](#attribute-ordering-within-tags)
  1. [Quotes](#quotes)
  1. [Buttons](#buttons)
+ 1. [Forms](#forms)
  1. [Comments](#comments)
  1. [Do NOT Use](#do-not-use)
 
@@ -84,10 +85,71 @@
 <button class='primaryButton' type='button'>Button</button>
 ```
 
-## 4. Comments
+<a name="forms"></a>
+## 4. Forms
+
+Related `input`s should be grouped in a `fieldset`.
+ > This helps semantically group related questions and style questions like checkboxes and radios with the need for a `div.checkboxgroup`.
+
+Each `fieldset` should always have a legend to be HTML valid and meet WCAG standards.
+
+**Bad**
+```html
+<form>
+  <p>The best Beatle is:</p>
+  <label for="john">John</label>
+  <input type="radio" name="bestBeatle" id="john" disabled>
+  <label for="ringo">Ringo</label>
+  <input type="radio" name="bestBeatle" id="ringo" disabled>
+  <label for="geoge">George</label>
+  <input type="radio" name="bestBeatle" id="george" disabled>
+  <label for="pete">Pete</label>
+  <input type="radio" name="bestBeatle" id="pete">
+  <label for="paul">Paul</label>
+  <input type="radio" name="bestBeatle" id="paul" checked>
+
+  <p>Which artist released the following albums?</p>
+  <label for="who">Quadrophenia</label>
+  <input id="who">
+  <label for="queen">A Night at the Opera</label>
+  <input id="queen">
+  <label for="beachBoys">Pet Sounds</label>
+  <input id="beachBoys">
+</form>
+```
+
+**Good**
+```html
+<form>
+  <fieldset>
+    <legend>The best Beatle is:</legend>
+    <label for="john">John</label>
+    <input type="radio" name="bestBeatle" id="john" disabled>
+    <label for="ringo">Ringo</label>
+    <input type="radio" name="bestBeatle" id="ringo" disabled>
+    <label for="geoge">George</label>
+    <input type="radio" name="bestBeatle" id="george" disabled>
+    <label for="pete">Pete</label>
+    <input type="radio" name="bestBeatle" id="pete">
+    <label for="paul">Paul</label>
+    <input type="radio" name="bestBeatle" id="paul" checked>
+  </fieldset>
+
+  <fieldset>
+    <legend>Which artist released the following albums?</legend>
+    <label for="who">Quadrophenia</label>
+    <input id="who">
+    <label for="queen">A Night at the Opera</label>
+    <input id="queen">
+    <label for="beachBoys">Pet Sounds</label>
+    <input id="beachBoys">  </fieldset>
+</form>
+```
+
+## 5. Comments
   > Comments, why? Because they are handy little helpers!
 
-### 4.1 When Things Get Nesty
+### 5.1 When Things Get Nesty
 
  Add comments on closing tags when 3 levels of the same type of tags are used in a row. Start counting from the most nested tag outwards and on the 3rd type of that closing tag begin comments.
 
@@ -124,7 +186,7 @@
  ```
 
 
-## 5. Do NOT Use
+## 6. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
 
 *DO NOT* use the following elements when writing HTML:
