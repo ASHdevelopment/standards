@@ -5,7 +5,7 @@
     - [Formatting](#css--formatting)
     - [Property Ordering](#css--ordering)
     - [Flexbox](#css--flexbox)
-    - [Shorthand]("css-shorthand")
+    - [Shorthand]("#css--shorthand")
 1. [SCSS](#scss)
     - [Nesting](#scss--nesting)
     - [Variables](#scss--variables)
@@ -77,7 +77,7 @@ Properties should be ordered as follows:
 
 
 <a name="css--shorthand"></a><a name="1.4"></a>
-### [1.4](#css-shorthand): Shorthand
+### [1.4](#css--shorthand): Shorthand
 > Why? The use of CSS shorthands increases readability in our sass partials
 
 * **Favor CSS shorthands whenever possible**
