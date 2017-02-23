@@ -1,11 +1,11 @@
 # Ember
-1. [General Structure](#gstructure)
+1. [General Structure](#general-structure)
+1. [Destructuring](#destructuring)
 1. [CSS](#css)
 
 ## General Structure
-<a name="gstructure"></a><a name="1.1"></a>
 
-- [1.1](#gstructure) **Property Order**: For components and controllers, follow this order for properties and methods
+- 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
   + **Properties**
     + Put ember specific properties (e.g., `classNames`, `tagNames`) before custom properties (e.g., `someSpecificAshProp : true`)
   + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.7.0/components/the-component-lifecycle/">see order in documentation</a>
@@ -13,15 +13,74 @@
   + `actions` go last
 
 
-## CSS
-<a name="css"></a>
+## Destructuring
+Extract multiple values from data stored in objects and arrays.
+> Why? Prior to ES2015, there was not way to extract muliple property values from one object at once. Enter `Destructuring`.
 
-<a name="2.1"></a>
+### Destructuring Objects
+Import only what Classes you need and then destructure only the properties that you need.
+
+```javascript
+//Bad
+export default DS.Model.extend({
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  fullName: Ember.computed('firstName', 'lastName', {
+    //compute full name
+  })
+});
+
+//Good
+import Ember from 'ember';
+import DS from 'ember-data';
+
+const {
+  computed
+} = Ember;
+
+const {
+  Model,
+  attr
+} = DS;
+
+export default Model.extend({
+  firstName: attr('string'),
+  lastName: attr('string'),
+  fullName: computed('firstName', 'lastName', {
+    //compute full name
+  })
+});
+```
+
+### Using `get` and `set`
+Destructuring `get` and `set` will allow you pass in a POJO, rather than being limited to just the current object with the `this` keyword.
+
+```javascript
+//Bad
+this.set('isDestructured', false);
+this.get('isDestructured'); //false
+
+//Good
+import Ember from 'ember';
+
+const {
+  get,
+  set
+} = Ember;
+
+set(this, 'isDestructured', true);
+get(this, 'isDestructured'); //true
+
+set(someObject, 'isUpdated', true);
+get(someObject, 'isUpdated'); //true
+```
+
+## CSS
+
 ### Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
-### Why
-> Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
+> Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
 
 ### Properties Allowed:
 - Box Model
@@ -37,7 +96,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
  - e.g., `font-weight`, `font=family`
 
 ```scss
-// BAD
+// Bad
 // base/social.scss
 .chats {
   padding: 1rem;
@@ -53,7 +112,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   }
 }
 
-// GOOD
+// Good
 // base/social.scss
 .chats {
   background: $color1;
