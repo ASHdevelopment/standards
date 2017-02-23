@@ -5,7 +5,7 @@
     - [Formatting](#css--formatting)
     - [Property Ordering](#css--ordering)
     - [Flexbox](#css--flexbox)
-    - [Shorthand]("#css--shorthand")
+    - [Shorthand](#css--shorthand)
 1. [SCSS](#scss)
     - [Nesting](#scss--nesting)
     - [Variables](#scss--variables)
