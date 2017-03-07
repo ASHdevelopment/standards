@@ -30,9 +30,9 @@ Payload
 {
   "movies": [
     {
-    "id": 1,
-    "title": "Raging Bull",
-    "year": "1980"
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980"
     },
     {
       "id": 2,
