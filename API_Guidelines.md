@@ -48,6 +48,7 @@ Payload
 #### Request
 URL
 :   `apiHost.com/movies/2`
+
 Ember Data Method
 :   `findRecord('movies', 2)`
 
