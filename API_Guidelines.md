@@ -71,6 +71,7 @@ Payload
 Calling store.query() will make a `GET` request with the passed object serialized as query params. This method returns a DS.PromiseArray in the same way as findAll.
 
 Further reference: [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
+
 URL
 :   `apiHost.com/movies?year=1980`
 Ember Data method
