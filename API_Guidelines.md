@@ -16,6 +16,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 #### Request
 URL
 :   `apiHost.com/movies`  
+
 Ember Data Method
 :   `findAll('movies')`
 
@@ -47,6 +48,7 @@ Payload
 #### Request
 URL
 :   `apiHost.com/movies/2`
+
 Ember Data Method
 :   `findRecord('movies', 2)`
 
@@ -68,7 +70,32 @@ Payload
 ```
 
 ### GET multiple records using a query
-**Need documentation**. In the mean time [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
+Calling store.query() will make a `GET` request with the passed object serialized as query params. This method returns a DS.PromiseArray in the same way as findAll.
+
+Further reference: [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
+
+URL
+:   `apiHost.com/movies?year=1980`
+
+Ember Data method
+:   `this.store.query('movie', { year: '1980' })`
+
+### Response
+
+HTTP Status
+:   200
+
+Payload
+:   
+```javascript
+{
+  "movies": {
+    "id": 2,
+    "title": "Goodfellas",
+    "year": "1990"
+  }
+}
+```
 
 ## PUT
 
