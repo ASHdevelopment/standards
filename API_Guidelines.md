@@ -74,6 +74,7 @@ Further reference: [Finding Records](https://guides.emberjs.com/v2.10.0/models/f
 
 URL
 :   `apiHost.com/movies?year=1980`
+
 Ember Data method
 :   `this.store.query('movie', { year: '1980' })`
 
