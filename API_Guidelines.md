@@ -16,6 +16,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 #### Request
 URL
 :   `apiHost.com/movies`  
+
 Ember Data Method
 :   `findAll('movies')`
 
