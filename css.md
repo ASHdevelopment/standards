@@ -5,7 +5,10 @@
     - [Formatting](#css--formatting)
     - [Property Ordering](#css--ordering)
     - [Flexbox](#css--flexbox)
+<<<<<<< HEAD
     - [Shorthand](#css--shorthand)
+=======
+>>>>>>> parent of 4f5f5e2... Adds CSS shorthand standards to resolve issue #19
 1. [SCSS](#scss)
     - [Nesting](#scss--nesting)
     - [Variables](#scss--variables)
@@ -76,6 +79,7 @@ Properties should be ordered as follows:
 * Always use the flex shorthand over specifying `flex-shrink`, `flex-grow`, or `flex-basis` individually
 
 
+<<<<<<< HEAD
 <a name="css--shorthand"></a><a name="1.4"></a>
 ### [1.4](#css--shorthand): Shorthand
 > Why? The use of CSS shorthands increases readability in our sass partials
@@ -108,6 +112,8 @@ Properties should be ordered as follows:
 ```
 
 
+=======
+>>>>>>> parent of 4f5f5e2... Adds CSS shorthand standards to resolve issue #19
 ## SCSS
 
 <a name="scss--nesting"></a><a name="2.1"></a>
