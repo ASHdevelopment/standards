@@ -89,11 +89,16 @@ Payload
 :   
 ```javascript
 {
-  "movies": {
+  "movies": [{
     "id": 2,
     "title": "Goodfellas",
-    "year": "1990"
-  }
+    "year": "1980"
+  },
+  {
+    "id": 5,
+    "title": "Red Riding Hood",
+    "year": "1980"
+  }]
 }
 ```
 
