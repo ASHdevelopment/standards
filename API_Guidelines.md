@@ -15,7 +15,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 ### GET all records
 #### Request
 URL
-:   `apiHost.com/movies`  
+:   `apiHost.com/movies`
 
 Ember Data Method
 :   `findAll('movies')`
@@ -26,7 +26,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": [
@@ -58,7 +58,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": {
@@ -110,14 +110,90 @@ For any error, the server should respond with the correct status code as well as
 ### Errors
 
 If a response is considered a failure, the JSON payload is expected to include
-a top-level key `errors`, detailing any specific issues. For example:
+a top-level key `errors`, detailing any specific issues. If the JSON payload does not
+include a top level `errors` key, then we will need to munge the data.
 
 ```js
-{
-  "errors": {
-    "msg": "Something went wrong"
+
+// Somewhere in Ember-land, attempting to save a model.
+
+// Omitted for brevity...
+
+actions: {
+  save(model) {
+    model.save().then(() => {
+      // For successful save
+    }).catch((error) => {
+      // For unsuccessful save
+
+      // Model had server errors for attributes: `firstName` and `email`
+    });
   }
 }
+
+```
+
+```js
+
+// Ideal JSON error payload
+
+{
+  "errors": [
+    {
+      "detail": "First name is required",
+      "source": {
+        "pointer": "data/attributes/first-name"
+      }
+    },
+    {
+      "detail": "Email is required",
+      "source": {
+        "pointer": "data/attributes/email"
+      }
+    }
+  ]
+}
+
+```
+
+Thanks to Ember Data, we have access to our errors via our `model`.
+
+```js
+
+// Somewhere in Ember-land...
+
+// Omitted for brevity...
+
+Ember.get(this, 'model.errors.first-name')
+// returns a `first-name` error object!
+// => { "attribute": "firstName", "message": "First name is required" }
+
+Ember.get(this, 'model.errors.email')
+// returns an `email` error object!
+// => { "attribute": "email", "message": "Email is required" }
+
+```
+
+Or, you can render them in a template!
+
+```hbs
+
+{{!-- Somewhere in Handlebars --}}
+
+{{#each model.errors as |error|}}
+  {{#if error.firstName}}
+    <div class="error">
+      {{error.firstName.message}}
+    </div>
+  {{/if}}
+
+  {{#if error.lastName}}
+    <div class="error">
+      {{error.lastName.message}}
+    </div>
+  {{/if}}
+{{/each}}
+
 ```
 
 # Links
