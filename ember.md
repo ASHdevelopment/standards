@@ -15,10 +15,9 @@
 
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
-> Why? Prior to ES2015, there was not way to extract muliple property values from one object at once. Enter `Destructuring`.
+> Why? Destructuring allows you to import only what Classes you need and then extract (or destructure) only the properties that you need. This makes the use of our Ember data more efficent.
 
 ### Destructuring Objects
-Import only what Classes you need and then destructure only the properties that you need.
 
 ```javascript
 //Bad
