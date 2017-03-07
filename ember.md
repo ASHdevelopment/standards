@@ -25,7 +25,7 @@ Import only what Classes you need and then destructure only the properties that 
 export default DS.Model.extend({
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
-  fullName: Ember.computed('firstName', 'lastName', {
+  fullName: Ember.computed('firstName', 'lastName', function() {
     //compute full name
   })
 });
@@ -46,7 +46,7 @@ const {
 export default Model.extend({
   firstName: attr('string'),
   lastName: attr('string'),
-  fullName: computed('firstName', 'lastName', {
+  fullName: computed('firstName', 'lastName', function() {
     //compute full name
   })
 });
