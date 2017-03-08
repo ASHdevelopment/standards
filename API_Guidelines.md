@@ -72,20 +72,48 @@ Payload
 
 ## PUT
 
-On a PUT from any Ember-App using Ember-Data I will be happy with the following:
+> `PUT` requests update records that already exist with new information
 
-### On-Success:
+### Example
 
-* HTTP Status: 204
-  + Response Body: Empty(No Content)
-* HTTP Status: 200
-  + Response Body: {}
-* HTTP Status: 200
-  + Response Body: JSON Object
+#### Current model:
+```javascript
+{
+    "bands": {
+        "id": 8,
+        "name": "Radiohead",
+        "bestAlbum": "OK Computer",
+        "bestBandEver": false
+    }
+}
+```
 
-### Why?
+#### Update is desired:
+```javascript
+set(model, 'bestBandEver', true);
+model.save(); // This initializes the PUT request
+```
 
-> The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body. A 200 response always has a payload, though an origin server MAY generate a payload body of zero length.
+#### There are two options for a response after a successful request:
+* Status Code: `204`
+* Response payload: Empty (No Content)
+* This is the recommended pattern
+
+##### OR
+
+* Status Code: `200`
+* Response payload:
+```javascript
+// Notice the updated 'bestBandEver' property
+{
+    "bands": {
+        "id": 8,
+        "name": "Radiohead",
+        "bestAlbum": "OK Computer",
+        "bestBandEver": true
+    }
+}
+```
 
 ## DELETE
 
