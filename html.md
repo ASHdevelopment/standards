@@ -142,7 +142,8 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
     <label for="queen">A Night at the Opera</label>
     <input id="queen">
     <label for="beachBoys">Pet Sounds</label>
-    <input id="beachBoys">  </fieldset>
+    <input id="beachBoys">  
+  </fieldset>
 </form>
 ```
 
