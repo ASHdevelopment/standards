@@ -89,7 +89,7 @@
 ## 4. Forms
 
 Related `input`s should be grouped in a `fieldset`.
- > This helps semantically group related questions and style questions like checkboxes and radios with the need for a `div.checkboxgroup`.
+ > This helps semantically group related questions and style questions like checkboxes and radios without the need for a `div.checkboxgroup`.
 
 Each `fieldset` should always have a legend to be HTML valid and meet WCAG standards.
 
