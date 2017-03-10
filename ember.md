@@ -106,12 +106,12 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ```html
 //Bad
 <div class="container" {{action 'showHide'}}>
- <button type="submit"> Submit</button>
+ <button type="submit">Submit</button>
 </div>
 
 //Good
 <div class="container">
- <button {{action 'showHide'}} type="submit"> Submit</button>
+ <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
 
 ```
