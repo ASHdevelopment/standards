@@ -90,14 +90,14 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <form>
   <input id="firstName" type="text" />
   <input id="lastName" type="text" />
-  <button {{action 'SubmitForm'}}> Submit</button>
+  <button type="submit" {{action 'SubmitForm'}}> Submit</button>
 </form>
 
 //Good
 <form {{action 'SubmitForm' on='submit'}}>
   <input id="firstName" type="text" />
   <input id="lastName" type="text" />
-  <button> Submit</button>
+  <button type="submit"> Submit</button>
 </form>
 
 ```
@@ -105,17 +105,13 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 ```html
 //Bad
-<form>
- <input id="firstName" type="text" />
- <input id="lastName" type="text" />
- <button {{action 'SubmitForm'}}> Submit</button>
-</form>
+<div class="container" {{action 'SubmitForm'}}>
+ <button type="submit"> Submit</button>
+</div>
 
 //Good
-<form {{action 'SubmitForm' on='submit'}}>
- <input id="firstName" type="text" />
- <input id="lastName" type="text" />
- <button> Submit</button>
-</form>
+<div class="container">
+ <button {{action 'SubmitForm'}} type="submit"> Submit</button>
+</div>
 
 ```
