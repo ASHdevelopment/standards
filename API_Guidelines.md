@@ -97,6 +97,31 @@ Payload
 }
 ```
 
+## POST
+
+### Save Method
+
+`Ember.save` will make a POST request *only* if the record is *new*.  
+`Ember.createRecord` will also make a POST request.
+
+### Responses
+
+#### With Client-Generated ID
+
+If the requested resource was created successfully, respond with one of the two options below
+
+- HTTP Status: 201
+  - Response Body: JSON Object (saved record payload)
+- HTTP Status: 204
+  - Reponse Body: Empty (no content)
+
+#### Without Client-Generated ID
+
+If the requested resource was created successfully
+
+- HTTP Status: 201
+  - Response Body: JSON Object (saved record payload)
+
 ## PUT
 
 On a PUT from any Ember-App using Ember-Data I will be happy with the following:
