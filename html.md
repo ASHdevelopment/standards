@@ -5,6 +5,7 @@
  1. [Buttons](#buttons)
  1. [Forms](#forms)
  1. [Comments](#comments)
+ 1. [Semantics](#semantics)
  1. [Do NOT Use](#do-not-use)
 
 ## 1. Attribute Ordering within Tags
@@ -186,8 +187,17 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 </section>
  ```
 
+## 6. Semantics
+   > Semantics help make the web page easier for people and browsers to understand/use.
 
-## 6. Do NOT Use
+### 6.1 `<strong>` vs. `<b>`
+ `<strong>` - should always be used when bolding text, this is the more semantic tag of the two options. Text should be bold for a reason therefore we should use the semantic tag to highlight it.
+
+### 6.2 `<em>` vs. `<i>`
+  `<em>` - should always be used when italicizing text, this tag adds emphasis in the semantics. Where as, `<i>` only tells the browser the text is just set off from it's normal prose.
+
+
+## 7. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
 
 *DO NOT* use the following elements when writing HTML:
