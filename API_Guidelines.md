@@ -69,13 +69,50 @@ Payload
 }
 ```
 
+### GET single record using a query
+#### Request
+URL
+:   `apiHost.com/movies?title=Goodfellas`
+
+Ember Data method
+:   `queryRecord('movie', { title: 'Goodfellas' })`
+
+### Why?
+
+> To get a single record based on parameter criteria when the result is known to be one record.
+
+### Response
+
+HTTP Status
+:   200
+
+Payload
+:   
+```javascript
+{
+  "movies": [{
+    "id": 2,
+    "title": "Goodfellas",
+    "year": "1990"
+  }]
+}
+```
+
+Payload (If no data is found, then `queryRecord` returns a `null`)
+:
+```javascript
+{
+  data: null
+}
+```
+
 ### GET multiple records using a query
 #### Request
 URL
-:   `apiHost.com/movies?year=1980`
+:   `apiHost.com/movies?year=1990`
 
 Ember Data method
-:   `query('movie', { year: '1980' })`
+:   `query('movie', { year: '1990' })`
 
 ### Why?
 
@@ -93,44 +130,21 @@ Payload
   "movies": [{
     "id": 2,
     "title": "Goodfellas",
-    "year": "1980"
+    "year": "1990"
   },
   {
     "id": 5,
     "title": "Red Riding Hood",
-    "year": "1980"
+    "year": "1990"
   }]
 }
 ```
 
-### GET single record using a query
-#### Request
-URL
-:   `apiHost.com/movies?title=Goodfellas&year=1980`
-
-Ember Data method
-:   `queryRecord('movie', {
-		title: 'Goodfellas',
-		year: '1980' })`
-
-### Why?
-
-> To get a single record based on parameter criteria.
-
-### Response
-
-HTTP Status
-:   200
-
-Payload
-:   
+Payload (If no data is found, then `queryRecord` returns a `null`)
+:
 ```javascript
 {
-  "movies": {
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1980"
-  }
+  data: null
 }
 ```
 
