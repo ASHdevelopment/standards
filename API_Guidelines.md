@@ -91,7 +91,7 @@ On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
 ## DELETE
 
-### Deleting A Record
+### Deleting a Record
 #### Request
 URL
 :   `apiHost.com/movies/2`  
@@ -99,8 +99,11 @@ URL
 Ember Data Methods:
 
 **Deletes Only (you must save to persist)**  
-`movie.deleteRecord();` then ==> `post.save();`
-The method sets the attribute `isDeleted=true`, then you must save to persist it.
+```javscript
+//Assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method
+movie.deleteRecord(); //Deletes it from the local store, but no network request to the API yet
+movie.save() //DELETE network request to apiHost.com/movies/2
+```
 
 **Deletes and Persists**   
 `movie.destroyRecord();`
