@@ -98,15 +98,18 @@ URL
 
 Ember Data Methods:
 
+*Examples are assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method*
+
 **Deletes Only (you must save to persist)**  
 ```javscript
-//Assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method
 movie.deleteRecord(); //Deletes it from the local store, but no network request to the API yet
 movie.save() //DELETE network request to apiHost.com/movies/2
 ```
 
 **Deletes and Persists**   
-`movie.destroyRecord();`
+```javscript
+movie.destroyRecord(); //Deletes it from the local store and sends a DELETE network request to apiHost.com/movies/2
+```
 
 #### Response
 
