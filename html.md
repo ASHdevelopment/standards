@@ -8,6 +8,7 @@
  1. [Semantics](#semantics)
  1. [Do NOT Use](#do-not-use)
 
+<a name="attribute-ordering-within-tags"></a>
 ## 1. Attribute Ordering within Tags
  > Makes code easier to read and easier for a new developer to jump in and find what they are looking for.
 
@@ -33,7 +34,7 @@
  <input id='...' class='...' type='...' ... etc. />
  ```
 
-
+<a name="quotes"></a>
 ## 2. Quotes
   > Hint - it's easier to type single quotes.
 
@@ -60,7 +61,7 @@
 </div>
 ```
 
-
+<a name="buttons"></a>
 ## 3. Buttons
   > Buttons can submit a form, be a link styled like a button, or simply just a button.
 
@@ -147,7 +148,7 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
   </fieldset>
 </form>
 ```
-
+<a name="comments"></a>
 ## 5. Comments
   > Comments, why? Because they are handy little helpers!
 
@@ -186,7 +187,7 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
   </div><!--end class1-->
 </section>
  ```
-
+<a name="semantics"></a>
 ## 6. Semantics
    > Semantics help make the web page easier for people and browsers to understand/use.
 
@@ -196,7 +197,7 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 ### 6.2 `<em>` vs. `<i>`
   `<em>` - should always be used when italicizing text, this tag adds emphasis in the semantics. Where as, `<i>` only tells the browser the text is just set off from it's normal prose.
 
-
+<a name="do-not-use"></a>
 ## 7. Do NOT Use
   > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
 
