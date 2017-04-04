@@ -1,7 +1,7 @@
 # ASH API Guidelines
 
 ## Table of Contents
-1. [GET](#get`)
+1. [GET](#get)
     - [Multiple Records](#get-multiple)
     - [Single Record](#get-single)
     - [Querying Multiple Records](#queryMultiple)
@@ -24,7 +24,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 <a name="get"></a>
 ## GET
 
-<a name="1.1"></a>
+<a name="get-multiple"></a>
 ### [1.1](#get-multiple): GET all records
 #### Request
 URL
@@ -57,7 +57,7 @@ Payload
 }
 ```
 
-<a name="1.2"></a>
+<a name="get-single"></a>
 ### [1.2](#get-single): GET a single record
 #### Request
 URL
@@ -83,11 +83,11 @@ Payload
 }
 ```
 
-<a name="1.3"></a>
+<a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
 **Need documentation**. In the mean time [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
 
-<a name="1.4"></a>
+<a name="querySingle"></a>
 ### [1.4](#querySingle): GET a single record using a query
 **Need documentation**. In the mean time [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
 
