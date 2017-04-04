@@ -18,7 +18,7 @@ URL
 :   `apiHost.com/movies`
 
 Ember Data Method
-:   `findAll('movies')`
+:   `findAll('movie')`
 
 #### Response
 
@@ -50,7 +50,7 @@ URL
 :   `apiHost.com/movies/2`
 
 Ember Data Method
-:   `findRecord('movies', 2)`
+:   `findRecord('movie', 2)`
 
 #### Response
 
