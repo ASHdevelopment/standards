@@ -1,7 +1,7 @@
 # ASH API Guidelines
 
 ## Table of Contents
-1. [GET](#get`)
+1. [GETs](#get`)
     - [Multiple Records](#get-multiple)
     - [Single Record](#get-single)
     - [Querying Multiple Records](#queryMultiple)
