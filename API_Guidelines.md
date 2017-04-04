@@ -15,7 +15,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 ### GET all records
 #### Request
 URL
-:   `apiHost.com/movies`  
+:   `apiHost.com/movies`
 
 Ember Data Method
 :   `findAll('movies')`
@@ -26,7 +26,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": [
@@ -58,7 +58,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": {
@@ -70,32 +70,7 @@ Payload
 ```
 
 ### GET multiple records using a query
-Calling store.query() will make a `GET` request with the passed object serialized as query params. This method returns a DS.PromiseArray in the same way as findAll.
-
-Further reference: [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
-
-URL
-:   `apiHost.com/movies?year=1980`
-
-Ember Data method
-:   `this.store.query('movie', { year: '1980' })`
-
-### Response
-
-HTTP Status
-:   200
-
-Payload
-:   
-```javascript
-{
-  "movies": {
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1990"
-  }
-}
-```
+**Need documentation**. In the mean time [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
 
 ## POST
 `save()` will make a POST request *only* if the record is *new*.  
@@ -145,15 +120,38 @@ On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
 ## DELETE
 
-On a DELETE from any Ember-App using Ember-Data I will be happy with:
+### Deleting a Record
+#### Request
+URL
+:   `apiHost.com/movies/2`  
 
-### On-Success:
-* HTTP Status: 204
-  + Response Body: Empty(No Content)
+Ember Data Methods:
+
+*Examples are assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method*
+
+**Deletes Only (you must save to persist)**  
+```javscript
+movie.deleteRecord(); //Deletes it from the local store, but no network request to the API yet
+movie.save() //DELETE network request to apiHost.com/movies/2
+```
+
+**Deletes and Persists**   
+```javscript
+movie.destroyRecord(); //Deletes it from the local store and sends a DELETE network request to apiHost.com/movies/2
+```
+
+#### Response
+
+HTTP Status
+:   204
+
+Payload
+:   Empty (No Content)
 
 ### Why?
 
->The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+> The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+
 
 ## On-Failure
 
@@ -164,14 +162,90 @@ For any error, the server should respond with the correct status code as well as
 ### Errors
 
 If a response is considered a failure, the JSON payload is expected to include
-a top-level key `errors`, detailing any specific issues. For example:
+a top-level key `errors`, detailing any specific issues. If the JSON payload does not
+include a top level `errors` key, then we will need to munge the data.
 
 ```js
-{
-  "errors": {
-    "msg": "Something went wrong"
+
+// Somewhere in Ember-land, attempting to save a model.
+
+// Omitted for brevity...
+
+actions: {
+  save(model) {
+    model.save().then(() => {
+      // For successful save
+    }).catch((error) => {
+      // For unsuccessful save
+
+      // Model had server errors for attributes: `firstName` and `email`
+    });
   }
 }
+
+```
+
+```js
+
+// Ideal JSON error payload
+
+{
+  "errors": [
+    {
+      "detail": "First name is required",
+      "source": {
+        "pointer": "data/attributes/first-name"
+      }
+    },
+    {
+      "detail": "Email is required",
+      "source": {
+        "pointer": "data/attributes/email"
+      }
+    }
+  ]
+}
+
+```
+
+Thanks to Ember Data, we have access to our errors via our `model`.
+
+```js
+
+// Somewhere in Ember-land...
+
+// Omitted for brevity...
+
+Ember.get(this, 'model.errors.first-name')
+// returns a `first-name` error object!
+// => { "attribute": "firstName", "message": "First name is required" }
+
+Ember.get(this, 'model.errors.email')
+// returns an `email` error object!
+// => { "attribute": "email", "message": "Email is required" }
+
+```
+
+Or, you can render them in a template!
+
+```hbs
+
+{{!-- Somewhere in Handlebars --}}
+
+{{#each model.errors as |error|}}
+  {{#if error.firstName}}
+    <div class="error">
+      {{error.firstName.message}}
+    </div>
+  {{/if}}
+
+  {{#if error.lastName}}
+    <div class="error">
+      {{error.lastName.message}}
+    </div>
+  {{/if}}
+{{/each}}
+
 ```
 
 # Links
