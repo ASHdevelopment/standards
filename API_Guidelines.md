@@ -85,7 +85,7 @@ Ember Data Method
 *`save()` will make a POST request only if the record is new.*
 
 ```javascript
-let movie3 = createRecord('movie', { //create movie3 record
+let movie3 = get(this, 'store').createRecord('movie', { //create movie3 record
     id: 3,
     title: "Crimson Tide",
     year: "1995"
