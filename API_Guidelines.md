@@ -91,15 +91,38 @@ On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 
 ## DELETE
 
-On a DELETE from any Ember-App using Ember-Data I will be happy with:
+### Deleting a Record
+#### Request
+URL
+:   `apiHost.com/movies/2`  
 
-### On-Success:
-* HTTP Status: 204
-  + Response Body: Empty(No Content)
+Ember Data Methods:
+
+*Examples are assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method*
+
+**Deletes Only (you must save to persist)**  
+```javscript
+movie.deleteRecord(); //Deletes it from the local store, but no network request to the API yet
+movie.save() //DELETE network request to apiHost.com/movies/2
+```
+
+**Deletes and Persists**   
+```javscript
+movie.destroyRecord(); //Deletes it from the local store and sends a DELETE network request to apiHost.com/movies/2
+```
+
+#### Response
+
+HTTP Status
+:   204
+
+Payload
+:   Empty (No Content)
 
 ### Why?
 
->The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+> The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+
 
 ## On-Failure
 
