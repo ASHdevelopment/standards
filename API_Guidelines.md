@@ -98,29 +98,33 @@ Payload
 ```
 
 ## POST
+`save()` will make a POST request *only* if the record is *new*.  
 
-### Save Method
+### Creating Records
+#### Request
+URL
+:   `apiHost.com/movies`  
 
-`Ember.save` will make a POST request *only* if the record is *new*.  
-`Ember.createRecord` will also make a POST request.
+Ember Data Method
+:   `movie.save()`
 
-### Responses
+#### Response
 
-#### With Client-Generated ID
+HTTP Status
+:   201
 
-If the requested resource was created successfully, respond with one of the two options below
+Payload
+:   
+```javascript
+{
+  "movies": {
+    "id": 3,
+    "title": "Crimson Tide",
+    "year": "1995"
+  }
+}
+```
 
-- HTTP Status: 201
-  - Response Body: JSON Object (saved record payload)
-- HTTP Status: 204
-  - Reponse Body: Empty (no content)
-
-#### Without Client-Generated ID
-
-If the requested resource was created successfully
-
-- HTTP Status: 201
-  - Response Body: JSON Object (saved record payload)
 
 ## PUT
 
