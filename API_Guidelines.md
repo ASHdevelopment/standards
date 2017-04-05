@@ -28,10 +28,10 @@ In general, each record needs to have an id. So the API should supply one, even 
 ### [1.1](#get-multiple): GET all records
 #### Request
 URL
-:   `apiHost.com/movies`  
+:   `apiHost.com/movies`
 
 Ember Data Method
-:   `findAll('movies')`
+:   `findAll('movie')`
 
 #### Response
 
@@ -39,7 +39,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": [
@@ -64,7 +64,7 @@ URL
 :   `apiHost.com/movies/2`
 
 Ember Data Method
-:   `findRecord('movies', 2)`
+:   `findRecord('movie', 2)`
 
 #### Response
 
@@ -72,7 +72,7 @@ HTTP Status
 :   200
 
 Payload
-:   
+:
 ```javascript
 {
   "movies": {
@@ -94,7 +94,42 @@ Payload
 <a name="post"></a>
 ## POST
 
-<a name="put"></a>
+### Creating Records
+#### Request
+URL
+:   `apiHost.com/movies`  
+
+Ember Data Method
+:  
+
+```javascript
+//create movie3 record in local store
+let movie3 = get(this, 'store').createRecord('movie', {
+    title: "Crimson Tide",
+    year: "1995"
+});
+
+//persist movie3 via POST request to apiHost.com/movies/3
+movie3.save();
+```
+
+#### Response
+
+HTTP Status
+:   201
+
+Payload
+:   
+```javascript
+{
+  "movies": {
+    "id": 3,
+    "title": "Crimson Tide",
+    "year": "1995"
+  }
+}
+```
+
 ## PUT
 
 On a PUT from any Ember-App using Ember-Data I will be happy with the following:
@@ -115,15 +150,38 @@ On a PUT from any Ember-App using Ember-Data I will be happy with the following:
 <a name="delete"></a>
 ## DELETE
 
-On a DELETE from any Ember-App using Ember-Data I will be happy with:
+### Deleting a Record
+#### Request
+URL
+:   `apiHost.com/movies/2`  
 
-### On-Success:
-* HTTP Status: 204
-  + Response Body: Empty(No Content)
+Ember Data Methods:
+
+*Examples are assuming you have already set movie to a record in your store using findRecord('movie', 2) or a similar method*
+
+**Deletes Only (you must save to persist)**  
+```javscript
+movie.deleteRecord(); //Deletes it from the local store, but no network request to the API yet
+movie.save() //DELETE network request to apiHost.com/movies/2
+```
+
+**Deletes and Persists**   
+```javscript
+movie.destroyRecord(); //Deletes it from the local store and sends a DELETE network request to apiHost.com/movies/2
+```
+
+#### Response
+
+HTTP Status
+:   204
+
+Payload
+:   Empty (No Content)
 
 ### Why?
 
->The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+> The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+
 
 <a name="errors"></a>
 ## On-Failure
@@ -133,12 +191,88 @@ For any error, the server should respond with the correct status code as well as
 ### Errors
 
 If a response is considered a failure, the JSON payload is expected to include
-a top-level key `errors`, detailing any specific issues. For example:
+a top-level key `errors`, detailing any specific issues. If the JSON payload does not
+include a top level `errors` key, then we will need to munge the data.
 
 ```js
-{
-  "errors": {
-    "msg": "Something went wrong"
+
+// Somewhere in Ember-land, attempting to save a model.
+
+// Omitted for brevity...
+
+actions: {
+  save(model) {
+    model.save().then(() => {
+      // For successful save
+    }).catch((error) => {
+      // For unsuccessful save
+
+      // Model had server errors for attributes: `firstName` and `email`
+    });
   }
 }
+
+```
+
+```js
+
+// Ideal JSON error payload
+
+{
+  "errors": [
+    {
+      "detail": "First name is required",
+      "source": {
+        "pointer": "data/attributes/first-name"
+      }
+    },
+    {
+      "detail": "Email is required",
+      "source": {
+        "pointer": "data/attributes/email"
+      }
+    }
+  ]
+}
+
+```
+
+Thanks to Ember Data, we have access to our errors via our `model`.
+
+```js
+
+// Somewhere in Ember-land...
+
+// Omitted for brevity...
+
+Ember.get(this, 'model.errors.first-name')
+// returns a `first-name` error object!
+// => { "attribute": "firstName", "message": "First name is required" }
+
+Ember.get(this, 'model.errors.email')
+// returns an `email` error object!
+// => { "attribute": "email", "message": "Email is required" }
+
+```
+
+Or, you can render them in a template!
+
+```hbs
+
+{{!-- Somewhere in Handlebars --}}
+
+{{#each model.errors as |error|}}
+  {{#if error.firstName}}
+    <div class="error">
+      {{error.firstName.message}}
+    </div>
+  {{/if}}
+
+  {{#if error.lastName}}
+    <div class="error">
+      {{error.lastName.message}}
+    </div>
+  {{/if}}
+{{/each}}
+
 ```
