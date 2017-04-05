@@ -82,15 +82,15 @@ URL
 Ember Data Method
 :  
 
-*`save()` will make a POST request only if the record is new.*
-
 ```javascript
-let movie3 = get(this, 'store').createRecord('movie', { //create movie3 record
-    id: 3,
+//create movie3 record in local store
+let movie3 = get(this, 'store').createRecord('movie', {
     title: "Crimson Tide",
     year: "1995"
 });
-movie3.save(); //persist movie3 to apiHost.com/movies/3
+
+//persist movie3 via POST request to apiHost.com/movies/3
+movie3.save();
 ```
 
 #### Response
