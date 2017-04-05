@@ -72,6 +72,45 @@ Payload
 ### GET multiple records using a query
 **Need documentation**. In the mean time [Finding Records](https://guides.emberjs.com/v2.10.0/models/finding-records/)
 
+## POST
+
+### Creating Records
+#### Request
+URL
+:   `apiHost.com/movies`  
+
+Ember Data Method
+:  
+
+```javascript
+//create movie3 record in local store
+let movie3 = get(this, 'store').createRecord('movie', {
+    title: "Crimson Tide",
+    year: "1995"
+});
+
+//persist movie3 via POST request to apiHost.com/movies/3
+movie3.save();
+```
+
+#### Response
+
+HTTP Status
+:   201
+
+Payload
+:   
+```javascript
+{
+  "movies": {
+    "id": 3,
+    "title": "Crimson Tide",
+    "year": "1995"
+  }
+}
+```
+
+
 ## PUT
 
 On a PUT from any Ember-App using Ember-Data I will be happy with the following:
