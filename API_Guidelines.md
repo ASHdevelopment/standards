@@ -85,16 +85,16 @@ Payload
 
 <a name="querySingle"></a>
 ### [1.4](#querySingle): GET a single record using a query
+
+### Why?
+> To get a single record based on parameter criteria when the result is known to be one record.
+
 #### Request
 URL
 :   `apiHost.com/movies?title=Goodfellas`
 
 Ember Data method
 :   `queryRecord('movie', { title: 'Goodfellas' })`
-
-### Why?
-
-> To get a single record based on parameter criteria when the result is known to be one record.
 
 ### Response
 
@@ -117,22 +117,22 @@ Payload (If no data is found, then `queryRecord` returns a `null`)
 :
 ```javascript
 {
-  data: null
+  "movies": []
 }
 ```
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
+
+### Why?
+> To get multiple records based on parameter criteria.
+
 #### Request
 URL
 :   `apiHost.com/movies?year=1990`
 
 Ember Data method
 :   `query('movie', { year: '1990' })`
-
-### Why?
-
-> To get multiple records based on parameter criteria.
 
 ### Response
 
@@ -160,7 +160,7 @@ Payload (If no data is found, then `queryRecord` returns a `null`)
 :
 ```javascript
 {
-  data: null
+  "movies": []
 }
 ```
 
