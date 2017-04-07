@@ -118,7 +118,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns a `null`)
+Payload (If no data is found, then `queryRecord` returns an empty array)
 :
 ```javascript
 {
@@ -156,7 +156,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns a `null`)
+Payload (If no data is found, then `queryRecord` returns an empty array)
 :
 ```javascript
 {
