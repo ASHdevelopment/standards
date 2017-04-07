@@ -83,44 +83,6 @@ Payload
 }
 ```
 
-<a name="querySingle"></a>
-### [1.4](#querySingle): GET a single record using a query
-
-### Why?
-> To get a single record based on parameter criteria when the result is known to be one record.
-
-#### Request
-URL
-:   `apiHost.com/movies?title=Goodfellas`
-
-Ember Data method
-:   `queryRecord('movie', { title: 'Goodfellas' })`
-
-### Response
-
-HTTP Status
-:   200
-
-Payload
-:   
-```javascript
-{
-  "movies": [{
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1990"
-  }]
-}
-```
-
-Payload (If no data is found, then `queryRecord` returns a `null`)
-:
-```javascript
-{
-  "movies": []
-}
-```
-
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
 
@@ -151,6 +113,44 @@ Payload
   {
     "id": 5,
     "title": "Red Riding Hood",
+    "year": "1990"
+  }]
+}
+```
+
+Payload (If no data is found, then `queryRecord` returns a `null`)
+:
+```javascript
+{
+  "movies": []
+}
+```
+
+<a name="querySingle"></a>
+### [1.4](#querySingle): GET a single record using a query
+
+### Why?
+> To get a single record based on parameter criteria when the result is known to be one record.
+
+#### Request
+URL
+:   `apiHost.com/movies?title=Goodfellas`
+
+Ember Data method
+:   `queryRecord('movie', { title: 'Goodfellas' })`
+
+### Response
+
+HTTP Status
+:   200
+
+Payload
+:   
+```javascript
+{
+  "movies": [{
+    "id": 2,
+    "title": "Goodfellas",
     "year": "1990"
   }]
 }
