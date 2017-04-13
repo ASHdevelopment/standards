@@ -72,48 +72,41 @@ Payload
 
 ## PUT
 
-> `PUT` requests update records that already exist with new information
+> `PUT` requests update records that already exist with new or updated information
 
-### Example
+### Request
+URL
+:   `apiHost.com/movies/2`
 
-#### Current model:
+Ember Data Method
+:   
+```javascript
+//lookup record in the local store
+let movie = this.store.findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
+movie.set('title', 'Goodfellers'); //update an existing property
+movie.set('radioheadOnSoundtrack', false); //add a new property
+// set method only updates the record in the local store without making a network request yet.
+movie.save(); //save() initiates a PUT request to apiHost.com/movies/2
+```
+
+#### Response
+HTTP Status
+:   200
+
+Payload
+:   
 ```javascript
 {
-    "bands": {
-        "id": 8,
-        "name": "Radiohead",
-        "bestAlbum": "OK Computer",
-        "bestBandEver": false
-    }
+  "movies": {
+    "id": 2,
+    "title": "Goodfellers", //title has been update
+    "year": "1990",
+    "radioheadOnSoundtrack": false //property has been added
+  }
 }
 ```
 
-#### Update is desired:
-```javascript
-set(model, 'bestBandEver', true);
-model.save(); // This initializes the PUT request
-```
-
-#### There are two options for a response after a successful request:
-* Status Code: `204`
-* Response payload: Empty (No Content)
-* This is the recommended pattern
-
-##### OR
-
-* Status Code: `200`
-* Response payload:
-```javascript
-// Notice the updated 'bestBandEver' property
-{
-    "bands": {
-        "id": 8,
-        "name": "Radiohead",
-        "bestAlbum": "OK Computer",
-        "bestBandEver": true
-    }
-}
-```
+The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
 ## DELETE
 
