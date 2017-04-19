@@ -3,6 +3,7 @@
 1. [Destructuring](#destructuring)
 1. [CSS](#css)
 1. [actions](#actions)
+1. [Deployment Checklist](#deployment-checklist)
 
 ## General Structure
 
@@ -171,5 +172,55 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <div class="container">
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
-
 ```
+
+## Deployment Checklist
+
+### 1. Linted
+Install `ember-cli-eslint`. This will output lint errors in the local server command line
+
+### 2. Loading Indicators
+Any content that can be updated should have a loading indicator  
+Use the `ash-loader` addon for this
+
+### 3. 404 template
+Create a 404 template using the `ash-four-oh-four` addon
+
+### 4. Catch Errors
+Determine where the app could break and catch errors to keep the user informed
+
+### 5. unit/acceptance/integration tested
+As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work
+
+### 6. Code Coverage
+Be sure to utilize the `ember-cli-code-coverage` addon
+
+### 7. Accessibility Tested
+`ember-a11y-testing` should be installed
+
+### 8. Mirage
+If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API
+
+### 9. Cross-Browser Tested
+Test the app in every browser that we support  
+If Mirage is being used, and the real API is available, test with both sets of data in each browser  
+*Current Supported Browsers: ie10, firefox, safari (desktop and mobile), and chrome*
+
+### 10. Build Pipelines Defined
+Configure **stg.ashui** build with Mirage data  
+Configure **production** build with API data  
+
+Create a build definition for the app that will:  
+1. set npm registry path
+2. run `npm install`
+3. run `bower install`
+4. run `npm test`
+5. run `ember build --environment=preivew --output-path=preview`
+6. run `ember build --environment=production`
+7. copy files to the drop location
+8. publish files to stgashui and the build location
+9. publish Code Coverage results
+10. notify the appropriate Slack channels
+
+### 11. Checklist Violations
+`npm test` (in the build definition) will catch errors and reject build
