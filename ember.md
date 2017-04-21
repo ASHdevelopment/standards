@@ -97,7 +97,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 ```scss
 // Bad
-// base/social.scss
+// app/style/appName.scss
 .chats {
   padding: 1rem;
   display: flex;
