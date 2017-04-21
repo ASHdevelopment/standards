@@ -82,7 +82,7 @@ Ember Data Method
 :   
 ```javascript
 //lookup record in the local store
-let movie = this.store.findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
+let movie = store.findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
 movie.set('title', 'Goodfellers'); //update an existing property
 movie.set('radioheadOnSoundtrack', false); //add a new property
 // set method only updates the record in the local store without making a network request yet.
@@ -99,7 +99,7 @@ Payload
 {
   "movies": {
     "id": 2,
-    "title": "Goodfellers", //title has been update
+    "title": "Goodfellers", //title has been updated
     "year": "1990",
     "radioheadOnSoundtrack": false //property has been added
   }
