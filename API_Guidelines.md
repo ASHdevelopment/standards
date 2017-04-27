@@ -205,20 +205,41 @@ Payload
 
 ## PUT
 
-On a PUT from any Ember-App using Ember-Data I will be happy with the following:
+> `PUT` requests update records that already exist with new or updated information
 
-### On-Success:
+### Request
+URL
+:   `apiHost.com/movies/2`
 
-* HTTP Status: 204
-  + Response Body: Empty(No Content)
-* HTTP Status: 200
-  + Response Body: {}
-* HTTP Status: 200
-  + Response Body: JSON Object
+Ember Data Method
+:   
+```javascript
+//lookup record in the local store
+let movie = get(this, 'store').findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
+movie.set('title', 'Goodfellers'); //update an existing property
+movie.set('radioheadOnSoundtrack', false); //add a new property
+// set method only updates the record in the local store without making a network request yet.
+movie.save(); //save() initiates a PUT request to apiHost.com/movies/2
+```
 
-### Why?
+#### Response
+HTTP Status
+:   200
 
-> The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body. A 200 response always has a payload, though an origin server MAY generate a payload body of zero length.
+Payload
+:   
+```javascript
+{
+  "movies": {
+    "id": 2,
+    "title": "Goodfellers", //title has been updated
+    "year": "1990",
+    "radioheadOnSoundtrack": false //property has been added
+  }
+}
+```
+
+The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
 <a name="delete"></a>
 ## DELETE
