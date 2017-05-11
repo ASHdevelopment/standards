@@ -182,7 +182,7 @@ let movie3 = get(this, 'store').createRecord('movie', {
     year: "1995"
 });
 
-//persist movie3 via POST request to apiHost.com/movies/3
+//persist movie3 via POST request to apiHost.com/movies
 movie3.save();
 ```
 
