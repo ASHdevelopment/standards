@@ -341,7 +341,7 @@ Try/Catch should always be used when accessing deeply nested objects, when you c
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
 
-## <a name="#documentation">Documentation & Style</a>
+## <a name="documentation">Documentation & Style</a>
 > Why? Because other devs need to be able to work in your code without setting up a meeting first.
 
 ### 9.1 Documentation
