@@ -6,9 +6,9 @@
 1. [Objects](#objects)
 1. [Functions](#functions)
 1. [Iteration](#iteration)
-1. [JSON](#json)
 1. [Try/Catch](#trycatch)
 1. [Libraries](#libraries)
+1. [Documentation & Style](#documentation)
 
 ## <a name="variables">Variables</a>
 
@@ -319,7 +319,7 @@ try {
     }
 }
 ```
-
+## <a name="#trycatch">Try/Catch</a>
 ### 7.2 Try...Catch for Nesting
 
 Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
@@ -340,3 +340,79 @@ Try/Catch should always be used when accessing deeply nested objects, when you c
 > Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
+
+## <a name="#libraries">Documentation & Style</a>
+> Why? Because other devs need to be able to work in your code without setting up a meeting first.
+
+### 9.1 Documentation
+While there isn't a hard standard, a good rule of thumb is if you need to explain what it's doing to the next developer, you should add documentation. You can document a block at the top of a function or tell a story as developers step through your code. Don't document obvious things.
+
+```javascript
+//BAD (self explanitory comments)
+//the user
+const user = 'Michael Scott';
+//if they have access
+const hasAccess = true;
+//mallVisits
+const mallVisits = getMallVisits();
+//list of truck logs
+let truckLog;
+
+//ALSO BAD (not able to tell what's going on in this function without in depth knowledge of the whole system)
+truckLog = getTruckLogs(employees[5]);
+
+function hasGirlfriend(date){
+	const carol = (date > boughtCondo(false)) &&  (date < visitedJamaica('day2'));
+	const jan = (date > visitedJamaica('day2') && date < wentToMallWithOffice(mallVisits[4].date));
+	const holly = (date > tobyLeft(2) && date < droveTheTruck(truckLog[105].location));
+
+	if(casinoNight()){
+		return 2;
+	} else{
+		return carol || jan || holly;
+	}
+
+}
+
+hasGirlfriend(currentDate);
+```
+
+```javascript
+//GOOD
+const user = 'Michael Scott';
+const hasAccess = true;
+//returns an array of mall visits
+const mallVisits = getMallVisits();
+let truckLog;
+
+//returns an array instances Daryl from the warehouse drove the truck
+truckLog = getTruckLogs(employees[5]);
+
+//Michael is only allowed to have 3 girlfriends, so we need to check the date against the dates he dated all 3 of them
+function hasGirlfriend(date){
+	//boughtCondo accepts a param that defaults to true if it's the 2nd sale which happened after he was done dating carol. so passing in false here
+	const carol = (date > boughtCondo(false)) &&  (date < visitedJamaica();
+	//mallVisits[4].date represents the date he went to the mall with the women of the office and they told him to break up with jan
+	const jan = (date > visitedJamaica() && date < wentToMallWithOffice(mallVisits[4].date));
+	//get the specific date daryl drove the truck to holly's new apartment
+	const holly = (date > tobyLeft() && date < droveTheTruck(truckLog[105].location));
+
+	//there's a caveat that if it's a casinoNight, Michael thinks he has 2 girlfriends, so the writers have dictated that
+	//we should always return 2 instead of a boolean in that case
+	if(casinoNight()){
+		return 2;
+	} else{
+		return carol || jan || holly;
+	}
+
+}
+
+hasGirlfriend(currentDate);
+```
+
+
+### 9.2 Readability
+
+- Good code is readable by other developers.
+- Good code can do complex things.
+- Code that can do complex things, but is not readable by other developers is not good code.
