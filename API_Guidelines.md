@@ -270,7 +270,7 @@ URL
 
 
 Request Method
-: `POST` 
+: `DELETE`
 
 Ember Data Methods:
 
