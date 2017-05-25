@@ -30,6 +30,9 @@ In general, each record needs to have an id. So the API should supply one, even 
 URL
 :   `apiHost.com/movies`
 
+Request Method
+: `GET`
+
 Ember Data Method
 :   `findAll('movie')`
 
@@ -63,6 +66,9 @@ Payload
 URL
 :   `apiHost.com/movies/2`
 
+Request Method
+: `GET`
+
 Ember Data Method
 :   `findRecord('movie', 2)`
 
@@ -92,6 +98,9 @@ Payload
 #### Request
 URL
 :   `apiHost.com/movies?year=1990`
+
+Request Method
+: `GET`
 
 Ember Data method
 :   `query('movie', { year: '1990' })`
@@ -136,6 +145,9 @@ Payload (If no data is found, then `queryRecord` returns an empty array)
 URL
 :   `apiHost.com/movies?title=Goodfellas`
 
+Request Method
+: `GET`
+
 Ember Data method
 :   `queryRecord('movie', { title: 'Goodfellas' })`
 
@@ -170,7 +182,10 @@ Payload (If no data is found, then `queryRecord` returns an empty array)
 ### Creating Records
 #### Request
 URL
-:   `apiHost.com/movies`  
+:   `apiHost.com/movies`
+
+Request Method
+: `POST`
 
 Ember Data Method
 :  
@@ -211,6 +226,10 @@ Payload
 URL
 :   `apiHost.com/movies/2`
 
+
+Request Method
+: `PUT`
+
 Ember Data Method
 :   
 ```javascript
@@ -248,6 +267,10 @@ The api can also return a `204` with an empty payload, but **this is not preferr
 #### Request
 URL
 :   `apiHost.com/movies/2`  
+
+
+Request Method
+: `DELETE`
 
 Ember Data Methods:
 
