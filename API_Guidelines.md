@@ -96,14 +96,13 @@ Payload
   }
 }
 ```
-Payload (If no data is found, then `findRecord` returns an empty array)
+Payload (If no data is found, then `findRecord` returns an null value)
 :
 ```javascript
 {
   "movie": null
 }
 ```
-
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
