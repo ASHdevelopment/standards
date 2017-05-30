@@ -60,6 +60,14 @@ Payload
 }
 ```
 
+Payload (If no data is found, then `findAll` returns an empty array)
+:
+```javascript
+{
+  "movies": []
+}
+```
+
 <a name="get-single"></a>
 ### [1.2](#get-single): GET a single record
 #### Request
@@ -81,13 +89,21 @@ Payload
 :
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 2,
     "title": "Goodfellas",
     "year": "1990"
   }
 }
 ```
+Payload (If no data is found, then `findRecord` returns an empty array)
+:
+```javascript
+{
+  "movie": null
+}
+```
+
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
@@ -127,7 +143,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then `query` returns an empty array)
 :
 ```javascript
 {
