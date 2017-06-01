@@ -9,6 +9,7 @@
 1. [POST](#post)
 1. [PUT](#put)
 1. [DELETE](#delete)
+1. [Dates](#date)
 1. [Error Formatting](#errors)
 
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
@@ -299,6 +300,45 @@ Payload
 
 > The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
 
+<a name="date"></a>
+## Dates
+
+### DateTime Options
+DateTime properties should use the ISO 8601 format below.
+
+```javascript
+//No matter where the user is, they will see the time as 3:26pm
+//local to their timezone
+var local ='2017-05-10T15:26';
+
+//The Z at the end means that this is 3:26 UTC time. Depending
+//on how this date is implimented client-side, the user will
+//see their local conversion. For instance, 11:26am EST during
+//daylight saving time or 10:26 after daylight saving time ends.
+var utc = '2017-05-10T15:26Z';
+
+//In this case, the datetime is 3:26 EST, so it will convert
+//to 12:26 PST if the user is in San Diego.
+var offset =  '2017-05-10T15:26-0400'
+
+//In this case, the datetime is 2:26 EST because daylight saving
+//time has ended (the month was changed to December), so it will
+//convert to 11:26 PST if the user is in San Diego.
+var offsetWithoutDaylightSaving =  '2017-12-10T15:26-0400'
+```
+
+### Daylight Saving Time
+It's important to remember that UTC is different in the USA any given date, depending on if we are in the middle of daylight saving or not.
+
+### Dates Only (without time)
+If the API passes a date without a time, it will be converted to that date at midnight UTC.
+
+```javascript
+var newYearsDay = '2017-01-01';
+new Date(newYearsDay); //Sat Dec 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)
+```
+
+Because PST is 8 hours behind UTC, the date will display 12/31/2016.
 
 <a name="errors"></a>
 ## On-Failure
