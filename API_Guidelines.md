@@ -160,19 +160,19 @@ Payload
 :   
 ```javascript
 {
-  "movies": [{
+  "movie": {
     "id": 2,
     "title": "Goodfellas",
     "year": "1990"
-  }]
+  }
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then `queryRecord` returns an empty object)
 :
 ```javascript
 {
-  "movies": []
+  "movie": {}
 }
 ```
 
