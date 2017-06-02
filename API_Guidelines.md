@@ -9,6 +9,7 @@
 1. [POST](#post)
 1. [PUT](#put)
 1. [DELETE](#delete)
+1. [Model Relationships](#relationships)
 1. [Error Formatting](#errors)
 
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
@@ -276,6 +277,234 @@ Payload
 
 > The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
 
+<a name="relationships"></a>
+## Model Relationships
+
+### 5.1 Side-loaded without query
+
+### Why?
+> Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed
+
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors": [1,2,3]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors": [1,2,4]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors": [1,5,6]
+    }    
+  ],
+  "actors":[
+    {
+      "id":1,
+      "name": "Robert De Niro"
+    },{
+      "id":2,
+      "name": "Joe Pesci"
+    },{
+      "id":3,
+      "name": "Cathy Moriarty"
+    },{
+      "id":4,
+      "name": "Ray Liotta"
+    },{
+      "id":5,
+      "name": "Nick Nolte"
+    },{
+      "id":6,
+      "name": "Illeana Douaglas"
+    }
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors. It will not return all actors for all movies.
+
+## Embedded data without query
+
+### Why?
+> Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed.  If you have a lot of shared actors, this may result in a significantly larger payload.
+
+Notice that the payload is larger here becuase shared actors (De Niro and Pesci) are repeated, whereas they are not in the side-loaded example.
+
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":3,
+          "name": "Cathy Moriarty"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":4,
+          "name": "Ray Liotta"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":5,
+          "name": "Nick Nolte"
+        },{
+          "id":6,
+          "name": "Illeana Douaglas"
+        }
+      ]
+    }    
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors.
+
+## Embedded data with query
+
+### Why?
+> Use this method when you want the ability to toggle including actors when the `movies` endpoint is accessed
+
+URL: `api.com/movies/?include=actors`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":3,
+          "name": "Cathy Moriarty"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":4,
+          "name": "Ray Liotta"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":5,
+          "name": "Nick Nolte"
+        },{
+          "id":6,
+          "name": "Illeana Douaglas"
+        }
+      ]
+    }    
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1/?include=actors` and the api will only return Raging Bull and its actors.
+
+
+## Async loading
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[1, 2, 3]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[1, 2, 4]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[1, 5, 6]
+    }    
+  ]
+}
+```
+
+The JavaScript can then make individual requests to `api.com/actors/1`, `api.com/actors/2`, `api.com/actors/3`, etc. because those id's were referenced in the original payload.
 
 <a name="errors"></a>
 ## On-Failure
