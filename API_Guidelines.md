@@ -10,6 +10,7 @@
 1. [PUT](#put)
 1. [DELETE](#delete)
 1. [Model Relationships](#relationships)
+1. [Dates](#date)
 1. [Error Formatting](#errors)
 
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
@@ -30,6 +31,9 @@ In general, each record needs to have an id. So the API should supply one, even 
 #### Request
 URL
 :   `apiHost.com/movies`
+
+Request Method
+: `GET`
 
 Ember Data Method
 :   `findAll('movie')`
@@ -64,6 +68,9 @@ Payload
 URL
 :   `apiHost.com/movies/2`
 
+Request Method
+: `GET`
+
 Ember Data Method
 :   `findRecord('movie', 2)`
 
@@ -93,6 +100,9 @@ Payload
 #### Request
 URL
 :   `apiHost.com/movies?year=1990`
+
+Request Method
+: `GET`
 
 Ember Data method
 :   `query('movie', { year: '1990' })`
@@ -137,6 +147,9 @@ Payload (If no data is found, then `queryRecord` returns an empty array)
 URL
 :   `apiHost.com/movies?title=Goodfellas`
 
+Request Method
+: `GET`
+
 Ember Data method
 :   `queryRecord('movie', { title: 'Goodfellas' })`
 
@@ -149,19 +162,19 @@ Payload
 :   
 ```javascript
 {
-  "movies": [{
+  "movie": {
     "id": 2,
     "title": "Goodfellas",
     "year": "1990"
-  }]
+  }
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then `queryRecord` returns an empty object)
 :
 ```javascript
 {
-  "movies": []
+  "movie": {}
 }
 ```
 
@@ -171,7 +184,10 @@ Payload (If no data is found, then `queryRecord` returns an empty array)
 ### Creating Records
 #### Request
 URL
-:   `apiHost.com/movies`  
+:   `apiHost.com/movies`
+
+Request Method
+: `POST`
 
 Ember Data Method
 :  
@@ -212,6 +228,10 @@ Payload
 URL
 :   `apiHost.com/movies/2`
 
+
+Request Method
+: `PUT`
+
 Ember Data Method
 :   
 ```javascript
@@ -249,6 +269,10 @@ The api can also return a `204` with an empty payload, but **this is not preferr
 #### Request
 URL
 :   `apiHost.com/movies/2`  
+
+
+Request Method
+: `DELETE`
 
 Ember Data Methods:
 
@@ -505,6 +529,46 @@ Payload:
 ```
 
 The JavaScript can then make individual requests to `api.com/actors/1`, `api.com/actors/2`, `api.com/actors/3`, etc. because those id's were referenced in the original payload.
+
+<a name="date"></a>
+## Dates
+
+### DateTime Options
+DateTime properties should use the ISO 8601 format below.
+
+```javascript
+//No matter where the user is, they will see the time as 3:26pm
+//local to their timezone
+var local ='2017-05-10T15:26';
+
+//The Z at the end means that this is 3:26 UTC time. Depending
+//on how this date is implimented client-side, the user will
+//see their local conversion. For instance, 11:26am EST during
+//daylight saving time or 10:26 after daylight saving time ends.
+var utc = '2017-05-10T15:26Z';
+
+//In this case, the datetime is 3:26 EST, so it will convert
+//to 12:26 PST if the user is in San Diego.
+var offset =  '2017-05-10T15:26-0400'
+
+//In this case, the datetime is 2:26 EST because daylight saving
+//time has ended (the month was changed to December), so it will
+//convert to 11:26 PST if the user is in San Diego.
+var offsetWithoutDaylightSaving =  '2017-12-10T15:26-0400'
+```
+
+### Daylight Saving Time
+It's important to remember that UTC is different in the USA any given date, depending on if we are in the middle of daylight saving or not.
+
+### Dates Only (without time)
+If the API passes a date without a time, it will be converted to that date at midnight UTC.
+
+```javascript
+var newYearsDay = '2017-01-01';
+new Date(newYearsDay); //Sat Dec 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)
+```
+
+Because PST is 8 hours behind UTC, the date will display 12/31/2016.
 
 <a name="errors"></a>
 ## On-Failure
