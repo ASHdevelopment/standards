@@ -306,14 +306,20 @@ for (let i = 0; i < array.length; i++) {
 	```javascript
 
 	//bad
-	let itemsLength = items.map((item)=>{
-	 return item.length;
-	});
+	const isTrue = true;
+
+	try {
+		isTrue = true;
+	} catch (e) {
+		alert(`It's Not True!`)
+	}
 
 	//good
-	let itemsLength = items.map( item =>{
-	 return item.length;
-	});
+	try {
+		errorObj = arg1.response.responseJSON.responseStatus;
+	} catch (e) {
+		errorObj = {};
+	}
 ```
 
 **Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
