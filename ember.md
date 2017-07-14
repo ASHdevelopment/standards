@@ -11,6 +11,7 @@
 
 <a name="general-structure">
 ## General Structure
+
 <a name="general-structure--properties">
 - 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
   + **Properties**
@@ -83,6 +84,7 @@ get(someObject, 'isUpdated'); //true
 ```
 <a name="css">
 ## CSS
+
 <a name="css--usage">
 ### 3.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
@@ -145,6 +147,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ```
 <a name="actions"></a>
 ## Actions
+
 <a name="actions--location"></a>
 ### 4.1 Location
 
