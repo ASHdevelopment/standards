@@ -9,10 +9,10 @@
 1. [Actions](#actions)
   - [Location](#actions--location)
 
-<a name="general-structure">
+<a name="general-structure"></a>
 ## General Structure
 
-<a name="general-structure--properties">
+<a name="general-structure--properties"></a>
 
 - 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
   + **Properties**
@@ -21,12 +21,14 @@
   + Custom methods
   + `actions` go last
 
-<a name="destructuring">
+<a name="destructuring"></a>
+
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
 > Why? Destructuring allows you to import only which classes you need and then extract (or destructure) only the properties that you need. This makes our modules more efficient.
 
-<a name="destructuring--objects">
+
+<a name="destructuring--objects"></a>
 ###2.1 Destructuring Objects
 
 ```javascript
@@ -60,7 +62,7 @@ export default Model.extend({
   })
 });
 ```
-<a name="destructuring--get-set">
+<a name="destructuring--get-set"></a>
 ###2.2 Using `get` and `set`
 Destructuring `get` and `set` will allow you pass in a POJO, rather than being limited to just the current object with the `this` keyword.
 
@@ -83,10 +85,10 @@ get(this, 'isDestructured'); //true
 set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
-<a name="css">
+<a name="css"></a>
 ## CSS
 
-<a name="css--usage">
+<a name="css--usage"></a>
 ###3.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
