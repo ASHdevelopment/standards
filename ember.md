@@ -1,13 +1,13 @@
 # Ember
 1. [General Structure](#general-structure)
-  - [Properties](#general-structure--properties)
+    - [Properties](#general-structure--properties)
 1. [Destructuring](#destructuring)
-  - [Objects](#destructuring--objects)
-  - [Get/Set](#destructuring--get-set)
+    - [Objects](#destructuring--objects)
+    - [Get/Set](#destructuring--get-set)
 1. [CSS](#css)
-  - [Usage](#css--usage)
+    - [Usage](#css--usage)
 1. [Actions](#actions)
-  - [Location](#actions--location)
+    - [Location](#actions--location)
 
 <a name="general-structure"></a>
 ## General Structure
