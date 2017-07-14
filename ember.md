@@ -13,7 +13,6 @@
 ## General Structure
 
 <a name="general-structure--properties"></a>
-
 - 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
   + **Properties**
     + Put ember specific properties (e.g., `classNames`, `tagNames`) before custom properties (e.g., `someSpecificAshProp : true`)
@@ -22,14 +21,12 @@
   + `actions` go last
 
 <a name="destructuring"></a>
-
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
 > Why? Destructuring allows you to import only which classes you need and then extract (or destructure) only the properties that you need. This makes our modules more efficient.
 
-
 <a name="destructuring--objects"></a>
-###2.1 Destructuring Objects
+### 2.1 Destructuring Objects
 
 ```javascript
 //Bad
@@ -63,7 +60,7 @@ export default Model.extend({
 });
 ```
 <a name="destructuring--get-set"></a>
-###2.2 Using `get` and `set`
+### 2.2 Using `get` and `set`
 Destructuring `get` and `set` will allow you pass in a POJO, rather than being limited to just the current object with the `this` keyword.
 
 ```javascript
@@ -89,7 +86,7 @@ get(someObject, 'isUpdated'); //true
 ## CSS
 
 <a name="css--usage"></a>
-###3.1 Usage
+### 3.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 > Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
