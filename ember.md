@@ -8,6 +8,8 @@
     - [Usage](#css--usage)
 1. [Actions](#actions)
     - [Location](#actions--location)
+1. [Testing](#testing)
+	- [Test Scripts](#testing--test-scripts)
 
 <a name="general-structure"></a>
 ## General Structure
@@ -182,4 +184,26 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
 
+```
+<a name="testing"></a>
+## Testing
+
+<a name="testing--test-scripts"></a>
+### 5.1 Test Scripts
+
+> Why? For consistency in testing across all of our Ember apps
+
+We use three addons to compile our test scripts.  
+1. `ember-exam` - For allowing more control over which tests run in Ember CLI QUnit
+1. `cross-env` - For allowing single commands for multiple test environments
+1. `ember-cli-code-coverage` - For testing the percentage of code coverage with Istanbul
+
+The `scripts` section in your __package.json__ file should include the following...
+
+``` javascript
+"scripts": {
+    "test": "cross-env COVERAGE=true ember exam",
+    "code-server": "cross-env COVERAGE=true ember exam --server",
+    "test-server": "cross-env COVERAGE=true ember exam --filter=!acceptance --server"
+  }
 ```
