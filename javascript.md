@@ -348,66 +348,53 @@ Try/Catch should always be used when accessing deeply nested objects, when you c
 While there isn't a hard standard, a good rule of thumb is if you need to explain what it's doing to the next developer, you should add documentation. You can document a block at the top of a function or tell a story as developers step through your code. Don't document obvious things.
 
 ```javascript
-//BAD (self explanitory comments)
-//the user
-const user = 'Michael Scott';
-//if they have access
-const hasAccess = true;
-//mallVisits
-const mallVisits = getMallVisits();
-//list of truck logs
-let truckLog;
+//BAD
 
-//ALSO BAD (not able to tell what's going on in this function without in depth knowledge of the whole system)
-truckLog = getTruckLogs(employees[5]);
+function isPalindrome(word){
 
-function hasGirlfriend(date){
-	const carol = (date > boughtCondo(false)) &&  (date < visitedJamaica('day2'));
-	const jan = (date > visitedJamaica('day2') && date < wentToMallWithOffice(mallVisits[4].date));
-	const holly = (date > tobyLeft(2) && date < droveTheTruck(truckLog[105].location));
+	// create and set the newWord variable
+	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
 
-	if(casinoNight()){
-		return 2;
-	} else{
-		return carol || jan || holly;
+	newWord = newWord.toLowerCase();
+  
+	// return true if one of the conditions are true
+	if(newWord.length == 0 || newWord.length == 1){
+		return true;
 	}
+  
 
+	if(newWord === newWord.split('').reverse('').join('')){
+		return true;
+	}
+  
+	// return false 
+	return false;
 }
-
-hasGirlfriend(currentDate);
 ```
 
 ```javascript
-//GOOD
-const user = 'Michael Scott';
-const hasAccess = true;
-//returns an array of mall visits
-const mallVisits = getMallVisits();
-let truckLog;
+// Good
 
-//returns an array instances Daryl from the warehouse drove the truck
-truckLog = getTruckLogs(employees[5]);
+// Check if a given word/string is palindrome
+function isPalindrome(word){
 
-//Michael is only allowed to have 3 girlfriends, so we need to check the date against the dates he dated all 3 of them
-function hasGirlfriend(date){
-	//boughtCondo accepts a param that defaults to true if it's the 2nd sale which happened after he was done dating carol. so passing in false here
-	const carol = (date > boughtCondo(false)) &&  (date < visitedJamaica();
-	//mallVisits[4].date represents the date he went to the mall with the women of the office and they told him to break up with jan
-	const jan = (date > visitedJamaica() && date < wentToMallWithOffice(mallVisits[4].date));
-	//get the specific date daryl drove the truck to holly's new apartment
-	const holly = (date > tobyLeft() && date < droveTheTruck(truckLog[105].location));
-
-	//there's a caveat that if it's a casinoNight, Michael thinks he has 2 girlfriends, so the writers have dictated that
-	//we should always return 2 instead of a boolean in that case
-	if(casinoNight()){
-		return 2;
-	} else{
-		return carol || jan || holly;
+	// strip all characters and symbols except a-z, A-Z, and 0-9
+	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
+  
+	newWord = newWord.toLowerCase();
+  
+	if(newWord.length === 0 || newWord.length == 1){
+		return true;
 	}
+  
+	// check the original word against the new reversed string
+	if(newWord == newWord.split('').reverse('').join('')){
+		return true;
+	}
+	
+	return false;
 
 }
-
-hasGirlfriend(currentDate);
 ```
 
 
