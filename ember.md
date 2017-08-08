@@ -191,9 +191,9 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <a name="testing--test-scripts"></a>
 ### 5.1 Test Scripts
 
-> Why? For consistency in testing across all of our Ember apps
+> Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
 
-We use three addons to compile our test scripts.  
+We use three devDependencies to compile our test scripts.  
 1. `ember-exam` - For allowing more control over which tests run in Ember CLI QUnit
 1. `cross-env` - For allowing single commands for multiple test environments
 1. `ember-cli-code-coverage` - For testing the percentage of code coverage with Istanbul
