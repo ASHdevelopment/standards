@@ -6,9 +6,9 @@
 1. [Objects](#objects)
 1. [Functions](#functions)
 1. [Iteration](#iteration)
-1. [JSON](#json)
 1. [Try/Catch](#trycatch)
 1. [Libraries](#libraries)
+1. [Documentation & Style](#documentation)
 
 ## <a name="variables">Variables</a>
 
@@ -319,7 +319,7 @@ try {
     }
 }
 ```
-
+## <a name="#trycatch">Try/Catch</a>
 ### 7.2 Try...Catch for Nesting
 
 Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
@@ -340,3 +340,66 @@ Try/Catch should always be used when accessing deeply nested objects, when you c
 > Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
+
+## <a name="documentation">Documentation & Style</a>
+> Why? Because other devs need to be able to work in your code without setting up a meeting first.
+
+### 9.1 Documentation
+While there isn't a hard standard, a good rule of thumb is if you need to explain what it's doing to the next developer, you should add documentation. You can document a block at the top of a function or tell a story as developers step through your code. Don't document obvious things.
+
+```javascript
+//BAD
+
+function isPalindrome(word){
+
+	// create and set the newWord variable
+	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
+
+	newWord = newWord.toLowerCase();
+  
+	// return true if one of the conditions are true
+	if(newWord.length == 0 || newWord.length == 1){
+		return true;
+	}
+  
+
+	if(newWord === newWord.split('').reverse('').join('')){
+		return true;
+	}
+  
+	// return false 
+	return false;
+}
+```
+
+```javascript
+// Good
+
+// Check if a given word/string is palindrome
+function isPalindrome(word){
+
+	// strip all characters and symbols except a-z, A-Z, and 0-9
+	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
+  
+	newWord = newWord.toLowerCase();
+  
+	if(newWord.length === 0 || newWord.length == 1){
+		return true;
+	}
+  
+	// check the original word against the new reversed string
+	if(newWord == newWord.split('').reverse('').join('')){
+		return true;
+	}
+	
+	return false;
+
+}
+```
+
+
+### 9.2 Readability
+
+- Good code is readable by other developers.
+- Good code can do complex things.
+- Code that can do complex things, but is not readable by other developers is not good code.
