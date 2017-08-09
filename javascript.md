@@ -306,24 +306,42 @@ for (let i = 0; i < array.length; i++) {
 	```javascript
 
 	//bad
-	const isTrue = true;
+function showErrorMessage (arg1){
+	error = arg1.response.responseJSON.responseStatus;
+        return error;
+}
 
+//good
+function showErrorMessage (arg1){
 	try {
-		isTrue = true;
-	} catch (e) {
-		alert(`It's Not True!`)
-	}
+ 		error = arg1.response.responseJSON.responseStatus;
+ 	} catch (e) {
+ 		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
+                OR
+                error = e;
+ 	}
+      return error;
+}
 
-	//good
-	try {
-		errorObj = arg1.response.responseJSON.responseStatus;
-	} catch (e) {
-		errorObj = {};
-	}
 ```
 
 **Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
 
+```javascript
+function showErrorMessage (arg1){
+	try {
+		error = arg1.response.responseJSON.responseStatus;
+	} catch (e) {
+		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
+								OR
+								error = e;
+	} finally {
+		removeLoader();
+	}
+			return error;
+}
+
+```
 ## <a name="#libraries">Libraries</a>
 
 ### 8.1 jQuery
