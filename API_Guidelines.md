@@ -82,7 +82,7 @@ Payload
 :
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 2,
     "title": "Goodfellas",
     "year": "1990"
@@ -211,7 +211,7 @@ Payload
 :   
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 3,
     "title": "Crimson Tide",
     "year": "1995"
@@ -250,7 +250,7 @@ Payload
 :   
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 2,
     "title": "Goodfellers", //title has been updated
     "year": "1990",
@@ -258,6 +258,7 @@ Payload
   }
 }
 ```
+While you can add a new property in the `PUT` request, it's not good practice, since your app should be working off a schema rather than arbitrarily adding properties.
 
 The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
