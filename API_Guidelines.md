@@ -60,7 +60,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `findAll` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
@@ -96,13 +96,16 @@ Payload
   }
 }
 ```
-Payload (If no data is found, then `findRecord` returns an null value)
+
+#### Response when no data is found
+
+HTTP Status
+:   404
+
+Payload
 :
-```javascript
-{
-  "movie": null
-}
-```
+
+Content should be an error and may differ, as error style is defined by the server. 
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
@@ -142,7 +145,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `query` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
@@ -183,7 +186,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
