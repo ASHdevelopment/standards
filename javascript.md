@@ -303,24 +303,23 @@ for (let i = 0; i < array.length; i++) {
 - Make sure that the catch block of the try/catch does something meaningful for the user
 - If you need a fail-safe error message to display as a result of the catch in a try/catch, talk to your PO for the message content
 
-	```javascript
-
-	//bad
+```javascript
+//bad
 function showErrorMessage (arg1){
 	error = arg1.response.responseJSON.responseStatus;
-        return error;
+	return error;
 }
 
 //good
 function showErrorMessage (arg1){
 	try {
- 		error = arg1.response.responseJSON.responseStatus;
- 	} catch (e) {
- 		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
-                OR
-                error = e;
- 	}
-      return error;
+		error = arg1.response.responseJSON.responseStatus;
+	} catch () {
+		error = 'Something went wrong fetching the response';
+		OR
+		error = e;
+	}
+	return error;
 }
 
 ```
@@ -331,14 +330,14 @@ function showErrorMessage (arg1){
 function showErrorMessage (arg1){
 	try {
 		error = arg1.response.responseJSON.responseStatus;
-	} catch (e) {
-		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
-								OR
-								error = e;
+	} catch () {
+		error = 'Something went wrong fetching the response';
+		OR
+		error = e;
 	} finally {
 		removeLoader();
-	}
-			return error;
+		return error;
+	}		
 }
 
 ```
