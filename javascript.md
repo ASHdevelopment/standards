@@ -314,7 +314,7 @@ function showErrorMessage (arg1){
 function showErrorMessage (arg1){
 	try {
 		error = arg1.response.responseJSON.responseStatus;
-	} catch () {
+	} catch (e) {
 		error = 'Something went wrong fetching the response';//in this case, e is undefined so you don't need it on the line above
 		OR
 		error = e;
@@ -330,7 +330,7 @@ function showErrorMessage (arg1){
 function showErrorMessage (arg1){
 	try {
 		error = arg1.response.responseJSON.responseStatus;
-	} catch () {
+	} catch (e) {
 		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
 		OR
 		error = e;
