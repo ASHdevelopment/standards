@@ -8,6 +8,7 @@
 1. [SCSS](#scss)
     - [Nesting](#scss--nesting)
     - [Variables](#scss--variables)
+    - [Comments](#scss--comments)
 
 ## CSS
 
@@ -136,4 +137,16 @@ $_componentNameColor: #000;
 - ...overwritten within `/site/partial/_var/componentName`
 ```scss
 $_componentNameColor: $color1;
+```
+
+### [2.3](#scss--comments): Comments
+
+When commenting in sass be sure to use `//` version of comments this version will be stripped out during the compilation procress
+
+```scss
+//Bad
+$_componentNameColor: #000; /*this is a bad comment */
+
+//Good
+$_componentNameColor: $color1; //this the right way to comment
 ```
