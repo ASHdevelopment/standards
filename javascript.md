@@ -123,7 +123,7 @@ const string = `The ASH UI team is ${awesomeAdjective}!`;
 ```
 
 ### 2.2 Single vs Double quotes vs Tick Marks
-> There is no hard standard for using single quotes, double quotes, or tick marks. Here are some examples to consider:
+> There is no hard standard for using single quotes, double quotes, or tick marks.
 
 - Use tick marks only with template strings literals.
 - Strictly use double quotes with JSON.
