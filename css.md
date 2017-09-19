@@ -139,6 +139,7 @@ $_componentNameColor: #000;
 $_componentNameColor: $color1;
 ```
 
+<a name="scss--comments"></a><a name="2.3"></a>
 ### [2.3](#scss--comments): Comments
 
 When commenting in sass be sure to use `//` version of comments this version will be stripped out during the compilation procress
