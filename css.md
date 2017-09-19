@@ -145,8 +145,12 @@ When commenting in sass be sure to use `//` version of comments this version wil
 
 ```scss
 //Bad
-$_componentNameColor: #000; /*this is a bad comment */
+
+ /*this is a bad comment */
+$_componentNameColor: #000;
 
 //Good
-$_componentNameColor: $color1; //this the right way to comment
+
+//this the right way to comment
+$_componentNameColor: $color1;
 ```
