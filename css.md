@@ -146,11 +146,11 @@ When commenting in sass be sure to use `//` version of comments this version wil
 ```scss
 //Bad
 
- /*this is a bad comment */
+ /*this comment will remain when the sass is compiled*/
 $_componentNameColor: #000;
 
 //Good
 
-//this the right way to comment
+//this comment will be stripped out when compiled
 $_componentNameColor: $color1;
 ```
