@@ -202,6 +202,15 @@ let movie3 = get(this, 'store').createRecord('movie', {
 movie3.save();
 ```
 
+Payload
+:
+```javascript
+{
+    "title": "Crimson Tide",
+    "year": "1995"
+}
+```
+
 #### Response
 
 HTTP Status
@@ -232,7 +241,8 @@ Request Method
 : `PUT`
 
 Ember Data Method
-:   
+:
+
 ```javascript
 //lookup record in the local store
 let movie = get(this, 'store').findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
@@ -240,6 +250,16 @@ movie.set('title', 'Goodfellers'); //update an existing property
 movie.set('radioheadOnSoundtrack', false); //add a new property
 // set method only updates the record in the local store without making a network request yet.
 movie.save(); //save() initiates a PUT request to apiHost.com/movies/2
+```
+
+Payload
+:
+```javascript
+{
+    "title": "Goodfellers",
+    "year": "1990",
+    "radioheadOnSoundtrack": false
+}
 ```
 
 #### Response
