@@ -1,6 +1,9 @@
 # ASH API Guidelines
 
 ## Table of Contents
+1. [Introduction](#introduction)
+1. [URL Names](#url-names)
+1. [ID's](#ids)
 1. [GET](#get)
     - [Multiple Records](#get-multiple)
     - [Single Record](#get-single)
@@ -11,6 +14,8 @@
 1. [DELETE](#delete)
 1. [Dates](#date)
 1. [Error Formatting](#errors)
+
+## Introduction
 
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
 
