@@ -8,6 +8,7 @@
 1. [Iteration](#iteration)
 1. [Try/Catch](#trycatch)
 1. [Libraries](#libraries)
+1. [NPM](#npm)
 1. [Documentation & Style](#documentation)
 
 ## <a name="variables">Variables</a>
@@ -341,10 +342,20 @@ Try/Catch should always be used when accessing deeply nested objects, when you c
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
 
+## <a name="npm">NPM</a>
+### 9.1 Semantic Versioning
+
+- Update the Major version when making a breaking API changes.
+- Update the Minor version when introducing a new feature.
+- Update the Patch version when adding a bug fix.
+- Always start on a minor version 0.1.0.
+- Do not publish to the registry until the code can deliver functionality, tested, and can be consumed by other applications.
+- If the code is being used on production, then it should be at least on version 1.0.0.
+
 ## <a name="documentation">Documentation & Style</a>
 > Why? Because other devs need to be able to work in your code without setting up a meeting first.
 
-### 9.1 Documentation
+### 10.1 Documentation
 While there isn't a hard standard, a good rule of thumb is if you need to explain what it's doing to the next developer, you should add documentation. You can document a block at the top of a function or tell a story as developers step through your code. Don't document obvious things.
 
 ```javascript
@@ -398,7 +409,7 @@ function isPalindrome(word){
 ```
 
 
-### 9.2 Readability
+### 10.2 Readability
 
 - Good code is readable by other developers.
 - Good code can do complex things.
