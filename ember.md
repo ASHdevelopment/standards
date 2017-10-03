@@ -8,6 +8,7 @@
     - [Usage](#css--usage)
 1. [Actions](#actions)
     - [Location](#actions--location)
+1. [Updating Ember Apps](#updating-ember-apps)
 
 <a name="general-structure"></a>
 ## General Structure
@@ -183,3 +184,29 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 </div>
 
 ```
+
+<a name="updating-ember-apps"></a>
+## Updating Ember Apps
+
+1. Follow the steps under **Project Update** in the following guide: <https://github.com/ember-cli/ember-cli/releases>
+
+   1. Alternatively, you can use [ember-cli-update](https://github.com/kellyselden/ember-cli-update). However, make sure you are comfortable updating manually before using this method! 
+
+2. When you get to the last step, after running `ember init`, answer **yes** to all the prompts. 
+3. Make sure to delete `.jshintrc` files in both the /test and application root directories. Include `.eslintrc` files in the same directories instead. 
+
+   1. Don't forget to include `.eslintrc` files in source control, so it appears in your pending changes. 
+
+4. Work through all the updated files in the app. Ensure that you assess every file and manually merge the necessary updates with the changes that were there before the update.
+5. Manually reinstall all dependencies, including ember addons in `package.json`. Use `ember install <addon-name>` for ember addons and `npm install <package-name>` otherwise. **Make sure you are taking the latest minor version of dependencies.**
+
+   1. You will need to go to npm or github for each dependency that was added to the package and assess if it has undergone a `major` update. If not, install the dependency from the command line using the appropriate method. 
+
+   2. **Note:** Make sure that the correct packages make it to the correct `dependencies / devDependencies` block.
+
+6. Once done reinstalling the dependencies, run `rimraf node_modules bower_components` and reinstall them with `npm install` and `bower install`. 
+
+   1. Ideally, there shouldn't be any bower dependencies.
+
+7. At this point you should be able to run the app. If this does not allow the app to run, you probably did not reinstall the dependencies correctly. 
+> If you are working on an addon, you will need to update the README, increase the version, and publish to private npm. 
