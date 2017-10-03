@@ -2,6 +2,7 @@
 
 1. [Variables](#variables)
 1. [Strings](#strings)
+1. [Operators](#operators)
 1. [Arrays](#arrays)
 1. [Objects](#objects)
 1. [Functions](#functions)
@@ -123,9 +124,23 @@ const string = 'The ASH UI team is ' + awesomeAdjective + '!';
 const string = `The ASH UI team is ${awesomeAdjective}!`;
 ```
 
+## <a name="operators">Operators</a>
+
+### 3.1 Equality Operators
+Default to Strict Equality, `===`. Use `==` only for special cases, such as when you don't care about the type. When using `==` comment code explaining your choice.
+
+```javascript
+//bad
+if(1 == '1')        // evaluates to true  
+
+//good
+if('5' === 5)       // evaluates to false
+if(5 === 5)         // evaluates to true
+```
+
 ## <a name="arrays">Arrays</a>
 
-### 3.1 Dangling Commas
+### 4.1 Dangling Commas
 There is no hard standard for dangling commas.
 
 > Yes it looks ugly and weird but it has benefits in simplifying diffs.
@@ -154,7 +169,7 @@ const obj = {
 
 ## <a name="objects">Objects</a>
 
-### 4.1 Method Declarations
+### 5.1 Method Declarations
 **When able to code in ES6**, use shorthand method declarations. Otherwise normal method declarations are OK.
 
 ```javascript
@@ -173,7 +188,7 @@ const obj = {
 };
 ```
 
-### 4.2 Dangling Commas
+### 5.2 Dangling Commas
 There is no hard standard for dangling commas.
 
 > Yes it looks ugly and weird but it has benefits in simplifying diffs.
@@ -202,7 +217,7 @@ const obj = {
 
 ## <a name="functions">Functions</a>
 
-### 5.1 Arrow Functions
+### 6.1 Arrow Functions
 #### You can only use these within ES6. Ignore this section when working with ES5.
 
 Arrow functions cut down and have special properties in terms of lexical scoping.
@@ -265,7 +280,7 @@ thing.on('click', function(e) {
 
 ## <a name="iteration">Iteration</a>
 
-### 6.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
+### 7.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
 
 **When working with large datasets**, use the classic `for` loop as it allows you to `break;` out of the iteration, which prevents the expense of looping through unnecessary items after a certain criteria has been met. **You cannot do this with iterative methods**
 
@@ -293,7 +308,7 @@ for (let i = 0; i < array.length; i++) {
 
 ## <a name="#trycatch">Try/Catch</a>
 
-### 7.1 Try...Catch Basics
+### 8.1 Try...Catch Basics
 > Helps catch errors before they cause the code to blow up
 
 There are 3 clauses that can be used when writing a try...catch statement:
@@ -321,13 +336,13 @@ try {
 }
 ```
 ## <a name="#trycatch">Try/Catch</a>
-### 7.2 Try...Catch for Nesting
+### 8.2 Try...Catch for Nesting
 
 Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
 
 ## <a name="#libraries">Libraries</a>
 
-### 8.1 jQuery
+### 9.1 jQuery
 
 #### Use in all QUnit tests
 > Why? It is quicker to write unit tests in jQuery, unit tests are not production code, and besides, QUnit was developed by the jQuery team. So why not?
@@ -367,18 +382,18 @@ function isPalindrome(word){
 	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
 
 	newWord = newWord.toLowerCase();
-  
+
 	// return true if one of the conditions are true
 	if(newWord.length == 0 || newWord.length == 1){
 		return true;
 	}
-  
+
 
 	if(newWord === newWord.split('').reverse('').join('')){
 		return true;
 	}
-  
-	// return false 
+
+	// return false
 	return false;
 }
 ```
@@ -391,18 +406,18 @@ function isPalindrome(word){
 
 	// strip all characters and symbols except a-z, A-Z, and 0-9
 	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
-  
+
 	newWord = newWord.toLowerCase();
-  
+
 	if(newWord.length === 0 || newWord.length == 1){
 		return true;
 	}
-  
+
 	// check the original word against the new reversed string
 	if(newWord == newWord.split('').reverse('').join('')){
 		return true;
 	}
-	
+
 	return false;
 
 }
