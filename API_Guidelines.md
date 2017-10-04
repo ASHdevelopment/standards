@@ -66,6 +66,14 @@ Payload
 }
 ```
 
+Payload (If no data is found, then an empty array is returned)
+:
+```javascript
+{
+  "movies": []
+}
+```
+
 <a name="get-single"></a>
 ### [1.2](#get-single): GET a single record
 #### Request
@@ -94,6 +102,16 @@ Payload
   }
 }
 ```
+
+#### Response when no data is found
+
+HTTP Status
+:   404
+
+Payload
+:
+
+Content should be an error and may differ, as error style is defined by the server. 
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
@@ -133,7 +151,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
@@ -174,7 +192,8 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty object)
+Payload (If no data is found, then an empty array is returned)
+
 :
 ```javascript
 {
