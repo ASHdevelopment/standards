@@ -120,7 +120,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   background: $color1;
 
   .chatMsg {
-	font-family: $font1;
+    font-family: $font1;
     font-weight: 700;
     text-transform: uppercase;    
     background: $color2;
@@ -135,6 +135,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   background: $color1;
 
   .chatMsg {
+    font-family: $font1;
     font-weight: 700;
     text-transform: uppercase;    
     background: $color2;
