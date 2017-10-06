@@ -188,7 +188,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ## Definition of Ready
 
 ### 1. Linted
-Install `ember-cli-eslint`. This will output lint errors in the local server command line
+As of Ember CLI 2.12, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
 
 ### 2. Loading Indicators
 Any content that can be updated should have a loading indicator  
@@ -207,7 +207,7 @@ As new logic is added to the app, the appropriate tests should be set up to ensu
 Be sure to utilize the `ember-cli-code-coverage` addon
 
 ### 7. Accessibility Tested
-`ember-a11y-testing` should be installed
+`ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
 
 ### 8. Mirage
 If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API
@@ -215,7 +215,7 @@ If the app makes API calls, `ember-cli-mirage` should be installed and configure
 ### 9. Cross-Browser Tested
 Test the app in every browser that we support  
 If Mirage is being used, and the real API is available, test with both sets of data in each browser  
-*Current Supported Browsers: ie10, firefox, safari (desktop and mobile), and chrome*
+*Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
 
 ### 10. Build Pipelines Defined
 Configure **stg.ashui** build with Mirage data  
@@ -229,7 +229,7 @@ Create a build definition for the app that will:
 5. run `ember build --environment=preivew --output-path=preview`
 6. run `ember build --environment=production`
 7. copy files to the drop location
-8. publish files to stgashui and the build location
+8. publish files to stg.ashui and the build location
 9. publish Code Coverage results
 10. notify the appropriate Slack channels
 
