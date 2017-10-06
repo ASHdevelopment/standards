@@ -184,7 +184,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 </div>
 ```
 
-<a name="development-checklist"></a>
+<a name="deployment-checklist"></a>
 ## Definition of Ready
 
 ### 1. Linted
