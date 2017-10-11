@@ -16,13 +16,12 @@
    Ordering from the beginning of the tag to the close of the tag is as follows:
 
   1. id/for
-  1. class
-  1. type (eg: radio)
-  1. property (eg: value, checked, readonly)
-  1. tag specific (eg: href, action)
+  1. className
+  1. tag specific (eg: href, type, action)
+  1. element state (eg: value, checked, readonly)
   1. ARIA/accessibility
   1. data- attributes
-  1. KnockOut related attributes (eg: data-bind)
+  
 
 **Bad**
  ```html
