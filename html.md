@@ -21,7 +21,7 @@
   1. element state (eg: value, checked, readonly)
   1. ARIA/accessibility
   1. data- attributes
-  
+
 
 **Bad**
  ```html
@@ -198,8 +198,10 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 
 <a name="do-not-use"></a>
 ## 7. Do NOT Use
-  > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
+  > These elements make it harder to change the look and feel of the elements in the future with only css
 
 *DO NOT* use the following elements when writing HTML:
 
  + The break tag -  ``<br>`` or ``<br />``
+ + The linerule (or thematic change) -  ``<hr>`` or ``<hr />``
+ + The non-breaking space - ``&nbsp;``
