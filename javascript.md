@@ -307,18 +307,7 @@ for (let i = 0; i < array.length; i++) {
 //bad
 function showErrorMessage (arg1){
 	error = arg1.response.responseJSON.responseStatus;
-	return error;
-}
-
-//good
-function showErrorMessage (arg1){
-	try {
-		error = arg1.response.responseJSON.responseStatus;
-	} catch (e) {
-		error = 'Something went wrong fetching the response';//in this case, e is undefined so you don't need it on the line above
-		OR
-		error = e;
-	}
+	//this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
 	return error;
 }
 
@@ -327,12 +316,13 @@ function showErrorMessage (arg1){
 **Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
 
 ```javascript
+//good
 function showErrorMessage (arg1){
 	try {
 		error = arg1.response.responseJSON.responseStatus;
 	} catch (e) {
 		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
-		OR
+		//OR
 		error = e;
 	} finally {
 		removeLoader();
