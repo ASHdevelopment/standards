@@ -222,7 +222,7 @@ const obj = {
 
 Arrow functions cut down and have special properties in terms of lexical scoping.
 
-This preserve the value of `this` which removes the need for you to "save" the value of this (commonly as `that` or `self`).
+This preserves the value of `this` which removes the need for you to "save" the value of this (commonly as `that` or `self`).
 
 ```javascript
 const myObject = {
@@ -246,7 +246,7 @@ const myObject = {
 	}
 }
 ```
-When there is only one parameter, do not encased it in parenthesis.
+When there is only one parameter, do not encase it in parenthesis.
 
 ```javascript
 
