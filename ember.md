@@ -212,13 +212,18 @@ export default Route.extend({
       if(typeof error === 'string') {
         //if its a string set the errorToShow property to that string
         set(this, 'errorToShow', error);
+      } else if (error && error.message) {
+        //if it has an error.message log the message to the console for debugging
+         console.error(error.message);
+         //if it is not a string set the errorToShow property to the genericError
+         set(this, 'errorToShow', get(this, 'genericError'))
       } else {
         //if it is not a string set the errorToShow property to the genericError
         set(this, 'errorToShow', get(this, 'genericError'))
       }
 
       //adds the error to the app container for users to see error message, so they are not left with a blank app container
-      app.innerHtml = `<div class='error'>${get(this, 'errorToShow')}</div>`
+      app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
     }
   }
 });
