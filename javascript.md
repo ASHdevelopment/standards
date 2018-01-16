@@ -306,8 +306,8 @@ for (let i = 0; i < array.length; i++) {
 ```javascript
 //bad
 function showErrorMessage (arg1){
-	error = arg1.response.responseJSON.responseStatus;
 	//this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
+	error = arg1.response.responseJSON.responseStatus;
 	return error;
 }
 
