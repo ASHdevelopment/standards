@@ -206,6 +206,8 @@ As new logic is added to the app, the appropriate tests should be set up to ensu
 ### 6. Code Coverage
 Be sure to utilize the `ember-cli-code-coverage` addon and set up the appropriate npm tests as outlined above.
 
+*ASH Front End Principles denote that branch coverage should be a minimum of 75% total test coverage, and 50% for tests not including acceptance tests.*
+
 ### 7. Accessibility Tested
 `ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
 
