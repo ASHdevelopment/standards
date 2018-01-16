@@ -188,33 +188,35 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ## Definition of Ready
 
 ### 1. Linted
-As of Ember CLI 2.12, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
+As of __Ember CLI 2.12__, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
 
 ### 2. Loading Indicators
-Any content that can be updated should have a loading indicator  
-Use the `ash-loader` addon for this
+Any content that can be updated should have a loading indicator.  
+Use the `ash-loader` addon for this.
 
 ### 3. 404 template
-Create a 404 template using the `ash-four-oh-four` addon
+A scenario for when the API returns a server error should be considered. Create a 404 template using the `ash-four-oh-four` addon.
 
 ### 4. Catch Errors
-Determine where the app could break and catch errors to keep the user informed
+Determine where the app could break and catch errors to keep the user informed.
 
 ### 5. unit/acceptance/integration tested
-As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work
+As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work.
 
 ### 6. Code Coverage
-Be sure to utilize the `ember-cli-code-coverage` addon
+Be sure to utilize the `ember-cli-code-coverage` addon and set up the appropriate npm tests as outlined above.
 
 ### 7. Accessibility Tested
 `ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
 
 ### 8. Mirage
-If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API
+If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API.
 
 ### 9. Cross-Browser Tested
-Test the app in every browser that we support  
-If Mirage is being used, and the real API is available, test with both sets of data in each browser  
+Test the app in every browser that we support.  
+
+If Mirage is being used, and the real API is available, test with both sets of data in each browser.  
+
 *Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
 
 ### 10. Build Pipelines Defined
@@ -223,10 +225,10 @@ Configure **production** build with API data
 
 Create a build definition for the app that will:  
 1. set npm registry path
-2. run `npm install`
+2. run `npm install` or `yarn`
 3. run `bower install`
 4. run `npm test`
-5. run `ember build --environment=preivew --output-path=preview`
+5. run `ember build --environment=preview --output-path=preview`
 6. run `ember build --environment=production`
 7. copy files to the drop location
 8. publish files to stg.ashui and the build location
