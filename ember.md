@@ -214,9 +214,9 @@ export default Route.extend({
         set(this, 'errorToShow', error);
       } else if (error && error.message) {
         //if it has an error.message log the message to the console for debugging
-         console.error(error.message);
-         //if it is not a string set the errorToShow property to the genericError
-         set(this, 'errorToShow', get(this, 'genericError'))
+        console.error(error.message);
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
       } else {
         //if it is not a string set the errorToShow property to the genericError
         set(this, 'errorToShow', get(this, 'genericError'))
