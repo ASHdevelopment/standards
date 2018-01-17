@@ -308,38 +308,43 @@ for (let i = 0; i < array.length; i++) {
 
 ## <a name="#trycatch">Try/Catch</a>
 
-### 8.1 Try...Catch Basics
+### 8.1 Usage
 > Helps catch errors before they cause the code to blow up
 
-There are 3 clauses that can be used when writing a try...catch statement:
+**Use try/catch block if:**
+ - You are attempting to access an object that is more than **two levels** deep
+ - You are even slightly uncertain that the object structure may vary
 
-1. try - contains statments to be executed
-1. catch - contains the statements to be executed if an exception is thrown in th try block
-1. finally - contains statements that are exectured after the try statement is complete regardless of whether or not an exception was thrown or caught
-
-Each try block must have at least one try and one catch clause or a finally clause, or both.
+**Tips**
+- Make sure that the catch block of the try/catch does something meaningful for the user
+- If you need a fail-safe error message to display as a result of the catch in a try/catch, talk to your PO for the message content
 
 ```javascript
-try {
-    myroutine(); // may throw three types of exceptions
-} catch (e) {
-    if (e instanceof TypeError) {
-        // statements to handle TypeError exceptions
-    } else if (e instanceof RangeError) {
-        // statements to handle RangeError exceptions
-    } else if (e instanceof EvalError) {
-        // statements to handle EvalError exceptions
-    } else {
-       // statements to handle any unspecified exceptions
-       logMyErrors(e); // pass exception object to error handler
-    }
+//bad
+function showErrorMessage (arg1){
+	//this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
+	error = arg1.response.responseJSON.responseStatus;
+	return error;
 }
 ```
-## <a name="#trycatch">Try/Catch</a>
-### 8.2 Try...Catch for Nesting
 
-Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
+**Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
 
+```javascript
+//good
+function showErrorMessage (arg1){
+	try {
+		error = arg1.response.responseJSON.responseStatus;
+	} catch (e) {
+		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
+		//OR
+		error = e;
+	} finally {
+		removeLoader();
+		return error;
+	}		
+}
+```
 ## <a name="#libraries">Libraries</a>
 
 ### 9.1 jQuery
