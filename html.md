@@ -16,13 +16,12 @@
    Ordering from the beginning of the tag to the close of the tag is as follows:
 
   1. id/for
-  1. class
-  1. type (eg: radio)
-  1. property (eg: value, checked, readonly)
-  1. tag specific (eg: href, action)
+  1. className
+  1. tag specific (eg: href, type, action)
+  1. element state (eg: value, checked, readonly)
   1. ARIA/accessibility
   1. data- attributes
-  1. KnockOut related attributes (eg: data-bind)
+
 
 **Bad**
  ```html
@@ -199,8 +198,10 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 
 <a name="do-not-use"></a>
 ## 7. Do NOT Use
-  > These elements dictate styles that cannot be changed by CSS making it harder to edit the appearance in the future.
+  > These elements make it harder to change the look and feel of the elements in the future with only css
 
 *DO NOT* use the following elements when writing HTML:
 
  + The break tag -  ``<br>`` or ``<br />``
+ + The linerule (or thematic change) -  ``<hr>`` or ``<hr />``
+ + The non-breaking space - ``&nbsp;``
