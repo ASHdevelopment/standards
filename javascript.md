@@ -310,7 +310,6 @@ function showErrorMessage (arg1){
 	error = arg1.response.responseJSON.responseStatus;
 	return error;
 }
-
 ```
 
 **Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
@@ -329,7 +328,6 @@ function showErrorMessage (arg1){
 		return error;
 	}		
 }
-
 ```
 ## <a name="#libraries">Libraries</a>
 
