@@ -16,8 +16,7 @@
 1. [Error Formatting](#errors)
 
 ## Introduction
-
-ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
+ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST and Ember-specific guidelines to help facilitate API development at ASH. Adhering to these guidelines will allow for the simplest and most painless use of the Ember Data library. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).However, Ember Data is not the only reason behind this structure, it helps to create a consistent API architecture making it easier to plug into other platforms and frameworks (e.g., backend, native apps, etc.).
 
 **You will need to ensure that you follow the url structure, object structure, and status code. If not, the team will need to make sure adapters and serializers are set up to compensate for this in Ember.**
 
@@ -111,7 +110,7 @@ HTTP Status
 Payload
 :
 
-Content should be an error and may differ, as error style is defined by the server. 
+Content should be an error and may differ, as error style is defined by the server.
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
