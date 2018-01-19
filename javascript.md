@@ -303,8 +303,7 @@ for (let i = 0; i < array.length; i++) {
 	newArray.push(array[i] * 3);
 }
 ```
-
-## <a name="#errors">Error Handling</a>
+## <a name="errors">Error Handling</a>
 
 ### 8.1 Error Handling
 > Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users.
@@ -375,15 +374,6 @@ fetchNewestItem().then(response =>{
 
 #### Using Async/Await
 Similar to `Promise.then()`, include a catch, but use a try/catch statement for `async` functions.
-
-```javascript
-//bad
-const list = [...staleList];
-
-(async function (){
-	list.push(await fetchNewestItem())
-})()
-```
 
 ```javascript
 //bad
