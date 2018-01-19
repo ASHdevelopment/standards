@@ -7,7 +7,7 @@
 1. [Objects](#objects)
 1. [Functions](#functions)
 1. [Iteration](#iteration)
-1. [Error Handling](#errorhandling)
+1. [Error Handling](#errors)
 1. [Libraries](#libraries)
 1. [NPM](#npm)
 1. [Documentation & Style](#documentation)
@@ -304,9 +304,7 @@ for (let i = 0; i < array.length; i++) {
 }
 ```
 
-## <a name="json">JSON</a>
-
-## <a name="#errorhandling">Error Handling</a>
+## <a name="#errors">Error Handling</a>
 
 ### 8.1 Error Handling
 > Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users.
