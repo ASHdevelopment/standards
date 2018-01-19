@@ -8,6 +8,8 @@
     - [Usage](#css--usage)
 1. [Actions](#actions)
     - [Location](#actions--location)
+1. [Error Handling](#errorHandling)
+    - [Overall Application Errors](#errorHandling--overallApplication)
 1. [Definition of Ready](#deployment-checklist)
 
 <a name="general-structure"></a>
@@ -182,6 +184,50 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <div class="container">
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
+```
+
+<a name="errorHandling"></a>
+## Error Handling
+<a name="errorHandling--overallApplication"></a>
+### 5.1 Overall Application Errors
+Every app should contain a base error function within the application route.
+> Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
+
+
+```javascript
+//Example code for route/application.js
+const {
+  set,
+  get
+} = Ember;
+
+export default Route.extend({
+  genericError: 'Hmm, something went wrong.',
+
+  actions: {
+    error(error){
+      //grabbing app container for a place to put the error so it will show to the user
+      const app = document.getElementById('app-container');
+
+      //getting the content for the error to show the user
+      if(typeof error === 'string') {
+        //if its a string set the errorToShow property to that string
+        set(this, 'errorToShow', error);
+      } else if (error && error.message) {
+        //if it has an error.message log the message to the console for debugging
+        console.error(error.message);
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      } else {
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      }
+
+      //adds the error to the app container for users to see error message, so they are not left with a blank app container
+      app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+    }
+  }
+});
 ```
 
 <a name="deployment-checklist"></a>
