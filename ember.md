@@ -10,6 +10,7 @@
     - [Location](#actions--location)
 1. [Error Handling](#errorHandling)
     - [Overall Application Errors](#errorHandling--overallApplication)
+1. [Definition of Ready](#deployment-checklist)
 
 <a name="general-structure"></a>
 ## General Structure
@@ -183,8 +184,8 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <div class="container">
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
-
 ```
+
 <a name="errorHandling"></a>
 ## Error Handling
 <a name="errorHandling--overallApplication"></a>
@@ -228,3 +229,59 @@ export default Route.extend({
   }
 });
 ```
+
+<a name="deployment-checklist"></a>
+## Definition of Ready
+
+### 1. Linted
+As of __Ember CLI 2.12__, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
+
+### 2. Loading Indicators
+Any content that can be updated should have a loading indicator.  
+Use the `ash-loader` addon for this.
+
+### 3. 404 template
+A scenario for when the API returns a server error should be considered. Create a 404 template using the `ash-four-oh-four` addon.
+
+### 4. Catch Errors
+Determine where the app could break and catch errors to keep the user informed.
+
+### 5. unit/acceptance/integration tested
+As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work.
+
+### 6. Code Coverage
+Be sure to utilize the `ember-cli-code-coverage` addon and set up the appropriate npm tests as outlined above.
+
+*ASH Front End Principles denote that branch coverage should be a minimum of 75% total test coverage, and 50% for tests not including acceptance tests.*
+
+### 7. Accessibility Tested
+`ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
+
+### 8. Mirage
+If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API.
+
+### 9. Cross-Browser Tested
+Test the app in every browser that we support.  
+
+If Mirage is being used, and the real API is available, test with both sets of data in each browser.  
+
+*Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
+
+### 10. Build Pipelines Defined
+Configure **stg.ashui** build with Mirage data  
+Configure **production** build with API data  
+
+Create a build definition for the app that will:  
+1. set npm registry path
+2. run `npm install` or `yarn`
+3. run `bower install`
+4. run `npm test`
+5. run `ember build --environment=preview --output-path=preview`
+6. run `ember build --environment=production`
+7. copy files to the drop location
+8. publish files to stg.ashui and the build location
+9. publish Code Coverage results
+10. notify the appropriate Slack channels
+
+### 11. Checklist Violations
+`npm test` (in the build definition) will catch errors and reject build
