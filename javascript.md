@@ -305,7 +305,7 @@ for (let i = 0; i < array.length; i++) {
 ```
 ## <a name="errors">Error Handling</a>
 
-### 8.1 Error Handling
+### 8.1 Displaying Errors
 > Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users.
 
 ### 8.2 Try/Catch
@@ -347,10 +347,10 @@ function showErrorMessage (arg1){
 ```
 
 ### 8.3 Catching Errors with Asynchronous Operations
-> Anytime you're doing something with a successful resolution of an asynchronous process (happy path), you should ensure you are also catching errors (sad path).
+> Anytime you're doing something with a successful resolution of an asynchronous operation (happy path), you should ensure you are also catching errors (sad path).
 
 #### Using Promise.then()
-Use `.catch()` to catch any error with the promise, including http errors.
+Use `.catch()` to catch any errors with the promise, including http errors.
 
 ```javascript
 //bad
