@@ -4,11 +4,7 @@
 1. [Introduction](#introduction)
 1. [URL Names](#url-names)
 1. [ID's](#ids)
-1. [GET](#get)
-    - [Multiple Records](#get-multiple)
-    - [Single Record](#get-single)
-    - [Querying Multiple Records](#queryMultiple)
-    - [Querying a Single Record](#querySingle)
+1. [GET](#get) [[Multiple Records](#get-multiple)] [[Single Record](#get-single)] [[Querying Multiple Records](#queryMultiple)] [[Querying a Single Record](#querySingle)]
 1. [POST](#post)
 1. [PUT](#put)
 1. [DELETE](#delete)

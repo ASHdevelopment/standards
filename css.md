@@ -1,15 +1,9 @@
 # American Specialty Health CSS / Sass Styleguide﻿
 
 ## Table of Contents
-1. [CSS](#css)
-    - [Formatting](#css--formatting)
-    - [Property Ordering](#css--ordering)
-    - [Flexbox](#css--flexbox)
-	- [Do NOT Use](#do-not-use)
-1. [SCSS](#scss)
-    - [Nesting](#scss--nesting)
-    - [Variables](#scss--variables)
-    - [Comments](#scss--comments)
+1. [CSS](#css) [[Property Ordering](#css--ordering)] [[Formatting](#css--formatting)] [[Flexbox](#css--flexbox)]
+[[Do NOT Use](#do-not-use)]
+1. [SCSS](#scss) [[Nesting](#scss--nesting)] [[Variables](#scss--variables)] [[Comments](#scss--comments)]
 
 ## CSS
 

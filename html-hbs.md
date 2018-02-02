@@ -3,8 +3,7 @@
 
 ## Table of Contents
 1. [Quotes](#quotes)
-1. [Properties](#properties)
-	- [Alignment](#properties--alignment)
+1. [Properties](#properties) [[Alignment](#properties--alignment)]
 1. [Comments](#comments)
 
 ## Quotes
