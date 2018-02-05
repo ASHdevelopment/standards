@@ -1,12 +1,16 @@
 # Ember
-1. [General Structure](#general-structure) [[Properties](#general-structure--properties)]
-1. [Destructuring](#destructuring) [[Objects](#destructuring--objects)] [[Get/Set](#destructuring--get-set)]
-1. [CSS](#css)
-[[Usage](#css--usage)]
-1. [Actions](#actions)
-[[Location](#actions--location)]
-1. [Error Handling](#errorHandling) [[Overall Application Errors](#errorHandling--overallApplication)]
-1. [Definition of Ready](#deployment-checklist)
+1. **[General Structure](#general-structure)** 
+	[ [Properties](#general-structure--properties) ]
+1. **[Destructuring](#destructuring)** 
+	[ [Objects](#destructuring--objects) ] 
+	[ [Get/Set](#destructuring--get-set) ]
+1. **[CSS](#css)**
+	[ [Usage](#css--usage) ]
+1. **[Actions](#actions)**
+	[ [Location](#actions--location) ]
+1. **[Error Handling](#errorHandling)** 
+	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
+1. **[Definition of Ready](#deployment-checklist)**
 
 <a name="general-structure"></a>
 ## General Structure

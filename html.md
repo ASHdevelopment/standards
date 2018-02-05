@@ -1,12 +1,12 @@
 # HTML
 
- 1. [Attribute Ordering](#attribute-ordering-within-tags)
- 1. [Quotes](#quotes)
- 1. [Buttons](#buttons)
- 1. [Forms](#forms)
- 1. [Comments](#comments)
- 1. [Semantics](#semantics)
- 1. [Do NOT Use](#do-not-use)
+ 1. **[Attribute Ordering](#attribute-ordering-within-tags)**
+ 1. **[Quotes](#quotes)**
+ 1. **[Buttons](#buttons)**
+ 1. **[Forms](#forms)**
+ 1. **[Comments](#comments)**
+ 1. **[Semantics](#semantics)**
+ 1. **[Do NOT Use](#do-not-use)**
 
 <a name="attribute-ordering-within-tags"></a>
 ## 1. Attribute Ordering within Tags

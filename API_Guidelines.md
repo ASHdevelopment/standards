@@ -1,15 +1,19 @@
 # ASH API Guidelines
 
 ## Table of Contents
-1. [Introduction](#introduction)
-1. [URL Names](#url-names)
-1. [ID's](#ids)
-1. [GET](#get) [[Multiple Records](#get-multiple)] [[Single Record](#get-single)] [[Querying Multiple Records](#queryMultiple)] [[Querying a Single Record](#querySingle)]
-1. [POST](#post)
-1. [PUT](#put)
-1. [DELETE](#delete)
-1. [Dates](#date)
-1. [Error Formatting](#errors)
+1. **[Introduction](#introduction)**
+1. **[URL Names](#url-names)**
+1. **[ID's](#ids)**
+1. **[GET](#get)** 
+	[ [Multiple Records](#get-multiple) ] 
+	[ [Single Record](#get-single) ] 
+	[ [Querying Multiple Records](#queryMultiple) ] 
+	[ [Querying a Single Record](#querySingle) ]
+1. **[POST](#post)**
+1. **[PUT](#put)**
+1. **[DELETE](#delete)**
+1. **[Dates](#date)**
+1. **[Error Formatting](#errors)**
 
 ## Introduction
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST and Ember-specific guidelines to help facilitate API development at ASH. Adhering to these guidelines will allow for the simplest and most painless use of the Ember Data library. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).However, Ember Data is not the only reason behind this structure, it helps to create a consistent API architecture making it easier to plug into other platforms and frameworks (e.g., backend, native apps, etc.).
