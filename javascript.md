@@ -1,16 +1,16 @@
 # Javascript
 
-1. [Variables](#variables)
-1. [Strings](#strings)
-1. [Operators](#operators)
-1. [Arrays](#arrays)
-1. [Objects](#objects)
-1. [Functions](#functions)
-1. [Iteration](#iteration)
-1. [Try/Catch](#trycatch)
-1. [Libraries](#libraries)
-1. [NPM](#npm)
-1. [Documentation & Style](#documentation)
+1. **[Variables](#variables)**
+1. **[Strings](#strings)**
+1. **[Operators](#operators)**
+1. **[Arrays](#arrays)**
+1. **[Objects](#objects)**
+1. **[Functions](#functions)**
+1. **[Iteration](#iteration)**
+1. **[Try/Catch](#trycatch)**
+1. **[Libraries](#libraries)**
+1. **[NPM](#npm)**
+1. **[Documentation & Style](#documentation)**
 
 ## <a name="variables">Variables</a>
 
