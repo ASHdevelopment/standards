@@ -5,6 +5,8 @@
 1. **[Destructuring](#destructuring)** 
 	[ [Objects](#destructuring--objects) ] 
 	[ [Get/Set](#destructuring--get-set) ]
+1. **[Computed Properties](#computed-properties)**
+  [ [Brace Expansion](#computed-properties--brace-expansion) ]
 1. **[CSS](#css)**
 	[ [Usage](#css--usage) ]
 1. **[Actions](#actions)**
@@ -98,11 +100,37 @@ get(this, 'isDestructured'); //true
 set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
+
+<a name="computed-properties"></a>
+## Computed Properties
+
+<a name="computed-properties--brace-expansion"></a>
+### 3.1 Brace Expansion
+
+When a computed property depends on multiple properties, we can declare the dependents using brace expansion. It is useful for cases when the computed property depends on multiple properties of an object. Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
+
+```javascript 
+// Bad 
+fullname: computed('user.firstname', 'user.lastname', function() {
+  const firstname = get(this, 'user.firstname'); 
+  const lastname = get(this, 'user.lastname');
+
+  return firstname + ' ' + lastname;
+})
+
+// Good
+fullname: computed('user.{firstname,lastname}', function() {
+  const { firstname, lastname } = get(this, 'user');
+
+  return `${firstname} ${lastname}`;
+})
+```
+
 <a name="css"></a>
 ## CSS
 
 <a name="css--usage"></a>
-### 3.1 Usage
+### 4.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 > Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
@@ -175,7 +203,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ## Actions
 
 <a name="actions--location"></a>
-### 4.1 Location
+### 5.1 Location
 
  - Form Actions should be placed on the form element
 
@@ -212,7 +240,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <a name="errorHandling"></a>
 ## Error Handling
 <a name="errorHandling--overallApplication"></a>
-### 5.1 Overall Application Errors
+### 6.1 Overall Application Errors
 Every app should contain a base error function within the application route.
 > Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
 
