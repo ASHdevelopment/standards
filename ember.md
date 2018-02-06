@@ -30,36 +30,25 @@ Extract multiple values from data stored in objects and arrays.
 
 <a name="destructuring--objects"></a>
 ### 2.1 Destructuring Objects
+In Ember.js 2.16 the recommended way to access framework code in Ember applications is via the JavaScript modules AP. This makes Ember feel less overwhelming to new users, and make Ember applications start faster, by replacing the Ember global with a first-class system for importing just the parts of the framework you need.
+JavaScript modules make the framework easier to document, make the distinction between public and private API much easier to maintain, and provide opportunities for performance work such as tree-shaking.
 
 ```javascript
 //Bad
-export default DS.Model.extend({
-  firstName: DS.attr('string'),
-  lastName: DS.attr('string'),
-  fullName: Ember.computed('firstName', 'lastName', function() {
-    //compute full name
-  })
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  session: Ember.inject.service(),
+  title: 'ASH Development'
 });
 
 //Good
-import Ember from 'ember';
-import DS from 'ember-data';
+import Component from '@ember/component';
+import { inject as service } from '@ember/service';
 
-const {
-  computed
-} = Ember;
-
-const {
-  Model,
-  attr
-} = DS;
-
-export default Model.extend({
-  firstName: attr('string'),
-  lastName: attr('string'),
-  fullName: computed('firstName', 'lastName', function() {
-    //compute full name
-  })
+export default Component.extend({
+  session: service(),
+  title: 'ASH Development'
 });
 ```
 <a name="destructuring--get-set"></a>
