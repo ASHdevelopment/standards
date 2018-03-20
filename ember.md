@@ -98,18 +98,20 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 - Display
  - e.g., `display:flex`, `flex-direction: column`
 - Animations and Transitions
+- Certain Font Styles
+ - `font-weight` only
 
 
 **Use discretion when adding colors to apps/addons**
 * Neutral/non-branding colors that aren't likely to change across websites are OKAY to add to that app's/addon's app styles
-* Font family and line height are NOT okay to update in the app/addon styles
 * Talk to UX if there is any ambiguity
 
 ### Examples of Properties to NOT use
-- Site-specific Colors
- - e.g., `color`, `background`
-- Text styles
- - e.g., `font-weight`, `font=family`
+**Site-specific Colors**
+ - Do not add site specific colors or site specific variables that are not resuable
+
+**Text styles**
+ - e.g., `line-height`, `font-family` these are set on a per site basis
 
 ```scss
 // Bad
