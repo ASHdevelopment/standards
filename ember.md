@@ -194,7 +194,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 > Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
 
 We use two devDependencies to compile our test scripts.  
-1. `cross-env` - For allowing single commands for multiple test environments
+1. `cross-env` - For properly setting the NODE_ENV on Windows test environments
 1. `ember-cli-code-coverage` - For testing the percentage of code coverage with Istanbul
 
 The `scripts` section in your __package.json__ file should include the following...
