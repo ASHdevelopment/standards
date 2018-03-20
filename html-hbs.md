@@ -2,10 +2,10 @@
 # HTML-bars/Handle-bars
 
 ## Table of Contents
-1. [Quotes](#quotes)
-1. [Properties](#properties)
-	- [Alignment](#properties--alignment)
-1. [Comments](#comments)
+1. **[Quotes](#quotes)**
+1. **[Properties](#properties)** 
+	[ [Alignment](#properties--alignment) ]
+1. **[Comments](#comments)**
 
 ## Quotes
 > Double or single quotes
