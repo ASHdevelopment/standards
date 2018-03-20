@@ -1,4 +1,5 @@
 # Ember
+
 1. **[General Structure](#general-structure)** 
 	[ [Properties](#general-structure--properties) ]
 1. **[Destructuring](#destructuring)** 
@@ -229,6 +230,7 @@ export default Route.extend({
   }
 });
 ```
+
 
 <a name="deployment-checklist"></a>
 ## Definition of Ready
