@@ -1,23 +1,22 @@
 # ASH API Guidelines
 
 ## Table of Contents
-1. [Introduction](#introduction)
-1. [URL Names](#url-names)
-1. [ID's](#ids)
-1. [GET](#get)
-    - [Multiple Records](#get-multiple)
-    - [Single Record](#get-single)
-    - [Querying Multiple Records](#queryMultiple)
-    - [Querying a Single Record](#querySingle)
-1. [POST](#post)
-1. [PUT](#put)
-1. [DELETE](#delete)
-1. [Dates](#date)
-1. [Error Formatting](#errors)
+1. **[Introduction](#introduction)**
+1. **[URL Names](#url-names)**
+1. **[ID's](#ids)**
+1. **[GET](#get)** 
+	[ [Multiple Records](#get-multiple) ] 
+	[ [Single Record](#get-single) ] 
+	[ [Querying Multiple Records](#queryMultiple) ] 
+	[ [Querying a Single Record](#querySingle) ]
+1. **[POST](#post)**
+1. **[PUT](#put)**
+1. **[DELETE](#delete)**
+1. **[Dates](#date)**
+1. **[Error Formatting](#errors)**
 
 ## Introduction
-
-ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
+ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST and Ember-specific guidelines to help facilitate API development at ASH. Adhering to these guidelines will allow for the simplest and most painless use of the Ember Data library. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).However, Ember Data is not the only reason behind this structure, it helps to create a consistent API architecture making it easier to plug into other platforms and frameworks (e.g., backend, native apps, etc.).
 
 **You will need to ensure that you follow the url structure, object structure, and status code. If not, the team will need to make sure adapters and serializers are set up to compensate for this in Ember.**
 
@@ -66,6 +65,14 @@ Payload
 }
 ```
 
+Payload (If no data is found, then an empty array is returned)
+:
+```javascript
+{
+  "movies": []
+}
+```
+
 <a name="get-single"></a>
 ### [1.2](#get-single): GET a single record
 #### Request
@@ -94,6 +101,16 @@ Payload
   }
 }
 ```
+
+#### Response when no data is found
+
+HTTP Status
+:   404
+
+Payload
+:
+
+Content should be an error and may differ, as error style is defined by the server.
 
 <a name="queryMultiple"></a>
 ### [1.3](#queryMultiple): GET multiple records using a query
@@ -133,7 +150,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
@@ -174,7 +191,8 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty object)
+Payload (If no data is found, then an empty array is returned)
+
 :
 ```javascript
 {

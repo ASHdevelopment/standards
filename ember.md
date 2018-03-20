@@ -1,14 +1,17 @@
 # Ember
-1. [General Structure](#general-structure)
-    - [Properties](#general-structure--properties)
-1. [Destructuring](#destructuring)
-    - [Objects](#destructuring--objects)
-    - [Get/Set](#destructuring--get-set)
-1. [CSS](#css)
-    - [Usage](#css--usage)
-1. [Actions](#actions)
-    - [Location](#actions--location)
-1. [Updating Ember Apps](#updating-ember-apps)
+
+1. **[General Structure](#general-structure)** 
+	[ [Properties](#general-structure--properties) ]
+1. **[Destructuring](#destructuring)** 
+	[ [Objects](#destructuring--objects) ] 
+	[ [Get/Set](#destructuring--get-set) ]
+1. **[CSS](#css)**
+	[ [Usage](#css--usage) ]
+1. **[Actions](#actions)**
+	[ [Location](#actions--location) ]
+1. **[Error Handling](#errorHandling)** 
+	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
+1. **[Definition of Ready](#deployment-checklist)**
 
 <a name="general-structure"></a>
 ## General Structure
@@ -182,31 +185,105 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <div class="container">
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
-
 ```
 
-<a name="updating-ember-apps"></a>
-## Updating Ember Apps
+<a name="errorHandling"></a>
+## Error Handling
+<a name="errorHandling--overallApplication"></a>
+### 5.1 Overall Application Errors
+Every app should contain a base error function within the application route.
+> Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
 
-1. Follow the steps under **Project Update** in the following guide: <https://github.com/ember-cli/ember-cli/releases>
 
-   1. Alternatively, you can use [ember-cli-update](https://github.com/kellyselden/ember-cli-update). However, make sure you are comfortable updating manually before using this method! 
+```javascript
+//Example code for route/application.js
+const {
+  set,
+  get
+} = Ember;
 
-2. When you get to the last step, after running `ember init`, answer **yes** to all the prompts. 
-3. Make sure to delete `.jshintrc` files in both the /test and application root directories. Include `.eslintrc` files in the same directories instead. 
+export default Route.extend({
+  genericError: 'Hmm, something went wrong.',
 
-   1. Don't forget to include `.eslintrc` files in source control, so it appears in your pending changes. 
+  actions: {
+    error(error){
+      //grabbing app container for a place to put the error so it will show to the user
+      const app = document.getElementById('app-container');
 
-4. Work through all the updated files in the app. Ensure that you assess every file and manually merge the necessary updates with the changes that were there before the update.
-5. Manually reinstall all dependencies, including ember addons in `package.json`. Use `ember install <addon-name>` for ember addons and `npm install <package-name>` otherwise. **Make sure you are taking the latest minor version of dependencies.**
+      //getting the content for the error to show the user
+      if(typeof error === 'string') {
+        //if its a string set the errorToShow property to that string
+        set(this, 'errorToShow', error);
+      } else if (error && error.message) {
+        //if it has an error.message log the message to the console for debugging
+        console.error(error.message);
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      } else {
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      }
 
-   1. You will need to go to npm or github for each dependency that was added to the package and assess if it has undergone a `major` update. If not, install the dependency from the command line using the appropriate method. 
+      //adds the error to the app container for users to see error message, so they are not left with a blank app container
+      app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+    }
+  }
+});
+```
 
-   2. **Note:** Make sure that the correct packages make it to the correct `dependencies / devDependencies` block.
 
-6. Once done reinstalling the dependencies, run `rimraf node_modules bower_components` and reinstall them with `npm install` and `bower install`. 
+<a name="deployment-checklist"></a>
+## Definition of Ready
 
-   1. Ideally, there shouldn't be any bower dependencies.
+### 1. Linted
+As of __Ember CLI 2.12__, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
 
-7. At this point you should be able to run the app. If this does not allow the app to run, you probably did not reinstall the dependencies correctly. 
-> If you are working on an addon, you will need to update the README, increase the version, and publish to private npm. 
+### 2. Loading Indicators
+Any content that can be updated should have a loading indicator.  
+Use the `ash-loader` addon for this.
+
+### 3. 404 template
+A scenario for when the API returns a server error should be considered. Create a 404 template using the `ash-four-oh-four` addon.
+
+### 4. Catch Errors
+Determine where the app could break and catch errors to keep the user informed.
+
+### 5. unit/acceptance/integration tested
+As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work.
+
+### 6. Code Coverage
+Be sure to utilize the `ember-cli-code-coverage` addon and set up the appropriate npm tests as outlined above.
+
+*ASH Front End Principles denote that branch coverage should be a minimum of 75% total test coverage, and 50% for tests not including acceptance tests.*
+
+### 7. Accessibility Tested
+`ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
+
+### 8. Mirage
+If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API.
+
+### 9. Cross-Browser Tested
+Test the app in every browser that we support.  
+
+If Mirage is being used, and the real API is available, test with both sets of data in each browser.  
+
+*Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
+
+### 10. Build Pipelines Defined
+Configure **stg.ashui** build with Mirage data  
+Configure **production** build with API data  
+
+Create a build definition for the app that will:  
+1. set npm registry path
+2. run `npm install` or `yarn`
+3. run `bower install`
+4. run `npm test`
+5. run `ember build --environment=preview --output-path=preview`
+6. run `ember build --environment=production`
+7. copy files to the drop location
+8. publish files to stg.ashui and the build location
+9. publish Code Coverage results
+10. notify the appropriate Slack channels
+
+### 11. Checklist Violations
+`npm test` (in the build definition) will catch errors and reject build
