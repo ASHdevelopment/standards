@@ -107,15 +107,14 @@ get(someObject, 'isUpdated'); //true
 <a name="computed-properties--brace-expansion"></a>
 ### 3.1 Brace Expansion
 
-When a computed property depends on multiple properties, we can declare the dependents using brace expansion. It is useful for cases when the computed property depends on multiple properties of an object. Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
+> Why? When a computed property depends on multiple properties, always use the dependents using brace expansion. It is useful for cases when the computed property depends on multiple properties of an object. Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
 
 ```javascript 
 // Bad 
 fullname: computed('user.firstname', 'user.lastname', function() {
-  const firstname = get(this, 'user.firstname'); 
-  const lastname = get(this, 'user.lastname');
+  const { firstname, lastname } = get(this, 'user');
 
-  return firstname + ' ' + lastname;
+  return `${firstname} ${lastname}`;
 })
 
 // Good
