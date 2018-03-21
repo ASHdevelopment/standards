@@ -349,14 +349,6 @@ function showErrorMessage (arg1){
 
 ### 9.1 jQuery
 
-#### Use in all QUnit tests
-> Why? It is quicker to write unit tests in jQuery, unit tests are not production code, and besides, QUnit was developed by the jQuery team. So why not?
-
-#### Use $.ajax() rather than XMLHttpRequest() for server requests
-> Why? The jquery AJAX wrapper is much simpler to write and the speed hit is minute compared to an entire project written in jQuery
-
-**Note:** AJAX Calls in non-Ember projects should utilize `$$ash.ajax`.
-
 #### Write in Vanilla JavaScript wherever possible
 > Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
 
