@@ -11,6 +11,7 @@
 	[ [Location](#actions--location) ]
 1. **[Error Handling](#errorHandling)** 
 	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
+1. **[Testing](#testing)**
 1. **[Definition of Ready](#deployment-checklist)**
 
 <a name="general-structure"></a>
@@ -229,6 +230,26 @@ export default Route.extend({
     }
   }
 });
+```
+<a name="testing"></a>
+## Testing
+
+<a name="testing--test-scripts"></a>
+### 5.1 Test Scripts
+
+> Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
+
+We use two devDependencies to compile our test scripts.  
+1. `cross-env` - For properly setting the NODE_ENV on Windows test environments
+1. `ember-cli-code-coverage` - For testing the percentage of code coverage with Istanbul
+
+The `scripts` section in your __package.json__ file should include the following...
+
+``` javascript
+"scripts": {
+    "test": "cross-env COVERAGE=true ember test",
+    "test-server": "cross-env COVERAGE=true ember test --server"
+  }
 ```
 
 
