@@ -103,12 +103,20 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 - Display
  - e.g., `display:flex`, `flex-direction: column`
 - Animations and Transitions
+- Certain Font Styles
+ - `font-weight` only
 
-#### Examples of Properties to Not use
-- Colors
- - e.g., `color`, `background`
-- Text styles
- - e.g., `font-weight`, `font=family`
+
+**Use discretion when adding colors to apps/addons**
+* Neutral/non-branding colors that aren't likely to change across websites are OKAY to add to that app's/addon's app styles
+* Talk to UX if there is any ambiguity
+
+### Examples of Properties to NOT use
+**Site-specific Colors**
+ - Do not add site specific colors or site specific variables that are not resuable
+
+**Text styles**
+ - e.g., `line-height`, `font-family` these are set on a per site basis
 
 ```scss
 // Bad
@@ -119,6 +127,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   background: $color1;
 
   .chatMsg {
+    font-family: $font1;
     font-weight: 700;
     text-transform: uppercase;    
     background: $color2;
@@ -133,6 +142,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   background: $color1;
 
   .chatMsg {
+    font-family: $font1;
     font-weight: 700;
     text-transform: uppercase;    
     background: $color2;
