@@ -12,7 +12,11 @@
 1. **[POST](#post)**
 1. **[PUT](#put)**
 1. **[DELETE](#delete)**
-1. **[Dates](#date)**
+1. **[Model Relationships](#relationships)**
+	[ [Side-loaded Without Query](#relationships-sideload) ] 
+	[ [Embedded Data With Query](#relationships-embed) ] 
+	[ [Embedded Data Without Query](#relationships-embed-query) ] 
+	[ [Async Loading](#relationships-async) ]1. **[Dates](#date)**
 1. **[Error Formatting](#errors)**
 
 ## Introduction
@@ -30,7 +34,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 ## GET
 
 <a name="get-multiple"></a>
-### [1.1](#get-multiple): GET all records
+### [4.1](#get-multiple): GET all records
 #### Request
 URL
 :   `apiHost.com/movies`
@@ -74,7 +78,7 @@ Payload (If no data is found, then an empty array is returned)
 ```
 
 <a name="get-single"></a>
-### [1.2](#get-single): GET a single record
+### [4.2](#get-single): GET a single record
 #### Request
 URL
 :   `apiHost.com/movies/2`
@@ -113,7 +117,7 @@ Payload
 Content should be an error and may differ, as error style is defined by the server.
 
 <a name="queryMultiple"></a>
-### [1.3](#queryMultiple): GET multiple records using a query
+### [4.3](#queryMultiple): GET multiple records using a query
 
 ### Why?
 > To get multiple records based on parameter criteria.
@@ -159,7 +163,7 @@ Payload (If no data is found, then an empty array is returned)
 ```
 
 <a name="querySingle"></a>
-### [1.4](#querySingle): GET a single record using a query
+### [4.4](#querySingle): GET a single record using a query
 
 ### Why?
 > To get a single record based on parameter criteria when the result is known to be one record.
@@ -343,6 +347,238 @@ Payload
 ### Why?
 
 > The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
+
+<a name="relationships"></a>
+## Model Relationships
+
+<a name="relationships-sideload"></a>
+### [8.1] Side-loaded Without Query
+
+### Why?
+> Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed
+
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors": [1,2,3]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors": [1,2,4]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors": [1,5,6]
+    }    
+  ],
+  "actors":[
+    {
+      "id":1,
+      "name": "Robert De Niro"
+    },{
+      "id":2,
+      "name": "Joe Pesci"
+    },{
+      "id":3,
+      "name": "Cathy Moriarty"
+    },{
+      "id":4,
+      "name": "Ray Liotta"
+    },{
+      "id":5,
+      "name": "Nick Nolte"
+    },{
+      "id":6,
+      "name": "Illeana Douaglas"
+    }
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors. It will not return all actors for all movies.
+
+<a name="relationships-embed"></a>
+## [8.2] Embedded Data Without Query
+
+### Why?
+> Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed.  If you have a lot of shared actors, this may result in a significantly larger payload.
+
+Notice that the payload is larger here becuase shared actors (De Niro and Pesci) are repeated, whereas they are not in the side-loaded example.
+
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":3,
+          "name": "Cathy Moriarty"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":4,
+          "name": "Ray Liotta"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":5,
+          "name": "Nick Nolte"
+        },{
+          "id":6,
+          "name": "Illeana Douaglas"
+        }
+      ]
+    }    
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors.
+
+<a name="relationships-embed-query"></a>
+## [8.3] Embedded Data With Query
+
+### Why?
+> Use this method when you want the ability to toggle including actors when the `movies` endpoint is accessed
+
+URL: `api.com/movies/?include=actors`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":3,
+          "name": "Cathy Moriarty"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":2,
+          "name": "Joe Pesci"
+        },{
+          "id":4,
+          "name": "Ray Liotta"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[
+        {
+          "id":1,
+          "name": "Robert De Niro"
+        },{
+          "id":5,
+          "name": "Nick Nolte"
+        },{
+          "id":6,
+          "name": "Illeana Douaglas"
+        }
+      ]
+    }    
+  ]
+}
+```
+
+Alternatively, you can `GET` `api.com/movies/1/?include=actors` and the api will only return Raging Bull and its actors.
+
+<a name="relationships-async"></a>
+## [8.4] Async Loading
+URL: `api.com/movies`
+
+Payload:
+```javascript
+{
+  "movies": [
+    {
+      "id": 1,
+      "title": "Raging Bull",
+      "year": "1980",
+      "actors":[1, 2, 3]
+    },
+    {
+      "id": 2,
+      "title": "Goodfellas",
+      "year": "1990",
+      "actors":[1, 2, 4]
+    },
+    {
+      "id": 4,
+      "title": "Cape Fear",
+      "year": "1991",
+      "actors":[1, 5, 6]
+    }    
+  ]
+}
+```
+
+The JavaScript can then make individual requests to `api.com/actors/1`, `api.com/actors/2`, `api.com/actors/3`, etc. because those id's were referenced in the original payload.
 
 <a name="date"></a>
 ## Dates
