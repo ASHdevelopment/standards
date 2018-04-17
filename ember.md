@@ -1,24 +1,37 @@
 # Ember
-1. [General Structure](#general-structure)
-1. [Destructuring](#destructuring)
-1. [CSS](#css)
-1. [actions](#actions)
 
+1. **[General Structure](#general-structure)** 
+	[ [Properties](#general-structure--properties) ]
+1. **[Destructuring](#destructuring)** 
+	[ [Objects](#destructuring--objects) ] 
+	[ [Get/Set](#destructuring--get-set) ]
+1. **[CSS](#css)**
+	[ [Usage](#css--usage) ]
+1. **[Actions](#actions)**
+	[ [Location](#actions--location) ]
+1. **[Error Handling](#errorHandling)** 
+	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
+1. **[Testing](#testing)**
+1. **[Definition of Ready](#deployment-checklist)**
+
+<a name="general-structure"></a>
 ## General Structure
 
+<a name="general-structure--properties"></a>
 - 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
   + **Properties**
     + Put ember specific properties (e.g., `classNames`, `tagNames`) before custom properties (e.g., `someSpecificAshProp : true`)
-  + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.7.0/components/the-component-lifecycle/">see order in documentation</a>
+  + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.12.0/components/the-component-lifecycle/">see order in documentation</a>
   + Custom methods
   + `actions` go last
 
-
+<a name="destructuring"></a>
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
 > Why? Destructuring allows you to import only which classes you need and then extract (or destructure) only the properties that you need. This makes our modules more efficient.
 
-### Destructuring Objects
+<a name="destructuring--objects"></a>
+### 2.1 Destructuring Objects
 
 ```javascript
 //Bad
@@ -51,8 +64,8 @@ export default Model.extend({
   })
 });
 ```
-
-### Using `get` and `set`
+<a name="destructuring--get-set"></a>
+### 2.2 Using `get` and `set`
 Destructuring `get` and `set` will allow you pass in a POJO, rather than being limited to just the current object with the `this` keyword.
 
 ```javascript
@@ -74,22 +87,24 @@ get(this, 'isDestructured'); //true
 set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
-
+<a name="css"></a>
 ## CSS
 
-### Usage
+<a name="css--usage"></a>
+### 3.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 > Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
 
-### Properties Allowed:
+
+#### Properties Allowed:
 - Box Model
  - e.g., `padding`, `height`, `margin`, `border-width`
 - Display
  - e.g., `display:flex`, `flex-direction: column`
 - Animations and Transitions
 
-### Examples of Properties to Not use
+#### Examples of Properties to Not use
 - Colors
  - e.g., `color`, `background`
 - Text styles
@@ -135,11 +150,11 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
   }
 }
 ```
-
-## Actions
 <a name="actions"></a>
+## Actions
 
-### Location
+<a name="actions--location"></a>
+### 4.1 Location
 
  - Form Actions should be placed on the form element
 
@@ -171,5 +186,125 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <div class="container">
  <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
-
 ```
+
+<a name="errorHandling"></a>
+## Error Handling
+<a name="errorHandling--overallApplication"></a>
+### 5.1 Overall Application Errors
+Every app should contain a base error function within the application route.
+> Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
+
+
+```javascript
+//Example code for route/application.js
+const {
+  set,
+  get
+} = Ember;
+
+export default Route.extend({
+  genericError: 'Hmm, something went wrong.',
+
+  actions: {
+    error(error){
+      //grabbing app container for a place to put the error so it will show to the user
+      const app = document.getElementById('app-container');
+
+      //getting the content for the error to show the user
+      if(typeof error === 'string') {
+        //if its a string set the errorToShow property to that string
+        set(this, 'errorToShow', error);
+      } else if (error && error.message) {
+        //if it has an error.message log the message to the console for debugging
+        console.error(error.message);
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      } else {
+        //if it is not a string set the errorToShow property to the genericError
+        set(this, 'errorToShow', get(this, 'genericError'))
+      }
+
+      //adds the error to the app container for users to see error message, so they are not left with a blank app container
+      app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+    }
+  }
+});
+```
+<a name="testing"></a>
+## Testing
+
+<a name="testing--test-scripts"></a>
+### 5.1 Test Scripts
+
+> Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
+
+We use two devDependencies to compile our test scripts.  
+1. `cross-env` - For properly setting the NODE_ENV on Windows test environments
+1. `ember-cli-code-coverage` - For testing the percentage of code coverage with Istanbul
+
+The `scripts` section in your __package.json__ file should include the following...
+
+``` javascript
+"scripts": {
+    "test": "cross-env COVERAGE=true ember test",
+    "test-server": "cross-env COVERAGE=true ember test --server"
+  }
+```
+
+
+<a name="deployment-checklist"></a>
+## Definition of Ready
+
+### 1. Linted
+As of __Ember CLI 2.12__, ember comes installed with `ember-cli-eslint`. This will output lint errors in the local server command line, as well as display errors in unit, integration, and acceptance tests. 
+
+### 2. Loading Indicators
+Any content that can be updated should have a loading indicator.  
+Use the `ash-loader` addon for this.
+
+### 3. 404 template
+A scenario for when the API returns a server error should be considered. Create a 404 template using the `ash-four-oh-four` addon.
+
+### 4. Catch Errors
+Determine where the app could break and catch errors to keep the user informed.
+
+### 5. unit/acceptance/integration tested
+As new logic is added to the app, the appropriate tests should be set up to ensure that future updates don't interfere with your current work.
+
+### 6. Code Coverage
+Be sure to utilize the `ember-cli-code-coverage` addon and set up the appropriate npm tests as outlined above.
+
+*ASH Front End Principles denote that branch coverage should be a minimum of 75% total test coverage, and 50% for tests not including acceptance tests.*
+
+### 7. Accessibility Tested
+`ember-a11y-testing` should be installed, configured, and added to unit, integration, and acceptance tests.
+
+### 8. Mirage
+If the app makes API calls, `ember-cli-mirage` should be installed and configured to match the real API.
+
+### 9. Cross-Browser Tested
+Test the app in every browser that we support.  
+
+If Mirage is being used, and the real API is available, test with both sets of data in each browser.  
+
+*Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
+
+### 10. Build Pipelines Defined
+Configure **stg.ashui** build with Mirage data  
+Configure **production** build with API data  
+
+Create a build definition for the app that will:  
+1. set npm registry path
+2. run `npm install` or `yarn`
+3. run `bower install`
+4. run `npm test`
+5. run `ember build --environment=preview --output-path=preview`
+6. run `ember build --environment=production`
+7. copy files to the drop location
+8. publish files to stg.ashui and the build location
+9. publish Code Coverage results
+10. notify the appropriate Slack channels
+
+### 11. Checklist Violations
+`npm test` (in the build definition) will catch errors and reject build

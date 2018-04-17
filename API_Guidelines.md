@@ -1,19 +1,26 @@
 # ASH API Guidelines
 
 ## Table of Contents
-1. [GET](#get)
-    - [Multiple Records](#get-multiple)
-    - [Single Record](#get-single)
-    - [Querying Multiple Records](#queryMultiple)
-    - [Querying a Single Record](#querySingle)
-1. [POST](#post)
-1. [PUT](#put)
-1. [DELETE](#delete)
-1. [Model Relationships](#relationships)
-1. [Dates](#date)
-1. [Error Formatting](#errors)
+1. **[Introduction](#introduction)**
+1. **[URL Names](#url-names)**
+1. **[ID's](#ids)**
+1. **[GET](#get)** 
+	[ [Multiple Records](#get-multiple) ] 
+	[ [Single Record](#get-single) ] 
+	[ [Querying Multiple Records](#queryMultiple) ] 
+	[ [Querying a Single Record](#querySingle) ]
+1. **[POST](#post)**
+1. **[PUT](#put)**
+1. **[DELETE](#delete)**
+1. **[Model Relationships](#relationships)**
+	[ [Side-loaded Without Query](#relationships-sideload) ] 
+	[ [Embedded Data With Query](#relationships-embed) ] 
+	[ [Embedded Data Without Query](#relationships-embed-query) ] 
+	[ [Async Loading](#relationships-async) ]1. **[Dates](#date)**
+1. **[Error Formatting](#errors)**
 
-ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST guidelines and Ember guidelines to help facilitate API development at ASH. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).
+## Introduction
+ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST and Ember-specific guidelines to help facilitate API development at ASH. Adhering to these guidelines will allow for the simplest and most painless use of the Ember Data library. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).However, Ember Data is not the only reason behind this structure, it helps to create a consistent API architecture making it easier to plug into other platforms and frameworks (e.g., backend, native apps, etc.).
 
 **You will need to ensure that you follow the url structure, object structure, and status code. If not, the team will need to make sure adapters and serializers are set up to compensate for this in Ember.**
 
@@ -27,7 +34,7 @@ In general, each record needs to have an id. So the API should supply one, even 
 ## GET
 
 <a name="get-multiple"></a>
-### [1.1](#get-multiple): GET all records
+### [4.1](#get-multiple): GET all records
 #### Request
 URL
 :   `apiHost.com/movies`
@@ -62,8 +69,16 @@ Payload
 }
 ```
 
+Payload (If no data is found, then an empty array is returned)
+:
+```javascript
+{
+  "movies": []
+}
+```
+
 <a name="get-single"></a>
-### [1.2](#get-single): GET a single record
+### [4.2](#get-single): GET a single record
 #### Request
 URL
 :   `apiHost.com/movies/2`
@@ -83,7 +98,7 @@ Payload
 :
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 2,
     "title": "Goodfellas",
     "year": "1990"
@@ -91,8 +106,18 @@ Payload
 }
 ```
 
+#### Response when no data is found
+
+HTTP Status
+:   404
+
+Payload
+:
+
+Content should be an error and may differ, as error style is defined by the server.
+
 <a name="queryMultiple"></a>
-### [1.3](#queryMultiple): GET multiple records using a query
+### [4.3](#queryMultiple): GET multiple records using a query
 
 ### Why?
 > To get multiple records based on parameter criteria.
@@ -129,7 +154,7 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty array)
+Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
@@ -138,7 +163,7 @@ Payload (If no data is found, then `queryRecord` returns an empty array)
 ```
 
 <a name="querySingle"></a>
-### [1.4](#querySingle): GET a single record using a query
+### [4.4](#querySingle): GET a single record using a query
 
 ### Why?
 > To get a single record based on parameter criteria when the result is known to be one record.
@@ -170,7 +195,8 @@ Payload
 }
 ```
 
-Payload (If no data is found, then `queryRecord` returns an empty object)
+Payload (If no data is found, then an empty array is returned)
+
 :
 ```javascript
 {
@@ -203,6 +229,15 @@ let movie3 = get(this, 'store').createRecord('movie', {
 movie3.save();
 ```
 
+Payload
+:
+```javascript
+{
+    "title": "Crimson Tide",
+    "year": "1995"
+}
+```
+
 #### Response
 
 HTTP Status
@@ -212,7 +247,7 @@ Payload
 :   
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 3,
     "title": "Crimson Tide",
     "year": "1995"
@@ -233,7 +268,8 @@ Request Method
 : `PUT`
 
 Ember Data Method
-:   
+:
+
 ```javascript
 //lookup record in the local store
 let movie = get(this, 'store').findRecord('movie', 2); // returns record of {"id": 2, "title": "Goodfellas", "year": "1990"}
@@ -241,6 +277,16 @@ movie.set('title', 'Goodfellers'); //update an existing property
 movie.set('radioheadOnSoundtrack', false); //add a new property
 // set method only updates the record in the local store without making a network request yet.
 movie.save(); //save() initiates a PUT request to apiHost.com/movies/2
+```
+
+Payload
+:
+```javascript
+{
+    "title": "Goodfellers",
+    "year": "1990",
+    "radioheadOnSoundtrack": false
+}
 ```
 
 #### Response
@@ -251,7 +297,7 @@ Payload
 :   
 ```javascript
 {
-  "movies": {
+  "movie": {
     "id": 2,
     "title": "Goodfellers", //title has been updated
     "year": "1990",
@@ -259,6 +305,7 @@ Payload
   }
 }
 ```
+While you can add a new property in the `PUT` request, it's not good practice, since your app should be working off a schema rather than arbitrarily adding properties.
 
 The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
@@ -304,7 +351,8 @@ Payload
 <a name="relationships"></a>
 ## Model Relationships
 
-### 5.1 Side-loaded without query
+<a name="relationships-sideload"></a>
+### [8.1] Side-loaded Without Query
 
 ### Why?
 > Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed
@@ -360,7 +408,8 @@ Payload:
 
 Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors. It will not return all actors for all movies.
 
-## Embedded data without query
+<a name="relationships-embed"></a>
+## [8.2] Embedded Data Without Query
 
 ### Why?
 > Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed.  If you have a lot of shared actors, this may result in a significantly larger payload.
@@ -430,7 +479,8 @@ Payload:
 
 Alternatively, you can `GET` `api.com/movies/1` and the api will only return Raging Bull and its actors.
 
-## Embedded data with query
+<a name="relationships-embed-query"></a>
+## [8.3] Embedded Data With Query
 
 ### Why?
 > Use this method when you want the ability to toggle including actors when the `movies` endpoint is accessed
@@ -498,8 +548,8 @@ Payload:
 
 Alternatively, you can `GET` `api.com/movies/1/?include=actors` and the api will only return Raging Bull and its actors.
 
-
-## Async loading
+<a name="relationships-async"></a>
+## [8.4] Async Loading
 URL: `api.com/movies`
 
 Payload:
