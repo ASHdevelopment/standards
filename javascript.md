@@ -128,6 +128,16 @@ const string = `The ASH UI team is ${awesomeAdjective}!`;
 - Use tick marks only with template strings literals.
 - Strictly use double quotes with JSON.
 
+Example:
+
+```javascript
+//good
+const string = 'The ASH UI team is awesome!';
+
+//also good
+const string = "The ASH UI team is awesome!";
+```
+
 ## <a name="arrays">Arrays</a>
 
 ### 3.1 Dangling Commas
