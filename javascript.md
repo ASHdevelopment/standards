@@ -306,7 +306,7 @@ for (let i = 0; i < array.length; i++) {
 ## <a name="errors">Error Handling</a>
 
 ### 8.1 Displaying Errors
-> Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users.
+> Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users. If using Ember, you can use the `debug` or `warn` methods, which get stripped out in production (see [@ember/debug](https://emberjs.com/api/ember/release/modules/@ember%2Fdebug) for more info).
 
 ### 8.2 Try/Catch
 > Helps catch errors before they cause the code to blow up
