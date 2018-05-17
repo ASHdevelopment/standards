@@ -30,7 +30,7 @@ Extract multiple values from data stored in objects and arrays.
 
 <a name="destructuring--objects"></a>
 ### 2.1 Destructuring Objects
-In Ember 2.16 and above the recommended way to access framework code in Ember applications is via the JavaScript modules API. This makes Ember feel less overwhelming to new users, and make Ember applications start faster, by replacing the Ember global with a first-class system for importing just the parts of the framework you need.
+In Ember 2.16 and above the recommended way to access framework code in Ember applications is via the JavaScript modules API. This makes Ember feel less overwhelming to new users and start faster. These effects are felt because of replacing the Ember global with a first-class system for importing just the parts of the framework you need.
 JavaScript modules make the framework easier to document, make the distinction between public and private API much easier to maintain, and provide opportunities for performance work such as tree-shaking.
 
 ```javascript
