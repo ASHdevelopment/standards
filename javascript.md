@@ -1,5 +1,6 @@
 # Javascript
 
+
 1. **[Variables](#variables)**
 1. **[Strings](#strings)**
 1. **[Operators](#operators)**
@@ -303,12 +304,12 @@ for (let i = 0; i < array.length; i++) {
 	newArray.push(array[i] * 3);
 }
 ```
+## <a name="errors">Error Handling</a>
 
-## <a name="json">JSON</a>
+### 8.1 Displaying Errors
+> Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users. If using Ember, you can use the `debug` or `warn` methods, which get stripped out in production (see [@ember/debug](https://emberjs.com/api/ember/release/modules/@ember%2Fdebug) for more info).
 
-## <a name="#trycatch">Try/Catch</a>
-
-### 8.1 Usage
+### 8.2 Try/Catch
 > Helps catch errors before they cause the code to blow up
 
 **Use try/catch block if:**
@@ -345,6 +346,56 @@ function showErrorMessage (arg1){
 	}		
 }
 ```
+
+### 8.3 Catching Errors with Asynchronous Operations
+> Anytime you're doing something with a successful resolution of an asynchronous operation (happy path), you should ensure you are also catching errors (sad path).
+
+#### Using Promise.then()
+Use `.catch()` to catch any errors with the promise, including http errors.
+
+```javascript
+//bad
+const list = [...staleList];
+
+fetchNewestItem().then(response =>{
+	list.push(response);
+})
+```
+
+```javascript
+//good
+const list = [...staleList];
+
+fetchNewestItem().then(response =>{
+	list.push(response);
+}).catch(error =>{
+	displayErrorToUser(error);
+})
+```
+
+#### Using Async/Await
+Similar to `Promise.then()`, include a catch, but use a try/catch statement for `async` functions.
+
+```javascript
+//bad
+const list = [...staleList];
+
+(async function (){
+	list.push(await fetchNewestItem())
+})()
+```
+
+```javascript
+//good
+(async function (){
+	try{
+		list.push(await fetchNewestItem())
+	}catch(error){
+		displayErrorToUser(error)
+	}
+})()
+```
+
 ## <a name="#libraries">Libraries</a>
 
 ### 9.1 jQuery
