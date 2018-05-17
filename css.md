@@ -1,14 +1,15 @@
 # American Specialty Health CSS / Sass Styleguide﻿
 
 ## Table of Contents
-1. [CSS](#css)
-    - [Formatting](#css--formatting)
-    - [Property Ordering](#css--ordering)
-    - [Flexbox](#css--flexbox)
-1. [SCSS](#scss)
-    - [Nesting](#scss--nesting)
-    - [Variables](#scss--variables)
-    - [Comments](#scss--comments)
+1. **[CSS](#css)** 
+	[ [Property Ordering](#css--ordering) ] 
+	[ [Formatting](#css--formatting) ] 
+	[ [Flexbox](#css--flexbox) ]
+	[ [Do NOT Use](#do-not-use) ]
+1. **[SCSS](#scss)** 
+	[ [Nesting](#scss--nesting) ] 
+	[ [Variables](#scss--variables) ] 
+	[ [Comments](#scss--comments) ]
 
 ## CSS
 
@@ -75,6 +76,11 @@ Properties should be ordered as follows:
 
 * Always use the flex shorthand over specifying `flex-shrink`, `flex-grow`, or `flex-basis` individually
 
+<a name="do-not-use"></a>  
+### [1.4](#do-not-use): DO NOT USE
+> Why? The use of the following styles are not supported by screen readers and are therefore poor accessibility
+
+* The content property - `content: 'Screen reader no see';`
 
 ## SCSS
 

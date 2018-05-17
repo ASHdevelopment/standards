@@ -1,16 +1,17 @@
 # Javascript
 
-1. [Variables](#variables)
-1. [Strings](#strings)
-1. [Operators](#operators)
-1. [Arrays](#arrays)
-1. [Objects](#objects)
-1. [Functions](#functions)
-1. [Iteration](#iteration)
-1. [Error Handling](#errors)
-1. [Libraries](#libraries)
-1. [NPM](#npm)
-1. [Documentation & Style](#documentation)
+
+1. **[Variables](#variables)**
+1. **[Strings](#strings)**
+1. **[Operators](#operators)**
+1. **[Arrays](#arrays)**
+1. **[Objects](#objects)**
+1. **[Functions](#functions)**
+1. **[Iteration](#iteration)**
+1. **[Try/Catch](#trycatch)**
+1. **[Libraries](#libraries)**
+1. **[NPM](#npm)**
+1. **[Documentation & Style](#documentation)**
 
 ## <a name="variables">Variables</a>
 
@@ -398,14 +399,6 @@ const list = [...staleList];
 ## <a name="#libraries">Libraries</a>
 
 ### 9.1 jQuery
-
-#### Use in all QUnit tests
-> Why? It is quicker to write unit tests in jQuery, unit tests are not production code, and besides, QUnit was developed by the jQuery team. So why not?
-
-#### Use $.ajax() rather than XMLHttpRequest() for server requests
-> Why? The jquery AJAX wrapper is much simpler to write and the speed hit is minute compared to an entire project written in jQuery
-
-**Note:** AJAX Calls in non-Ember projects should utilize `$$ash.ajax`.
 
 #### Write in Vanilla JavaScript wherever possible
 > Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
