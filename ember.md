@@ -107,7 +107,8 @@ get(someObject, 'isUpdated'); //true
 <a name="computed-properties--brace-expansion"></a>
 ### 3.1 Brace Expansion
 
-> Why? When a computed property depends on multiple properties, always use the dependents using brace expansion. It is useful for cases when the computed property depends on multiple properties of an object. Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
+When a computed property depends on multiple properties of the same object, specify the properties using brace expansion.
+> Why? Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
 
 ```javascript 
 // Bad 
