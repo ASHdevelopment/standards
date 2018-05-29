@@ -17,19 +17,22 @@
 <a name="general-structure"></a>
 ## General Structure
 
+**Why do we structure our Javascript code?**
+This allows us to follow a consistent coding conventions. Paired with a tool to enforce code structure, such as Eslint, it will provide a way for us to make sure that our code follow a specific specified order.
+
 <a name="general-structure--properties"></a>
-- 1.1 **Property Order**: For components and controllers, follow this order for properties and methods
+- 1.1 **Controller/Component Property Order**: follow this order for properties and methods
   + **Properties**
     + Put ember specific properties (e.g., `classNames`, `tagNames`) before custom properties (e.g., `someSpecificAshProp : true`)
   + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.12.0/components/the-component-lifecycle/">see order in documentation</a>
   + Custom methods
   + `actions` go last
   
-- 1.2 **Property Order**: For models, follow this order for defining attributes and relationships:
-	+ attributes
-	+ relationships
-	+ single line function
-	+ multi line function
+- 1.2 **Model Property Order**: follow this order for defining attributes and relationships:
+	+ Attributes
+	+ Relationships
+	+ Single line function
+	+ Multi line function
 
 ```javascript
 //Bad
