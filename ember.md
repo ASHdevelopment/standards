@@ -24,6 +24,25 @@
   + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.12.0/components/the-component-lifecycle/">see order in documentation</a>
   + Custom methods
   + `actions` go last
+  
+- 1.2 **Property Order**: For models, follow this order for defining attributes and relationships:
+	+ attributes
+	+ relationships
+	+ single line function
+	+ multi line function
+
+```javascript
+//Bad
+firstName: attr('string'),
+fullName: belongsTo('person'),
+lastName: attr('string')
+
+//Good
+firstName: attr('string'),
+lastName: attr('string'),
+
+fullName: belongsTo('person')
+```
 
 <a name="destructuring"></a>
 ## Destructuring
