@@ -13,6 +13,7 @@
 
 ## Section
 Provide overall description of this section.
+> Why? When description is present it is easier for others to understand what the section is about. 
 
 ## Section with Subsections
 
