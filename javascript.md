@@ -12,6 +12,7 @@
 1. **[Libraries](#libraries)**
 1. **[NPM](#npm)**
 1. **[Documentation & Style](#documentation)**
+1. **[Code Blocks](#code-blocks)**
 
 ## <a name="variables">Variables</a>
 
@@ -477,3 +478,23 @@ function isPalindrome(word){
 - Good code is readable by other developers.
 - Good code can do complex things.
 - Code that can do complex things, but is not readable by other developers is not good code.
+
+## Code Blocks
+
+### 11.1 Single line blocks
+It is okay to use single line code blocks without curly braces (`{}`) as long as they fit on the same line as the control statement (ex: `if`, `for`). When the code becomes more than 1 statement and/or moves to the next line, it should be placed in curly braces.
+
+```javascript
+//BAD
+if (iceCream > vegetables) 
+	return true;
+```
+
+```javascript
+//GOOD
+if (iceCream > vegetables) return true;
+
+if (iceCream > vegetables) {
+	return true;
+}
+```
