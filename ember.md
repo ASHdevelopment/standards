@@ -109,14 +109,14 @@ get(someObject, 'isUpdated'); //true
 
 Any new code written should only contain one-way data-binding
 
-> Why? Two-way data-binding can have unexpected side effects. It is harder to debug, timing can be an issue on what value gets bound, and it can unknowingly create endless loops in your code.
+> Why? Two-way data-binding can have unexpected side effects and data flowing only in one direction keeps things more predictable. It is harder to debug, timing can throw data off and it can unknowingly create endless loops in your code. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can, by the two-way binding chain, actually make changes you are not expecting in component B.
 
 ```javascript
 //Bad
 {{my-cheesy-component myData=parentData}}
 
 //my-cheesy-component.js
-//note this would update the parent
+//The below code would update the parent and any other component the parentData object was passed to
 set('myData', 'cheese', 'gouda')
 
 
@@ -129,7 +129,7 @@ set('myData', 'cheese', 'gouda')
 //my-cheesy-component.js
 actions: {
   newCheesePlease(cheeseType) {
-  get(this, 'changeCheese')(cheeseType);
+    get(this, 'changeCheese')(cheeseType);
   }
 }
 ```
