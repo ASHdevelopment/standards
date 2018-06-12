@@ -11,7 +11,7 @@
 1. **[Error Handling](#error-handling)**
 1. **[Libraries](#libraries)**
 1. **[NPM](#npm)**
-1. **[Documentation & Style](#documentation-&-style)**
+1. **[Documentation and Style](#documentation-and-style)**
 1. **[Code Blocks](#code-blocks)**
 
 ## Variables
@@ -416,7 +416,7 @@ const list = [...staleList];
 - Do not publish to the registry until the code can deliver functionality, tested, and can be consumed by other applications.
 - If the code is being used on production, then it should be at least on version 1.0.0.
 
-## Documentation & Style
+## Documentation and Style
 > Why? Because other devs need to be able to work in your code without setting up a meeting first.
 
 ### 10.1 Documentation
@@ -482,12 +482,17 @@ function isPalindrome(word){
 ## Code Blocks
 
 ### 11.1 Single line blocks
-It is okay to use single line code blocks without curly braces (`{}`) as long as they fit on the same line as the control statement (ex: `if`, `for`). When the code becomes more than 1 statement and/or moves to the next line, it should be placed in curly braces.
+It is allowed, but not required, to use single line code blocks without curly braces (`{}`) as long as they fit on the same line as the control statement (ex: `if`, `for`). When the code becomes more than 1 statement and/or moves to the next line, it should be placed in curly braces.
+
+> Why? This allows for simple `if` statements to be terse, while providing a hint for anyone modifying it that they need to add curly braces for additional statements.
 
 ```javascript
 //BAD
 if (iceCream > vegetables) 
 	return true;
+
+for (let i=0; i<vegetables.length; i++)
+	disposeOf(vegetables[i]);
 ```
 
 ```javascript
@@ -496,5 +501,11 @@ if (iceCream > vegetables) return true;
 
 if (iceCream > vegetables) {
 	return true;
+}
+
+for (let i=0; i<vegetables.length; i++)	disposeOf(vegetables[i]);
+
+for (let i=0; i<vegetables.length; i++)	{
+	disposeOf(vegetables[i]);
 }
 ```
