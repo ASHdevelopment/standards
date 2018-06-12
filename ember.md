@@ -109,7 +109,7 @@ get(someObject, 'isUpdated'); //true
 
 Any new code written should only contain one-way data-binding
 
-> Why? One of our Front End principles is DDAU, data down actions up. Also, two-way data-binding can have unexpected side effects.
+> Why? Two-way data-binding can have unexpected side effects. It is harder to debug, timing can be an issue on what value gets bound, and it can unknowingly create endless loops in your code.
 
 ```javascript
 //Bad
@@ -117,7 +117,7 @@ Any new code written should only contain one-way data-binding
 
 //my-cheesy-component.js
 //note this would update the parent
-myData.cheese = 'gouda' 
+set('myData', 'cheese', 'gouda')
 
 
 //Good
