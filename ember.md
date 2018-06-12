@@ -5,6 +5,8 @@
 1. **[Destructuring](#destructuring)** 
 	[ [Objects](#destructuring--objects) ] 
 	[ [Get/Set](#destructuring--get-set) ]
+1. **[Data](#data)**
+	[ [Data Binding](#data--data-binding) ]
 1. **[CSS](#css)**
 	[ [Usage](#css--usage) ]
 1. **[Actions](#actions)**
@@ -98,6 +100,40 @@ get(this, 'isDestructured'); //true
 set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
+
+<a name="data"></a>
+## Data
+
+<a name="data--data-binding"></a>
+### 3.1 Data Binding
+
+Any new code written should only contain one-way data-binding
+
+> Why? One of our Front End principles is DDAU, data down actions up. Also, two-way data-binding can have unexpected side effects.
+
+```javascript
+//Bad
+{{my-cheesy-component myData=parentData}}
+
+//my-cheesy-component.js
+//note this would update the parent
+myData.cheese = 'gouda' 
+
+
+//Good
+{{my-cheesy-component 
+  myData = parentData
+  changeCheese = (action 'newCheesePlease')
+}}
+
+//my-cheesy-component.js
+actions: {
+  newCheesePlease(cheeseType) {
+  get(this, 'changeCheese')(cheeseType);
+  }
+}
+```
+
 <a name="css"></a>
 ## CSS
 
