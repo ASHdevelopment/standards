@@ -107,9 +107,9 @@ get(someObject, 'isUpdated'); //true
 <a name="data--data-binding"></a>
 ### 3.1 Data Binding
 
-Any new code written should only contain one-way data-binding
+Any new code written by ASH should only contain one-way data-binding. Third-party addons using two-way data-binding is ok, but be catious and conscious of the side effects it can have.
 
-> Why? Two-way data-binding can have unexpected side effects and data flowing only in one direction keeps things more predictable. It is harder to debug, timing can throw data off and it can unknowingly create endless loops in your code. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can, by the two-way binding chain, actually make changes you are not expecting in component B.
+> Why? Two-way data-binding can have unexpected side effects and data flowing only in one direction keeps things more predictable making it harder to debug. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can, by the two-way binding chain, actually make changes you are not expecting in component B.
 
 ```javascript
 //Bad
