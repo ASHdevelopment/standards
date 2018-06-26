@@ -47,6 +47,17 @@ lastName: attr('string'),
 fullName: belongsTo('person')
 ```
 
+- 1.3 Default Unassigned Property
+When declaring and unassigned property we should default it to `null` instead of `undefined`
+
+```Javascript
+// bad
+foo: undefined
+
+//good
+foo: null
+```
+
 <a name="destructuring"></a>
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
