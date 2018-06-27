@@ -126,6 +126,25 @@ const string = 'The ASH UI team is ' + awesomeAdjective + '!';
 const string = `The ASH UI team is ${awesomeAdjective}!`;
 ```
 
+### 2.2 Single vs Double quotes vs Tick Marks
+> There is no hard standard for using single quotes, double quotes, or tick marks.
+
+- Use tick marks only with template literals.
+- Strictly use double quotes with JSON.
+
+Example:
+
+```javascript
+//good
+const string = 'The ASH UI team is awesome!';
+
+//also good
+const string = "The ASH UI team is awesome!";
+
+//bad
+const string = `The ASH UI team is awesome!`;
+```
+
 ## Operators
 
 ### 3.1 Equality Operators
