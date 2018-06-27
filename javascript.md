@@ -1,16 +1,20 @@
 # Javascript
 
-1. [Variables](#variables)
-1. [Strings](#strings)
-1. [Arrays](#arrays)
-1. [Objects](#objects)
-1. [Functions](#functions)
-1. [Iteration](#iteration)
-1. [Try/Catch](#trycatch)
-1. [Libraries](#libraries)
-1. [Documentation & Style](#documentation)
 
-## <a name="variables">Variables</a>
+1. **[Variables](#variables)**
+1. **[Strings](#strings)**
+1. **[Operators](#operators)**
+1. **[Arrays](#arrays)**
+1. **[Objects](#objects)**
+1. **[Functions](#functions)**
+1. **[Iteration](#iteration)**
+1. **[Error Handling](#error-handling)**
+1. **[Libraries](#libraries)**
+1. **[NPM](#npm)**
+1. **[Documentation and Style](#documentation-and-style)**
+1. **[Code Blocks](#code-blocks)**
+
+## Variables
 
 ### 1.1 `const/let/var`
 #### When working in ES6 (Ember Projects, gulpfile, etc.)
@@ -107,7 +111,7 @@ const foo = 1;
 const baz = 3;
 ```
 
-## <a name="strings">Strings</a>
+## Strings
 
 ### 2.1 String Literals (ES6 only)
 > This ensures readability in strings where variables are inserted
@@ -141,9 +145,23 @@ const string = "The ASH UI team is awesome!";
 const string = `The ASH UI team is awesome!`;
 ```
 
-## <a name="arrays">Arrays</a>
+## Operators
 
-### 3.1 Dangling Commas
+### 3.1 Equality Operators
+Default to Strict Equality, `===`. Use `==` only for special cases, such as when you don't care about the type. When using `==` comment code explaining your choice.
+
+```javascript
+//bad
+if(1 == '1')        // evaluates to true  
+
+//good
+if('5' === 5)       // evaluates to false
+if(5 === 5)         // evaluates to true
+```
+
+## Arrays
+
+### 4.1 Dangling Commas
 There is no hard standard for dangling commas.
 
 > Yes it looks ugly and weird but it has benefits in simplifying diffs.
@@ -170,9 +188,9 @@ const obj = {
 };
 ```
 
-## <a name="objects">Objects</a>
+## Objects
 
-### 4.1 Method Declarations
+### 5.1 Method Declarations
 **When able to code in ES6**, use shorthand method declarations. Otherwise normal method declarations are OK.
 
 ```javascript
@@ -191,7 +209,7 @@ const obj = {
 };
 ```
 
-### 4.2 Dangling Commas
+### 5.2 Dangling Commas
 There is no hard standard for dangling commas.
 
 > Yes it looks ugly and weird but it has benefits in simplifying diffs.
@@ -218,14 +236,14 @@ const obj = {
 };
 ```
 
-## <a name="functions">Functions</a>
+## Functions
 
-### 5.1 Arrow Functions
+### 6.1 Arrow Functions
 #### You can only use these within ES6. Ignore this section when working with ES5.
 
 Arrow functions cut down and have special properties in terms of lexical scoping.
 
-This preserve the value of `this` which removes the need for you to "save" the value of this (commonly as `that` or `self`).
+This preserves the value of `this` which removes the need for you to "save" the value of this (commonly as `that` or `self`).
 
 ```javascript
 const myObject = {
@@ -249,7 +267,7 @@ const myObject = {
 	}
 }
 ```
-When there is only one parameter, do not encased it in parenthesis.
+When there is only one parameter, do not encase it in parenthesis.
 
 ```javascript
 
@@ -281,9 +299,9 @@ thing.on('click', function(e) {
 });
 ```
 
-## <a name="iteration">Iteration</a>
+## Iteration
 
-### 6.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
+### 7.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
 
 **When working with large datasets**, use the classic `for` loop as it allows you to `break;` out of the iteration, which prevents the expense of looping through unnecessary items after a certain criteria has been met. **You cannot do this with iterative methods**
 
@@ -306,64 +324,121 @@ for (let i = 0; i < array.length; i++) {
 	newArray.push(array[i] * 3);
 }
 ```
+## Error Handling
 
-## <a name="json">JSON</a>
+### 8.1 Displaying Errors
+> Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users. If using Ember, you can use the `debug` or `warn` methods, which get stripped out in production (see [@ember/debug](https://emberjs.com/api/ember/release/modules/@ember%2Fdebug) for more info).
 
-## <a name="#trycatch">Try/Catch</a>
-
-### 7.1 Try...Catch Basics
+### 8.2 Try/Catch
 > Helps catch errors before they cause the code to blow up
 
-There are 3 clauses that can be used when writing a try...catch statement:
+**Use try/catch block if:**
+ - You are attempting to access an object that is more than **two levels** deep
+ - You are even slightly uncertain that the object structure may vary
 
-1. try - contains statments to be executed
-1. catch - contains the statements to be executed if an exception is thrown in th try block
-1. finally - contains statements that are exectured after the try statement is complete regardless of whether or not an exception was thrown or caught
-
-Each try block must have at least one try and one catch clause or a finally clause, or both.
+**Tips**
+- Make sure that the catch block of the try/catch does something meaningful for the user
+- If you need a fail-safe error message to display as a result of the catch in a try/catch, talk to your PO for the message content
 
 ```javascript
-try {
-    myroutine(); // may throw three types of exceptions
-} catch (e) {
-    if (e instanceof TypeError) {
-        // statements to handle TypeError exceptions
-    } else if (e instanceof RangeError) {
-        // statements to handle RangeError exceptions
-    } else if (e instanceof EvalError) {
-        // statements to handle EvalError exceptions
-    } else {
-       // statements to handle any unspecified exceptions
-       logMyErrors(e); // pass exception object to error handler
-    }
+//bad
+function showErrorMessage (arg1){
+	//this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
+	error = arg1.response.responseJSON.responseStatus;
+	return error;
 }
 ```
-## <a name="#trycatch">Try/Catch</a>
-### 7.2 Try...Catch for Nesting
 
-Try/Catch should always be used when accessing deeply nested objects, when you cannot guarantee the parent object will be there.
+**Executing something after try catch:** Use finally to execute that code rather than rewrite the code twice or only write for the happier (try) path.
 
-## <a name="#libraries">Libraries</a>
+```javascript
+//good
+function showErrorMessage (arg1){
+	try {
+		error = arg1.response.responseJSON.responseStatus;
+	} catch (e) {
+		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
+		//OR
+		error = e;
+	} finally {
+		removeLoader();
+		return error;
+	}		
+}
+```
 
-### 8.1 jQuery
+### 8.3 Catching Errors with Asynchronous Operations
+> Anytime you're doing something with a successful resolution of an asynchronous operation (happy path), you should ensure you are also catching errors (sad path).
 
-#### Use in all QUnit tests
-> Why? It is quicker to write unit tests in jQuery, unit tests are not production code, and besides, QUnit was developed by the jQuery team. So why not?
+#### Using Promise.then()
+Use `.catch()` to catch any errors with the promise, including http errors.
 
-#### Use $.ajax() rather than XMLHttpRequest() for server requests
-> Why? The jquery AJAX wrapper is much simpler to write and the speed hit is minute compared to an entire project written in jQuery
+```javascript
+//bad
+const list = [...staleList];
 
-**Note:** AJAX Calls in non-Ember projects should utilize `$$ash.ajax`.
+fetchNewestItem().then(response =>{
+	list.push(response);
+})
+```
+
+```javascript
+//good
+const list = [...staleList];
+
+fetchNewestItem().then(response =>{
+	list.push(response);
+}).catch(error =>{
+	displayErrorToUser(error);
+})
+```
+
+#### Using Async/Await
+Similar to `Promise.then()`, include a catch, but use a try/catch statement for `async` functions.
+
+```javascript
+//bad
+const list = [...staleList];
+
+(async function (){
+	list.push(await fetchNewestItem())
+})()
+```
+
+```javascript
+//good
+(async function (){
+	try{
+		list.push(await fetchNewestItem())
+	}catch(error){
+		displayErrorToUser(error)
+	}
+})()
+```
+
+## Libraries
+
+### 9.1 jQuery
 
 #### Write in Vanilla JavaScript wherever possible
 > Why? jQuery is a huge library, and no longer necessary for cross-browser compatibility. Writing in vanilla javascript will also give you a deeper understanding of the core language
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
 
-## <a name="documentation">Documentation & Style</a>
+## NPM
+### 9.1 Semantic Versioning
+
+- Update the Major version when making a breaking API changes.
+- Update the Minor version when introducing a new feature.
+- Update the Patch version when adding a bug fix.
+- Always start on a minor version 0.1.0.
+- Do not publish to the registry until the code can deliver functionality, tested, and can be consumed by other applications.
+- If the code is being used on production, then it should be at least on version 1.0.0.
+
+## Documentation and Style
 > Why? Because other devs need to be able to work in your code without setting up a meeting first.
 
-### 9.1 Documentation
+### 10.1 Documentation
 While there isn't a hard standard, a good rule of thumb is if you need to explain what it's doing to the next developer, you should add documentation. You can document a block at the top of a function or tell a story as developers step through your code. Don't document obvious things.
 
 ```javascript
@@ -375,18 +450,18 @@ function isPalindrome(word){
 	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
 
 	newWord = newWord.toLowerCase();
-  
+
 	// return true if one of the conditions are true
 	if(newWord.length == 0 || newWord.length == 1){
 		return true;
 	}
-  
+
 
 	if(newWord === newWord.split('').reverse('').join('')){
 		return true;
 	}
-  
-	// return false 
+
+	// return false
 	return false;
 }
 ```
@@ -399,26 +474,57 @@ function isPalindrome(word){
 
 	// strip all characters and symbols except a-z, A-Z, and 0-9
 	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
-  
+
 	newWord = newWord.toLowerCase();
-  
+
 	if(newWord.length === 0 || newWord.length == 1){
 		return true;
 	}
-  
+
 	// check the original word against the new reversed string
 	if(newWord == newWord.split('').reverse('').join('')){
 		return true;
 	}
-	
+
 	return false;
 
 }
 ```
 
 
-### 9.2 Readability
+### 10.2 Readability
 
 - Good code is readable by other developers.
 - Good code can do complex things.
 - Code that can do complex things, but is not readable by other developers is not good code.
+
+## Code Blocks
+
+### 11.1 Single line blocks
+It is allowed, but not required, to use single line code blocks without curly braces (`{}`) as long as they fit on the same line as the control statement (ex: `if`, `for`). When the code becomes more than 1 statement and/or moves to the next line, it should be placed in curly braces.
+
+> Why? This allows for simple `if` statements to be terse, while providing a hint for anyone modifying it that they need to add curly braces for additional statements.
+
+```javascript
+//BAD
+if (iceCream > vegetables) 
+	return true;
+
+for (let i=0; i<vegetables.length; i++)
+	disposeOf(vegetables[i]);
+```
+
+```javascript
+//GOOD
+if (iceCream > vegetables) return true;
+
+if (iceCream > vegetables) {
+	return true;
+}
+
+for (let i=0; i<vegetables.length; i++)	disposeOf(vegetables[i]);
+
+for (let i=0; i<vegetables.length; i++)	{
+	disposeOf(vegetables[i]);
+}
+```
