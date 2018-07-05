@@ -17,7 +17,7 @@
 > Why? All of our styles should be formatted so that they are clean, concise, and easily readable by any developer on the team
 
 * Put a space after the selector/before the opening brace `{` in rule declarations
-* Class names should be camelCased
+* Class names should be lowerCamelCased
 * When using multiple selectors for a style declaration, put each selector on its own line
 * Each property goes a new line
 * For style properties, put a space after the semicolon (`:`)
@@ -25,7 +25,8 @@
 
 **Bad**
 ```css
-.className, .anotherClassName{property: rule; another: rule}
+.className, .anotherClassName{ property: rule; another: rule }
+.CrazyCase { property: rule; }
 ```
 
 **Good**
@@ -35,6 +36,7 @@
     property: rule;
     another: rule;
 }
+.crazyCase { property: rule; }
 ```
 
 ### 1.2 Property Ordering
@@ -125,7 +127,7 @@ Properties should be ordered as follows:
 ### 2.2 Variables
 > Why? Variable naming convention and general usage should always be kept consistent so that anyone on the team can easily identify what the variable is intended to be used for
 
-* Variable names should be `$camelCased`
+* Variable names should be `$lowerCamelCased`
 * Shared variables should always be declared in the respective `/Base` variable partial, and overwritten in the site-specific variable partial of the same name
 * Component-specific variables should be prefaced with an `_`, followed by the component name, and finally the variable name
 

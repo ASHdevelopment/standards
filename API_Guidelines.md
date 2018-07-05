@@ -26,7 +26,22 @@ ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/
 **You will need to ensure that you follow the url structure, object structure, and status code. If not, the team will need to make sure adapters and serializers are set up to compensate for this in Ember.**
 
 ## URL Names
-URLs should be the same for `GET`, `POST`, `PUT`, and `DELETE`. For instance, `api/users` not `api/getUsers` or `api/deleteUser`. In the case where the client is requesting or modifying an existing record, the id should be passed after  `users`. For instance: `api/users/324` should be able to accept `GET`, `DELETE`, or `PUT` requests.
+URLs should be the same for `GET`, `POST`, `PUT`, and `DELETE` - the verb should not be reflected in the endpoint URL. In the case where the client is requesting or modifying an existing record, the id should be passed after  `users`. For instance: `api/users/324` should be able to accept `GET`, `DELETE`, or `PUT` requests.
+
+The endpoints themselves should be lowerCamelCased.
+
+**Bad**
+```
+/api/getUsers
+/api/deleteUser
+/api/User
+```
+
+**Good**
+```
+/api/users
+/api/clientRecords
+```
 
 ## Id's
 In general, each record needs to have an id. So the API should supply one, even if it's not the real ID that is stored in the database.
