@@ -1,20 +1,19 @@
 # American Specialty Health CSS / Sass Styleguide﻿
 
 ## Table of Contents
-1. **[CSS](#css)** 
-	[ [Property Ordering](#css--ordering) ] 
-	[ [Formatting](#css--formatting) ] 
-	[ [Flexbox](#css--flexbox) ]
-	[ [Do NOT Use](#do-not-use) ]
-1. **[SCSS](#scss)** 
-	[ [Nesting](#scss--nesting) ] 
-	[ [Variables](#scss--variables) ] 
-	[ [Comments](#scss--comments) ]
+1. **[CSS](#css)**
+	1. [Formatting](#1.1-formatting)
+	1. [Property Ordering](#1.2-property-ordering)
+	1. [Flexbox](#1.3-flexbox)
+	1. [Do NOT Use](#1.4-do-not-use)
+1. **[SCSS](#scss)**
+	1. [Nesting](#2.1-nesting)
+	1. [Variables](#2.2-variables)
+	1. [Comments](#2.3-comments)
 
 ## CSS
 
-<a name="css--formatting"></a><a name="1.1"></a>
-### [1.1](#css--formatting): Formatting
+### 1.1 Formatting
 > Why? All of our styles should be formatted so that they are clean, concise, and easily readable by any developer on the team
 
 * Put a space after the selector/before the opening brace `{` in rule declarations
@@ -38,8 +37,7 @@
 }
 ```
 
-<a name="css--ordering"></a><a name="1.2"></a>
-### [1.2](#css--ordering): Property Ordering
+### 1.2 Property Ordering
 > Why? To keep our CSS properties in a consistent ordering scheme within the styles of every site
 
 Properties should be ordered as follows:
@@ -70,22 +68,19 @@ Properties should be ordered as follows:
 }
 ```
 
-<a name="css--flexbox"></a><a name="1.3"></a>
-### [1.3](#css--flexbox): Flexbox
+### 1.3 Flexbox
 > Why? The use of flexbox is encouraged, however certain standards must be followed in order to maintain a consistent experience across all browsers (looking at you, IE10)
 
 * Always use the flex shorthand over specifying `flex-shrink`, `flex-grow`, or `flex-basis` individually
 
-<a name="do-not-use"></a>  
-### [1.4](#do-not-use): DO NOT USE
+### 1.4 DO NOT USE
 > Why? The use of the following styles are not supported by screen readers and are therefore poor accessibility
 
 * The content property - `content: 'Screen reader no see';`
 
 ## SCSS
 
-<a name="scss--nesting"></a><a name="2.1"></a>
-### [2.1](#scss--nesting): Nesting
+### 2.1 Nesting
 > Why? Deeply nested SCSS can get very messy very quickly. It is easy to lose track of selector hierarchy and maintain consistent, reusable SCSS if the styles are nested too deeply
 
 * **Only use if necessary**
@@ -127,8 +122,7 @@ Properties should be ordered as follows:
 }
 ```
 
-<a name="scss--variables"></a><a name="2.2"></a>
-### [2.2](#scss--variables): Variables
+### 2.2 Variables
 > Why? Variable naming convention and general usage should always be kept consistent so that anyone on the team can easily identify what the variable is intended to be used for
 
 * Variable names should be `$camelCased`
@@ -145,8 +139,7 @@ $_componentNameColor: #000;
 $_componentNameColor: $color1;
 ```
 
-<a name="scss--comments"></a><a name="2.3"></a>
-### [2.3](#scss--comments): Comments
+### 2.3 Comments
 
 When commenting in sass be sure to use `//` version of comments. Comments written in this style are stripped out during the compilation process.
 
