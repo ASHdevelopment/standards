@@ -96,19 +96,22 @@ function keptTheSameAddress() {
 ```
 
 ### 1.5 Variable Casing
-When using `const`, do *not* capitalize the variable name.
+Use lowerCamelCase for naming variables and functions. Use UpperCamelCase only for naming classes.
 
-> It's unnecessary.
-
+> Why? Consistency makes for a cleaner code base. Classes are treated differently because they **require** the `new` keyword.
 
 ```javascript
 //bad
-const FOO = 1;
-const BAR = 3;
+let OptimusPrime = true;
+const ENERGONCUBES = 1;
+function Transform() { console.log('Roll out!'); }
+class autobot { }
 
 //good
-const foo = 1;
-const baz = 3;
+let optimusPrime = true;
+const energonCubes = 1;
+function transform() { console.log('Roll out!'); }
+class Autobot { }
 ```
 
 ## Strings
