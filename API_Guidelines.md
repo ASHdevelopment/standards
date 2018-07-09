@@ -5,18 +5,18 @@
 1. **[URL Names](#url-names)**
 1. **[ID's](#ids)**
 1. **[GET](#get)** 
-	1. [GET all records](#4.1-GET-all-records)
-	1. [GET a single record](#4.2-GET-a-single-record)
-	1. [GET multiple records using a query](#4.3-GET-multiple-records-using-a-query) 
-	1. [GET a single record using a query](#4.4-GET-a-single-record-using-a-query)
+	[ [Multiple Records](#4.1-GET-all-records) ]
+	[ [Single Record](#4.2-GET-a-single-record) ]
+	[ [Querying Multiple Records](#4.3-GET-multiple-records-using-a-query)  ]
+	[ [Querying a Single Record](#4.4-GET-a-single-record-using-a-query) ]
 1. **[POST](#post)**
 1. **[PUT](#put)**
 1. **[DELETE](#delete)**
 1. **[Model Relationships](#model-relationships)**
-	1. [Side-loaded Without Query](#8.1-Side-loaded-Without-Query)
-	1. [Embedded Data Without Query](#8.2-embedded-data-without-query)
-	1. [Embedded Data With Query](#8.3-embedded-data-with-query)
-	1. [Async Loading](#8.4-async-loading)
+	[ [Side-loaded Without Query](#8.1-Side-loaded-Without-Query) ]
+	[ [Embedded Data Without Query](#8.2-embedded-data-without-query) ]
+	[ [Embedded Data With Query](#8.3-embedded-data-with-query) ]
+	[ [Async Loading](#8.4-async-loading) ]
 1. **[Dates](#dates)**
 1. **[On Failure](#On-Failure)**
 
@@ -31,14 +31,14 @@ URLs should be the same for `GET`, `POST`, `PUT`, and `DELETE` - the verb should
 The endpoints themselves should be lowerCamelCased.
 
 **Bad**
-```
-/api/getUsers
-/api/deleteUser
-/api/User
+```sh
+/api/getUsers	#GET should be the verb, not part of the endpoint
+/api/deleteUser	#DELETE should be the verb
+/api/User	#shouldn't be capitalized
 ```
 
 **Good**
-```
+```sh
 /api/users
 /api/clientRecords
 ```

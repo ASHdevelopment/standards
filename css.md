@@ -2,14 +2,14 @@
 
 ## Table of Contents
 1. **[CSS](#css)**
-	1. [Formatting](#1.1-formatting)
-	1. [Property Ordering](#1.2-property-ordering)
-	1. [Flexbox](#1.3-flexbox)
-	1. [Do NOT Use](#1.4-do-not-use)
+	[ [Formatting](#1.1-formatting) ]
+	[ [Property Ordering](#1.2-property-ordering) ]
+	[ [Flexbox](#1.3-flexbox) ]
+	[ [Do NOT Use](#1.4-do-not-use) ]
 1. **[SCSS](#scss)**
-	1. [Nesting](#2.1-nesting)
-	1. [Variables](#2.2-variables)
-	1. [Comments](#2.3-comments)
+	[ [Nesting](#2.1-nesting) ]
+	[ [Variables](#2.2-variables) ]
+	[ [Comments](#2.3-comments) ]
 
 ## CSS
 
