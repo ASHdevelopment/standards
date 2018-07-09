@@ -138,7 +138,7 @@ actions: {
 //parent component.js
 actions: {
 	newCheesePlease(cheeseType){
-		set(parentData, 'cheese', 'gouda');
+		set(parentData, 'cheese', cheeseType);
 	}
 }
 ```
