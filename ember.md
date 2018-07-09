@@ -109,15 +109,17 @@ get(someObject, 'isUpdated'); //true
 
 Any new code written by ASH should only contain one-way data-binding. Third-party addons using two-way data-binding is ok, but be cautious and conscious of the side effects it can have.
 
-> Why? Two-way data-binding can have unexpected side effects and data flowing only in one direction keeps things more predictable making it harder to debug. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can, by the two-way binding chain, actually make changes you are not expecting in component B.
+> Why? Two-way data-binding can have unexpected side effects; data flowing one way keeps things more predictable. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can make changes you are not expecting in component B. This is not just a matter of 2 compoents, you can make a change to a child that propagates through the whole app.
 
 ```javascript
 //Bad
-{{my-cheesy-component myData=parentData}}
+{{my-cheesy-component 
+  myData=parentData
+}}
 
 //my-cheesy-component.js
 //The below code would update the parent and any other component the parentData object was passed to
-set('myData', 'cheese', 'gouda')
+set(myData, 'cheese', 'gouda')
 
 
 //Good
@@ -128,9 +130,16 @@ set('myData', 'cheese', 'gouda')
 
 //my-cheesy-component.js
 actions: {
-  newCheesePlease(cheeseType) {
+  quesoChanger(cheeseType) {
     get(this, 'changeCheese')(cheeseType);
   }
+}
+
+//parent component.js
+actions: {
+	newCheesePlease(cheeseType){
+		set(parentData, 'cheese', 'gouda');
+	}
 }
 ```
 
