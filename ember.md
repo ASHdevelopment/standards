@@ -49,9 +49,9 @@ fullName: belongsTo('person')
 
 - 1.3 **Default Unassigned Property**
 
-  + When declaring an unassigned property we should default it to `null` instead of `undefined`
+  + When declaring an unassigned property we should default it to `null` instead of `undefined`.
 
-  + Why? Because defining a property as `undefined` has the meaning of we didn't define it. By setting it to `null` you are explicitly telling the app that the property has been declared
+  + Why? Because defining a property as `undefined` has the meaning of we didn't define it. By setting it to `null` you are explicitly telling the app that the property has been declared.
   
 ```Javascript
 // bad
