@@ -17,6 +17,8 @@
 	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
 1. **[Testing](#testing)**
 1. **[Definition of Ready](#deployment-checklist)**
+1. **[Addons](#addons)**
+  [ [Versioning](#versioning) ]
 
 <a name="general-structure"></a>
 ## General Structure
@@ -425,3 +427,20 @@ Create a build definition for the app that will:
 
 ### 11. Checklist Violations
 `npm test` (in the build definition) will catch errors and reject build
+
+
+
+<a name="addons"></a>
+## Addons
+
+<a name="versioning"></a>
+### 9.1 Versioning
+
+1. We define `1.0.0` release as the first version ready to be used by the end user. It may not be feature complete or bug free, but it should bring some benefit to our customers. As soon as the package is ready to be used in production, it needs to be on version `1.0.0`.
+
+1. **Major** update should be any type of update that will break/change the way the addon is used. It could be an HTML structural update, a JS update, or a CSS change, that requires the end user to update the way the addon is used.
+
+1. **Minor** update should be an update that introduces a new feature and does not have any impact on how the addon is used.
+
+1. **Patch** update should be any type of bug fix that does not have any impact on how the addon is used.
+
