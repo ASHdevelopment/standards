@@ -124,7 +124,7 @@ set(myData, 'cheese', 'gouda')
 
 //Good
 {{my-cheesy-component 
-  myData = parentData
+  myData = model
   changeCheese = (action 'newCheesePlease')
 }}
 
@@ -135,11 +135,17 @@ actions: {
   }
 }
 
+//my-cheesy-component.hbs
+<form onSubmit=(action 'quesoChanger')>
+  <input type='text' value='gouda'/>
+  <button type='submit'>Change Cheese</button>
+</form>
+
 //parent component.js
 actions: {
-	newCheesePlease(cheeseType){
-		set(parentData, 'cheese', cheeseType);
-	}
+  newCheesePlease(cheeseType){
+    this.set('model.cheese', cheeseType);
+  }
 }
 ```
 
