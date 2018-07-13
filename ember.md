@@ -7,6 +7,8 @@
 	[ [Get/Set](#destructuring--get-set) ]
 1. **[Data](#data)**
 	[ [Data Binding](#data--data-binding) ]
+1. **[Computed Properties](#computed-properties)**
+  [ [Brace Expansion](#computed-properties--brace-expansion) ]
 1. **[CSS](#css)**
 	[ [Usage](#css--usage) ]
 1. **[Actions](#actions)**
@@ -47,6 +49,20 @@ firstName: attr('string'),
 lastName: attr('string'),
 
 fullName: belongsTo('person')
+```
+
+- 1.3 **Default Unassigned Property**
+
+  + When declaring an unassigned property we should default it to `null` instead of `undefined`.
+
+  + Why? Because defining a property as `undefined` has the meaning of we didn't define it. By setting it to `null` you are explicitly telling the app that the property has been declared.
+  
+```Javascript
+// bad
+foo: undefined
+
+//good
+foo: null
 ```
 
 <a name="destructuring"></a>
@@ -100,6 +116,7 @@ get(this, 'isDestructured'); //true
 set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
+
 
 <a name="data"></a>
 ## Data
@@ -157,11 +174,37 @@ actions: {
 ```
 *Twiddle Demo: <a href="https://ember-twiddle.com/386c86a1ad7fa9d15e9cc1f699e5f539">click here</a>*
 
+<a name="computed-properties"></a>
+## Computed Properties
+
+<a name="computed-properties--brace-expansion"></a>
+### 4.1 Brace Expansion
+
+When a computed property depends on multiple properties of the same object, specify the properties using brace expansion.
+> Why? Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
+
+```javascript 
+// Bad 
+fullname: computed('user.firstname', 'user.lastname', function() {
+  const { firstname, lastname } = get(this, 'user');
+
+  return `${firstname} ${lastname}`;
+})
+
+// Good
+fullname: computed('user.{firstname,lastname}', function() {
+  const { firstname, lastname } = get(this, 'user');
+
+  return `${firstname} ${lastname}`;
+})
+```
+
+
 <a name="css"></a>
 ## CSS
 
 <a name="css--usage"></a>
-### 3.1 Usage
+### 5.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 > Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
@@ -234,7 +277,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ## Actions
 
 <a name="actions--location"></a>
-### 4.1 Location
+### 6.1 Location
 
  - Form Actions should be placed on the form element
 
@@ -271,7 +314,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <a name="errorHandling"></a>
 ## Error Handling
 <a name="errorHandling--overallApplication"></a>
-### 5.1 Overall Application Errors
+### 7.1 Overall Application Errors
 Every app should contain a base error function within the application route.
 > Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
 
@@ -315,7 +358,7 @@ export default Route.extend({
 ## Testing
 
 <a name="testing--test-scripts"></a>
-### 5.1 Test Scripts
+### 8.1 Test Scripts
 
 > Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
 

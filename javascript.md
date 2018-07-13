@@ -8,12 +8,13 @@
 1. **[Objects](#objects)**
 1. **[Functions](#functions)**
 1. **[Iteration](#iteration)**
-1. **[Try/Catch](#trycatch)**
+1. **[Error Handling](#error-handling)**
 1. **[Libraries](#libraries)**
 1. **[NPM](#npm)**
-1. **[Documentation & Style](#documentation)**
+1. **[Documentation and Style](#documentation-and-style)**
+1. **[Code Blocks](#code-blocks)**
 
-## <a name="variables">Variables</a>
+## Variables
 
 ### 1.1 `const/let/var`
 #### When working in ES6 (Ember Projects, gulpfile, etc.)
@@ -95,22 +96,25 @@ function keptTheSameAddress() {
 ```
 
 ### 1.5 Variable Casing
-When using `const`, do *not* capitalize the variable name.
+Use lowerCamelCase for naming variables and functions. Use UpperCamelCase only for naming classes.
 
-> It's unnecessary.
-
+> Why? Consistency makes for a cleaner code base. Classes are treated differently because they **require** the `new` keyword.
 
 ```javascript
 //bad
-const FOO = 1;
-const BAR = 3;
+let OptimusPrime = true;
+const ENERGONCUBES = 1;
+function Transform() { console.log('Roll out!'); }
+class autobot { }
 
 //good
-const foo = 1;
-const baz = 3;
+let optimusPrime = true;
+const energonCubes = 1;
+function transform() { console.log('Roll out!'); }
+class Autobot { }
 ```
 
-## <a name="strings">Strings</a>
+## Strings
 
 ### 2.1 String Literals (ES6 only)
 > This ensures readability in strings where variables are inserted
@@ -125,7 +129,26 @@ const string = 'The ASH UI team is ' + awesomeAdjective + '!';
 const string = `The ASH UI team is ${awesomeAdjective}!`;
 ```
 
-## <a name="operators">Operators</a>
+### 2.2 Single vs Double quotes vs Tick Marks
+> There is no hard standard for using single quotes, double quotes, or tick marks.
+
+- Use tick marks only with template literals.
+- Strictly use double quotes with JSON.
+
+Example:
+
+```javascript
+//good
+const string = 'The ASH UI team is awesome!';
+
+//also good
+const string = "The ASH UI team is awesome!";
+
+//bad
+const string = `The ASH UI team is awesome!`;
+```
+
+## Operators
 
 ### 3.1 Equality Operators
 Default to Strict Equality, `===`. Use `==` only for special cases, such as when you don't care about the type. When using `==` comment code explaining your choice.
@@ -139,7 +162,7 @@ if('5' === 5)       // evaluates to false
 if(5 === 5)         // evaluates to true
 ```
 
-## <a name="arrays">Arrays</a>
+## Arrays
 
 ### 4.1 Dangling Commas
 There is no hard standard for dangling commas.
@@ -168,7 +191,7 @@ const obj = {
 };
 ```
 
-## <a name="objects">Objects</a>
+## Objects
 
 ### 5.1 Method Declarations
 **When able to code in ES6**, use shorthand method declarations. Otherwise normal method declarations are OK.
@@ -216,7 +239,7 @@ const obj = {
 };
 ```
 
-## <a name="functions">Functions</a>
+## Functions
 
 ### 6.1 Arrow Functions
 #### You can only use these within ES6. Ignore this section when working with ES5.
@@ -279,7 +302,7 @@ thing.on('click', function(e) {
 });
 ```
 
-## <a name="iteration">Iteration</a>
+## Iteration
 
 ### 7.1 Use of `for` loop vs. iterative methods (`.map()`, `.forEach()`, etc.)
 
@@ -304,7 +327,7 @@ for (let i = 0; i < array.length; i++) {
 	newArray.push(array[i] * 3);
 }
 ```
-## <a name="errors">Error Handling</a>
+## Error Handling
 
 ### 8.1 Displaying Errors
 > Errors happen. If an error blocks or inhibits the user flow, we should always display the error to the user. You can `console.error()` errors if useful for developers, but do not rely on this for end users. If using Ember, you can use the `debug` or `warn` methods, which get stripped out in production (see [@ember/debug](https://emberjs.com/api/ember/release/modules/@ember%2Fdebug) for more info).
@@ -396,7 +419,7 @@ const list = [...staleList];
 })()
 ```
 
-## <a name="#libraries">Libraries</a>
+## Libraries
 
 ### 9.1 jQuery
 
@@ -405,7 +428,7 @@ const list = [...staleList];
 
 **Note:** When updating legacy code to use vanilla javascript, be mindful of which objects are passed to 3rd party plugins or in-house plugins that still use jQuery, and wrap the object in a jQuery wrapper accordingly
 
-## <a name="npm">NPM</a>
+## NPM
 ### 9.1 Semantic Versioning
 
 - Update the Major version when making a breaking API changes.
@@ -415,7 +438,7 @@ const list = [...staleList];
 - Do not publish to the registry until the code can deliver functionality, tested, and can be consumed by other applications.
 - If the code is being used on production, then it should be at least on version 1.0.0.
 
-## <a name="documentation">Documentation & Style</a>
+## Documentation and Style
 > Why? Because other devs need to be able to work in your code without setting up a meeting first.
 
 ### 10.1 Documentation
@@ -477,3 +500,34 @@ function isPalindrome(word){
 - Good code is readable by other developers.
 - Good code can do complex things.
 - Code that can do complex things, but is not readable by other developers is not good code.
+
+## Code Blocks
+
+### 11.1 Single line blocks
+It is allowed, but not required, to use single line code blocks without curly braces (`{}`) as long as they fit on the same line as the control statement (ex: `if`, `for`). When the code becomes more than 1 statement and/or moves to the next line, it should be placed in curly braces.
+
+> Why? This allows for simple `if` statements to be terse, while providing a hint for anyone modifying it that they need to add curly braces for additional statements.
+
+```javascript
+//BAD
+if (iceCream > vegetables) 
+	return true;
+
+for (let i=0; i<vegetables.length; i++)
+	disposeOf(vegetables[i]);
+```
+
+```javascript
+//GOOD
+if (iceCream > vegetables) return true;
+
+if (iceCream > vegetables) {
+	return true;
+}
+
+for (let i=0; i<vegetables.length; i++)	disposeOf(vegetables[i]);
+
+for (let i=0; i<vegetables.length; i++)	{
+	disposeOf(vegetables[i]);
+}
+```
