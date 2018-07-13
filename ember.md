@@ -165,7 +165,7 @@ actions: {
 </form>
 ```
 ```Javascript
-//parent component.js,router.js, or controller.js
+//parent component.js, router, or controller
 actions: {
   newCheesePlease(cheeseType){
     set(this, 'model.cheese', cheeseType);
