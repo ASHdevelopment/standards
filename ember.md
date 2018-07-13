@@ -111,43 +111,51 @@ Any new code written by ASH should only contain one-way data-binding. Third-part
 
 > Why? Two-way data-binding can have unexpected side effects; data flowing one way keeps things more predictable. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can make changes you are not expecting in component B. This is not just a matter of 2 compoents, you can make a change to a child that propagates through the whole app.
 
-```javascript
-//Bad
+```hbs
+{{!--Bad--}}
 {{my-cheesy-component 
-  myData=parentData
+  myData = model
 }}
-
+```
+```Javascript
 //my-cheesy-component.js
 //The below code would update the parent and any other component the parentData object was passed to
-set(myData, 'cheese', 'gouda')
-
-
-//Good
+set(this, 'model.cheese', 'gouda')
+```
+```hbs
+{{!--Good--}}
 {{my-cheesy-component 
   myData = model
   changeCheese = (action 'newCheesePlease')
 }}
-
+```
+```Javascript
 //my-cheesy-component.js
 actions: {
-  quesoChanger(cheeseType) {
-    get(this, 'changeCheese')(cheeseType);
-  }
-}
-
-//my-cheesy-component.hbs
-<form onSubmit=(action 'quesoChanger')>
-  <input type='text' value='gouda'/>
-  <button type='submit'>Change Cheese</button>
-</form>
-
-//parent component.js
-actions: {
-  newCheesePlease(cheeseType){
-    this.set('model.cheese', cheeseType);
+  quesoChanger(e) {
+  e.preventDefault();
+  this.set('myCheese', document.getElementById('cheese').value);
+  get(this, 'changeCheese')(this.get('myCheese'));
   }
 }
 ```
+
+```hbs
+{{!--my-cheesy-component.hbs--}}
+<form onSubmit=(action 'quesoChanger')>
+  <input type='text' id='cheese'>
+  <button type='submit'>Change Cheese</button>
+</form>
+```
+```Javascript
+//parent component.js,router.js, or controller.js
+actions: {
+  newCheesePlease(cheeseType){
+    set(this, 'model.cheese', cheeseType);
+  }
+}
+```
+*Twiddle Demo: <a href="https://ember-twiddle.com/386c86a1ad7fa9d15e9cc1f699e5f539">click here</a>*
 
 <a name="css"></a>
 ## CSS
