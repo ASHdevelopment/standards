@@ -134,8 +134,8 @@ set(this, 'model.cheese', 'gouda')
 actions: {
   quesoChanger(e) {
   e.preventDefault();
-  this.set('myCheese', document.getElementById('cheese').value);
-  get(this, 'changeCheese')(this.get('myCheese'));
+    set(this, 'myCheese', get(this, 'cheese'));
+    get(this, 'changeCheese')(this.get('myCheese'));
   }
 }
 ```
@@ -143,7 +143,7 @@ actions: {
 ```hbs
 {{!--my-cheesy-component.hbs--}}
 <form onSubmit=(action 'quesoChanger')>
-  <input type='text' id='cheese'>
+  {{input type='text' id='cheese' value=(mut cheese)}}
   <button type='submit'>Change Cheese</button>
 </form>
 ```
