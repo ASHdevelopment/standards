@@ -153,7 +153,7 @@ set(this, 'model.cheese', 'gouda')
 actions: {
   quesoChanger(e) {
   e.preventDefault();
-  get(this, 'changeCheese')(this.get	('cheese'));
+  get(this, 'changeCheese')(get(this, 'cheese'));
   }
 }
 ```
