@@ -101,12 +101,7 @@ this.set('isDestructured', false);
 this.get('isDestructured'); //false
 
 //Good
-import Ember from 'ember';
-
-const {
-  get,
-  set
-} = Ember;
+import { get, set } from '@ember/object';
 
 set(this, 'isDestructured', true);
 get(this, 'isDestructured'); //true
@@ -261,10 +256,8 @@ Every app should contain a base error function within the application route.
 
 ```javascript
 //Example code for route/application.js
-const {
-  set,
-  get
-} = Ember;
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
 
 export default Route.extend({
   genericError: 'Hmm, something went wrong.',
