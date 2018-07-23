@@ -5,6 +5,8 @@
 1. **[Destructuring](#destructuring)** 
 	[ [Objects](#destructuring--objects) ] 
 	[ [Get/Set](#destructuring--get-set) ]
+1. **[Data](#data)**
+	[ [Data Binding](#data--data-binding) ]
 1. **[Computed Properties](#computed-properties)**
   [ [Brace Expansion](#computed-properties--brace-expansion) ]
 1. **[CSS](#css)**
@@ -115,11 +117,69 @@ set(someObject, 'isUpdated', true);
 get(someObject, 'isUpdated'); //true
 ```
 
+
+<a name="data"></a>
+## Data
+
+<a name="data--data-binding"></a>
+### 3.1 Data Binding
+
+Any new code written by ASH should only contain one-way data-binding. Third-party addons using two-way data-binding is ok, but be cautious and conscious of the side effects it can have.
+
+> Why? Two-way data-binding can have unexpected side effects; data flowing one way keeps things more predictable. For example: if you pass the same data to 2 components and they both are allowed to change it. DDAU allows the parent to arbitrate those changes and resolve conflicts. Otherwise component A can make changes you are not expecting in component B. This is not just a matter of 2 compoents, you can make a change to a child that propagates through the whole app.
+
+```hbs
+{{!--Bad--}}
+{{!--parent-component.hbs--}}
+{{my-cheesy-component 
+  myData = model
+}}
+```
+```Javascript
+//my-cheesy-component.js
+//The below code would update the parent and any other component the parentData object was passed to
+set(this, 'model.cheese', 'gouda')
+```
+```hbs
+{{!--Good--}}
+{{!--parent-component.hbs--}}
+{{my-cheesy-component 
+  myData = model
+  changeCheese = (action 'newCheesePlease')
+}}
+```
+```Javascript
+//my-cheesy-component.js
+actions: {
+  quesoChanger(e) {
+  e.preventDefault();
+  get(this, 'changeCheese')(get(this, 'cheese'));
+  }
+}
+```
+
+```hbs
+{{!--my-cheesy-component.hbs--}}
+<form onSubmit=(action 'quesoChanger')>
+  <input type='text' value={{cheese}} onChange={{action (mut cheese) value="target.value"}}>
+  <button type='submit'>Change Cheese</button>
+</form>
+```
+```Javascript
+//parent component.js, router, or controller
+actions: {
+  newCheesePlease(cheeseType){
+    set(this, 'model.cheese', cheeseType);
+  }
+}
+```
+*Twiddle Demo: <a href="https://ember-twiddle.com/386c86a1ad7fa9d15e9cc1f699e5f539">click here</a>*
+
 <a name="computed-properties"></a>
 ## Computed Properties
 
 <a name="computed-properties--brace-expansion"></a>
-### 3.1 Brace Expansion
+### 4.1 Brace Expansion
 
 When a computed property depends on multiple properties of the same object, specify the properties using brace expansion.
 > Why? Using brace expansion in computed properties makes our code more organized and easier to read, as it organizes dependent keys. 
@@ -140,11 +200,12 @@ fullname: computed('user.{firstname,lastname}', function() {
 })
 ```
 
+
 <a name="css"></a>
 ## CSS
 
 <a name="css--usage"></a>
-### 4.1 Usage
+### 5.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
 > Why? Flow, interaction and breakpoints generally belong to the component and not the domain (host site). Properties such as colors, fonts styles, etc. should belong to host site, so that each site can have its own identity. Moving CSS into component files will also cut down on the size of domain CSS bundles and help mitigate the issue of shipping a lot of CSS that belongs to components not in use on that site.
@@ -217,7 +278,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ## Actions
 
 <a name="actions--location"></a>
-### 5.1 Location
+### 6.1 Location
 
  - Form Actions should be placed on the form element
 
@@ -254,7 +315,7 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <a name="errorHandling"></a>
 ## Error Handling
 <a name="errorHandling--overallApplication"></a>
-### 6.1 Overall Application Errors
+### 7.1 Overall Application Errors
 Every app should contain a base error function within the application route.
 > Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
 
@@ -298,7 +359,7 @@ export default Route.extend({
 ## Testing
 
 <a name="testing--test-scripts"></a>
-### 5.1 Test Scripts
+### 8.1 Test Scripts
 
 > Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
 
