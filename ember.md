@@ -130,7 +130,7 @@ Any new code written by ASH should only contain one-way data-binding. Third-part
 
 ```hbs
 {{!--Bad--}}
-{{!--Parent-component.hbs--}}
+{{!--parent-component.hbs--}}
 {{my-cheesy-component 
   myData = model
 }}
