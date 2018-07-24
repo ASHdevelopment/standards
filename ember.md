@@ -439,8 +439,8 @@ Create a build definition for the app that will:
 We follow [Semantic Versioning](https://semver.org/) standards for versioning our addons:
 1. **Major** version should be used when making incompatible API changes.
 
-1. **Minor** version should be used when adding new functionality in a backwards-compatible manner.
-> Note: When updating `ember-cli` version use **minor** update.
+1. **Minor** version should be used when adding new functionality in a backward compatible manner.
+> Note: When updating `ember-cli` , use **minor** update.
 
-1. **Patch** version should be used when making backwards-compatible bug fixes, documentation updates, small enhancements (e.g., performance) that do not add new feature, or dependency updates.
+1. **Patch** version should be used when making backward compatible bug fixes, documentation updates, small enhancements (e.g., performance) that do not add new feature, or dependency updates.
 
