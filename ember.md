@@ -16,6 +16,8 @@
 1. **[Error Handling](#errorHandling)** 
 	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
 1. **[Testing](#testing)**
+  [ [Test Scripts](#testing--test-scripts) ]
+  [ [Unit Tests](#testing--unit-tests) ]
 1. **[Definition of Ready](#deployment-checklist)**
 1. **[Addons](#addons)**
   [ [Versioning](#versioning) ]
@@ -370,6 +372,13 @@ The `scripts` section in your __package.json__ file should include the following
     "test-server": "cross-env COVERAGE=true ember test --server"
   }
 ```
+
+<a name='testing--unit-tests'></a>
+### 8.2 Unit Tests
+
+> Why? Unit tests are the most basic test for testing the core functionality of the app and relying on integration and acceptance tests can provide a false sense of code coverage.
+
+All **Ember.computed** properties and **_private** methods should be unit tested and have 100% branch coverage.
 
 
 <a name="deployment-checklist"></a>
