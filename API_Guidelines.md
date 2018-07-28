@@ -68,18 +68,18 @@ Payload
 :
 ```javascript
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Raging Bull",
-      "year": "1980"
-    },
-    {
-      "id": 2,
-      "title": "Goodfellas",
-      "year": "1990"
-    }
-  ]
+    "movies": [
+        {
+            "id": 1,
+            "title": "Raging Bull",
+            "year": "1980"
+        },
+        {
+            "id": 2,
+            "title": "Goodfellas",
+            "year": "1990"
+        }
+    ]
 }
 ```
 
@@ -87,7 +87,7 @@ Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
-  "movies": []
+    "movies": []
 }
 ```
 
@@ -111,11 +111,11 @@ Payload
 :
 ```javascript
 {
-  "movie": {
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1990"
-  }
+    "movie": {
+        "id": 2,
+        "title": "Goodfellas",
+        "year": "1990"
+    }
 }
 ```
 
@@ -153,16 +153,16 @@ Payload
 :   
 ```javascript
 {
-  "movies": [{
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1990"
-  },
-  {
-    "id": 5,
-    "title": "Red Riding Hood",
-    "year": "1990"
-  }]
+    "movies": [{
+        "id": 2,
+        "title": "Goodfellas",
+        "year": "1990"
+    },
+    {
+        "id": 5,
+        "title": "Red Riding Hood",
+        "year": "1990"
+    }]
 }
 ```
 
@@ -170,7 +170,7 @@ Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
-  "movies": []
+    "movies": []
 }
 ```
 
@@ -198,11 +198,11 @@ Payload
 :   
 ```javascript
 {
-  "movie": {
-    "id": 2,
-    "title": "Goodfellas",
-    "year": "1990"
-  }
+    "movie": {
+        "id": 2,
+        "title": "Goodfellas",
+        "year": "1990"
+    }
 }
 ```
 
@@ -211,7 +211,7 @@ Payload (If no data is found, then an empty array is returned)
 :
 ```javascript
 {
-  "movie": {}
+    "movie": {}
 }
 ```
 
@@ -258,11 +258,11 @@ Payload
 :   
 ```javascript
 {
-  "movie": {
-    "id": 3,
-    "title": "Crimson Tide",
-    "year": "1995"
-  }
+    "movie": {
+        "id": 3,
+        "title": "Crimson Tide",
+        "year": "1995"
+    }
 }
 ```
 
@@ -308,12 +308,12 @@ Payload
 :   
 ```javascript
 {
-  "movie": {
-    "id": 2,
-    "title": "Goodfellers", //title has been updated
-    "year": "1990",
-    "radioheadOnSoundtrack": false //property has been added
-  }
+    "movie": {
+        "id": 2,
+        "title": "Goodfellers", //title has been updated
+        "year": "1990",
+        "radioheadOnSoundtrack": false //property has been added
+    }
 }
 ```
 While you can add a new property in the `PUT` request, it's not good practice, since your app should be working off a schema rather than arbitrarily adding properties.
@@ -372,47 +372,47 @@ URL: `api.com/movies`
 Payload:
 ```javascript
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Raging Bull",
-      "year": "1980",
-      "actors": [1,2,3]
-    },
-    {
-      "id": 2,
-      "title": "Goodfellas",
-      "year": "1990",
-      "actors": [1,2,4]
-    },
-    {
-      "id": 4,
-      "title": "Cape Fear",
-      "year": "1991",
-      "actors": [1,5,6]
-    }    
-  ],
-  "actors":[
-    {
-      "id":1,
-      "name": "Robert De Niro"
-    },{
-      "id":2,
-      "name": "Joe Pesci"
-    },{
-      "id":3,
-      "name": "Cathy Moriarty"
-    },{
-      "id":4,
-      "name": "Ray Liotta"
-    },{
-      "id":5,
-      "name": "Nick Nolte"
-    },{
-      "id":6,
-      "name": "Illeana Douaglas"
-    }
-  ]
+    "movies": [
+        {
+            "id": 1,
+            "title": "Raging Bull",
+            "year": "1980",
+            "actors": [1,2,3]
+        },
+        {
+            "id": 2,
+            "title": "Goodfellas",
+            "year": "1990",
+            "actors": [1,2,4]
+        },
+        {
+            "id": 4,
+            "title": "Cape Fear",
+            "year": "1991",
+            "actors": [1,5,6]
+        }
+    ],
+    "actors":[
+        {
+            "id":1,
+            "name": "Robert De Niro"
+        },{
+            "id":2,
+            "name": "Joe Pesci"
+        },{
+            "id":3,
+            "name": "Cathy Moriarty"
+        },{
+            "id":4,
+            "name": "Ray Liotta"
+        },{
+            "id":5,
+            "name": "Nick Nolte"
+        },{
+            "id":6,
+            "name": "Illeana Douaglas"
+        }
+    ]
 }
 ```
 
@@ -430,59 +430,59 @@ URL: `api.com/movies`
 Payload:
 ```javascript
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Raging Bull",
-      "year": "1980",
-      "actors":[
+    "movies": [
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":2,
-          "name": "Joe Pesci"
-        },{
-          "id":3,
-          "name": "Cathy Moriarty"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Goodfellas",
-      "year": "1990",
-      "actors":[
+            "id": 1,
+            "title": "Raging Bull",
+            "year": "1980",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":2,
+                    "name": "Joe Pesci"
+                },{
+                    "id":3,
+                    "name": "Cathy Moriarty"
+                }
+            ]
+        },
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":2,
-          "name": "Joe Pesci"
-        },{
-          "id":4,
-          "name": "Ray Liotta"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Cape Fear",
-      "year": "1991",
-      "actors":[
+            "id": 2,
+            "title": "Goodfellas",
+            "year": "1990",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":2,
+                    "name": "Joe Pesci"
+                },{
+                    "id":4,
+                    "name": "Ray Liotta"
+                }
+            ]
+        },
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":5,
-          "name": "Nick Nolte"
-        },{
-          "id":6,
-          "name": "Illeana Douaglas"
+            "id": 4,
+            "title": "Cape Fear",
+            "year": "1991",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":5,
+                    "name": "Nick Nolte"
+                },{
+                    "id":6,
+                    "name": "Illeana Douaglas"
+                }
+            ]
         }
-      ]
-    }    
-  ]
+    ]
 }
 ```
 
@@ -498,59 +498,59 @@ URL: `api.com/movies/?include=actors`
 Payload:
 ```javascript
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Raging Bull",
-      "year": "1980",
-      "actors":[
+    "movies": [
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":2,
-          "name": "Joe Pesci"
-        },{
-          "id":3,
-          "name": "Cathy Moriarty"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Goodfellas",
-      "year": "1990",
-      "actors":[
+            "id": 1,
+            "title": "Raging Bull",
+            "year": "1980",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":2,
+                    "name": "Joe Pesci"
+                },{
+                    "id":3,
+                    "name": "Cathy Moriarty"
+                }
+            ]
+        },
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":2,
-          "name": "Joe Pesci"
-        },{
-          "id":4,
-          "name": "Ray Liotta"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "Cape Fear",
-      "year": "1991",
-      "actors":[
+            "id": 2,
+            "title": "Goodfellas",
+            "year": "1990",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":2,
+                    "name": "Joe Pesci"
+                },{
+                    "id":4,
+                    "name": "Ray Li otta"
+                }
+            ]
+        },
         {
-          "id":1,
-          "name": "Robert De Niro"
-        },{
-          "id":5,
-          "name": "Nick Nolte"
-        },{
-          "id":6,
-          "name": "Illeana Douaglas"
+            "id": 4,
+            "title": "Cape Fear",
+            "year": "1991",
+            "actors":[
+                {
+                    "id":1,
+                    "name": "Robert De Niro"
+                },{
+                    "id":5,
+                    "name": "Nick Nolte"
+                },{
+                    "id":6,
+                    "name": "Illeana Douaglas"
+                }
+            ]
         }
-      ]
-    }    
-  ]
+    ]
 }
 ```
 
@@ -562,26 +562,26 @@ URL: `api.com/movies`
 Payload:
 ```javascript
 {
-  "movies": [
-    {
-      "id": 1,
-      "title": "Raging Bull",
-      "year": "1980",
-      "actors":[1, 2, 3]
-    },
-    {
-      "id": 2,
-      "title": "Goodfellas",
-      "year": "1990",
-      "actors":[1, 2, 4]
-    },
-    {
-      "id": 4,
-      "title": "Cape Fear",
-      "year": "1991",
-      "actors":[1, 5, 6]
-    }    
-  ]
+    "movies": [
+        {
+            "id": 1,
+            "title": "Raging Bull",
+            "year": "1980",
+            "actors":[1, 2, 3]
+        },
+        {
+            "id": 2,
+            "title": "Goodfellas",
+            "year": "1990",
+            "actors":[1, 2, 4]
+        },
+        {
+            "id": 4,
+            "title": "Cape Fear",
+            "year": "1991",
+            "actors":[1, 5, 6]
+        }
+    ]
 }
 ```
 
@@ -643,15 +643,15 @@ include a top level `errors` key, then we will need to munge the data.
 // Omitted for brevity...
 
 actions: {
-  save(model) {
-    model.save().then(() => {
-      // For successful save
-    }).catch((error) => {
-      // For unsuccessful save
+    save(model) {
+        model.save().then(() => {
+            // For successful save
+        }).catch((error) => {
+            // For unsuccessful save
 
-      // Model had server errors for attributes: `firstName` and `email`
-    });
-  }
+            // Model had server errors for attributes: `firstName` and `email`
+        });
+    }
 }
 
 ```
@@ -661,20 +661,20 @@ actions: {
 // Ideal JSON error payload
 
 {
-  "errors": [
-    {
-      "detail": "First name is required",
-      "source": {
-        "pointer": "data/attributes/first-name"
-      }
-    },
-    {
-      "detail": "Email is required",
-      "source": {
-        "pointer": "data/attributes/email"
-      }
-    }
-  ]
+    "errors": [
+        {
+            "detail": "First name is required",
+            "source": {
+                "pointer": "data/attributes/first-name"
+            }
+        },
+        {
+            "detail": "Email is required",
+            "source": {
+                "pointer": "data/attributes/email"
+            }
+        }
+    ]
 }
 
 ```
@@ -704,17 +704,17 @@ Or, you can render them in a template!
 {{!-- Somewhere in Handlebars --}}
 
 {{#each model.errors as |error|}}
-  {{#if error.firstName}}
-    <div class="error">
-      {{error.firstName.message}}
-    </div>
-  {{/if}}
+    {{#if error.firstName}}
+        <div class="error">
+            {{error.firstName.message}}
+        </div>
+    {{/if}}
 
-  {{#if error.lastName}}
-    <div class="error">
-      {{error.lastName.message}}
-    </div>
-  {{/if}}
+    {{#if error.lastName}}
+        <div class="error">
+            {{error.lastName.message}}
+        </div>
+    {{/if}}
 {{/each}}
 
 ```

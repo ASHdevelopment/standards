@@ -33,19 +33,19 @@ Do **not** use `const` or `let`.
 ```javascript
 //bad
 function foo() {
-	this.year = 1993;
+    this.year = 1993;
 
-	const foo = 'bar';
+    const foo = 'bar';
 
-	this.baz = foo;
+    this.baz = foo;
 }
 
 //good
 function foo() {
-	const foo = 'bar';
+    const foo = 'bar';
 
-	this.year = 1993;
-	this.baz = foo;
+    this.year = 1993;
+    this.baz = foo;
 }
 ```
 
@@ -56,21 +56,21 @@ function foo() {
 ```javascript
 //very bad
 function foo() {
-	const foo = 1, bar = 2, baz = 3;
+    const foo = 1, bar = 2, baz = 3;
 }
 
 //bad
 function foo() {
-	const foo = 1,
-		  bar = 2,
-		  baz = 3;
+    const foo = 1,
+    bar = 2,    
+        baz = 3;
 }
 
 //good
 function foo() {
-	const foo = 'bar';
-	const bar = 2;
-	const baz = 3;
+    const foo = 'bar';
+    const bar = 2;
+    const baz = 3;
 }
 ```
 
@@ -80,18 +80,18 @@ function foo() {
 ```javascript
 //bad
 function sheNever() {
-	const foo = 1;
-	let bar = 2;
-	const baz = 3;
-	let bae = 4;
+    const foo = 1;
+    let bar = 2;
+    const baz = 3;
+    let bae = 4;
 }
 
 //good
 function keptTheSameAddress() {
-	const foo = 1;
-	const baz = 3;
-	let bar = 2;
-	let bae = 4;
+    const foo = 1;
+    const baz = 3;
+    let bar = 2;
+let bae = 4;    
 }
 ```
 
@@ -172,22 +172,22 @@ There is no hard standard for dangling commas.
 ```javascript
 //ok
 const arr = [
-	'foo',
-	'bar',
+    'foo',
+    'bar',
 ];
 const obj = {
-	hey: true,
-	jude: true,
+    hey: true,
+    jude: true,
 };
 
 //also ok
 const arr = [
-	'foo',
-	'bar'
+    'foo',
+    'bar'
 ];
 const obj = {
-	hey: true,
-	jude: true
+    hey: true,
+    jude: true
 };
 ```
 
@@ -220,22 +220,22 @@ There is no hard standard for dangling commas.
 ```javascript
 //ok
 const arr = [
-	'foo',
-	'bar',
+    'foo',
+    'bar',
 ];
 const obj = {
-	hey: true,
-	jude: true,
+    hey: true,
+    jude: true,
 };
 
 //also ok
 const arr = [
-	'foo',
-	'bar'
+    'foo',
+    'bar'
 ];
 const obj = {
-	hey: true,
-	jude: true
+    hey: true,
+    jude: true
 };
 ```
 
@@ -250,24 +250,24 @@ This preserves the value of `this` which removes the need for you to "save" the 
 
 ```javascript
 const myObject = {
-	init() {
-		const that = this;
+    init() {
+        const that = this;
 
-		someFunctionWithCallback(1, function() {
-			console.log(this);
+        someFunctionWithCallback(1, function() {
+            console.log(this);
 
-			//logs the Window object. Most likely not the behavior you are expecting. You have use the "that" variable we initiated up there.
+            //logs the Window object. Most likely not the behavior you are expecting. You have use the "that" variable we initiated up there.
 
-			console.log(that);
-		});
-	},
-	init2() {
-		someFunctionWithCallback(1, () => {
-			console.log(this);
+            console.log(that);
+        });
+    },
+    init2() {
+        someFunctionWithCallback(1, () => {
+            console.log(this);
 
-			//logs myObject!
-		});
-	}
+            //logs myObject!
+        });
+    }
 }
 ```
 When there is only one parameter, do not encase it in parenthesis.
@@ -276,12 +276,12 @@ When there is only one parameter, do not encase it in parenthesis.
 
 //bad
 let itemsLength = items.map((item)=>{
- return item.length;
+    return item.length;
 });
 
 //good
 let itemsLength = items.map( item =>{
- return item.length;
+    return item.length;
 });
 ```
 
@@ -292,13 +292,13 @@ Use normal syntax for things like event listeners where do **not** want to prese
 // This is a special exception.
 //bad
 thing.on('click', e => {
-	$(this).addClass('newClass');
-	//this will NOT work
+    $(this).addClass('newClass');
+    //this will NOT work
 });
 
 //good
 thing.on('click', function(e) {
-	$(this).addClass('newClass');
+    $(this).addClass('newClass');
 });
 ```
 
@@ -314,17 +314,17 @@ const newArray = [];
 
 // Bad
 array.forEach((item, index) => {
-	if (index < 50) {
-		newArray.push(item * 3);
-	}
+    if (index < 50) {
+        newArray.push(item * 3);
+    }
 });
 
 // Good
 for (let i = 0; i < array.length; i++) {
-	if (i === 50) {
-		break;
-	}
-	newArray.push(array[i] * 3);
+    if (i === 50) {
+        break;
+    }
+    newArray.push(array[i] * 3);
 }
 ```
 ## Error Handling
@@ -346,9 +346,9 @@ for (let i = 0; i < array.length; i++) {
 ```javascript
 //bad
 function showErrorMessage (arg1){
-	//this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
-	error = arg1.response.responseJSON.responseStatus;
-	return error;
+    //this will result in Uncaught TypeError: Cannot read property 'responseJSON' of undefined
+    error = arg1.response.responseJSON.responseStatus;
+    return error;
 }
 ```
 
@@ -357,16 +357,16 @@ function showErrorMessage (arg1){
 ```javascript
 //good
 function showErrorMessage (arg1){
-	try {
-		error = arg1.response.responseJSON.responseStatus;
-	} catch (e) {
-		error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
-		//OR
-		error = e;
-	} finally {
-		removeLoader();
-		return error;
-	}		
+    try {
+        error = arg1.response.responseJSON.responseStatus;
+    } catch (e) {
+        error = 'Something went wrong fetching the response'; //in this case, e is undefined so you don't need it on the line above
+        //OR
+        error = e;
+    } finally {
+        removeLoader();
+        return error;
+    }
 }
 ```
 
@@ -381,7 +381,7 @@ Use `.catch()` to catch any errors with the promise, including http errors.
 const list = [...staleList];
 
 fetchNewestItem().then(response =>{
-	list.push(response);
+    list.push(response);
 })
 ```
 
@@ -390,9 +390,9 @@ fetchNewestItem().then(response =>{
 const list = [...staleList];
 
 fetchNewestItem().then(response =>{
-	list.push(response);
+    list.push(response);
 }).catch(error =>{
-	displayErrorToUser(error);
+    displayErrorToUser(error);
 })
 ```
 
@@ -404,18 +404,18 @@ Similar to `Promise.then()`, include a catch, but use a try/catch statement for 
 const list = [...staleList];
 
 (async function (){
-	list.push(await fetchNewestItem())
+    list.push(await fetchNewestItem())
 })()
 ```
 
 ```javascript
 //good
 (async function (){
-	try{
-		list.push(await fetchNewestItem())
-	}catch(error){
-		displayErrorToUser(error)
-	}
+    try{
+        list.push(await fetchNewestItem())
+}catch(er   ror){
+        displayErrorToUser(error)
+    }
 })()
 ```
 
@@ -449,23 +449,23 @@ While there isn't a hard standard, a good rule of thumb is if you need to explai
 
 function isPalindrome(word){
 
-	// create and set the newWord variable
-	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
+    // create and set the newWord variable
+    let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
 
-	newWord = newWord.toLowerCase();
+    newWord = newWord.toLowerCase();
 
-	// return true if one of the conditions are true
-	if(newWord.length == 0 || newWord.length == 1){
-		return true;
-	}
+    // return true if one of the conditions are true
+    if(newWord.length == 0 || newWord.length == 1){
+        return true;
+    }
 
 
-	if(newWord === newWord.split('').reverse('').join('')){
-		return true;
-	}
+    if(newWord === newWord.split('').reverse('').join('')){
+        return true;
+    }
 
-	// return false
-	return false;
+    // return false
+    return false;
 }
 ```
 
@@ -475,22 +475,21 @@ function isPalindrome(word){
 // Check if a given word/string is palindrome
 function isPalindrome(word){
 
-	// strip all characters and symbols except a-z, A-Z, and 0-9
-	let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
+    // strip all characters and symbols except a-z, A-Z, and 0-9
+    let newWord = word.replace(/[^a-zA-Z0-9]/g, '');
 
-	newWord = newWord.toLowerCase();
+    newWord = newWord.toLowerCase();
 
-	if(newWord.length === 0 || newWord.length == 1){
-		return true;
-	}
+    if(newWord.length === 0 || newWord.length == 1){
+        return true;
+    }
 
-	// check the original word against the new reversed string
-	if(newWord == newWord.split('').reverse('').join('')){
-		return true;
-	}
+    // check the original word against the new reversed string
+    if(newWord == newWord.split('').reverse('').join('')){
+        return true;
+    }
 
-	return false;
-
+    return false;
 }
 ```
 
@@ -511,10 +510,10 @@ It is allowed, but not required, to use single line code blocks without curly br
 ```javascript
 //BAD
 if (iceCream > vegetables) 
-	return true;
+    return true;
 
 for (let i=0; i<vegetables.length; i++)
-	disposeOf(vegetables[i]);
+    disposeOf(vegetables[i]);
 ```
 
 ```javascript
@@ -522,12 +521,12 @@ for (let i=0; i<vegetables.length; i++)
 if (iceCream > vegetables) return true;
 
 if (iceCream > vegetables) {
-	return true;
+    return true;
 }
 
 for (let i=0; i<vegetables.length; i++)	disposeOf(vegetables[i]);
 
 for (let i=0; i<vegetables.length; i++)	{
-	disposeOf(vegetables[i]);
+    disposeOf(vegetables[i]);
 }
 ```
