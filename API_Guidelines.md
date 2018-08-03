@@ -244,8 +244,10 @@ Payload
 :
 ```javascript
 {
+  "movie": {
     "title": "Crimson Tide",
     "year": "1995"
+  }
 }
 ```
 
@@ -294,9 +296,9 @@ Payload
 :
 ```javascript
 {
-    "title": "Goodfellers",
-    "year": "1990",
-    "radioheadOnSoundtrack": false
+  "title": "Goodfellers",
+  "year": "1990",
+  "radioheadOnSoundtrack": false
 }
 ```
 
@@ -326,7 +328,7 @@ The api can also return a `204` with an empty payload, but **this is not preferr
 ### Deleting a Record
 #### Request
 URL
-:   `apiHost.com/movies/2`  
+: `apiHost.com/movies/2`  
 
 
 Request Method
@@ -423,7 +425,7 @@ Alternatively, you can `GET` `api.com/movies/1` and the api will only return Rag
 ### Why?
 > Use this method when you can safely assume that you generally want the list of actors when the `movies` endpoint is accessed.  If you have a lot of shared actors, this may result in a significantly larger payload.
 
-Notice that the payload is larger here becuase shared actors (De Niro and Pesci) are repeated, whereas they are not in the side-loaded example.
+Notice that the payload is larger here because shared actors (De Niro and Pesci) are repeated, whereas they are not in the side-loaded example.
 
 URL: `api.com/movies`
 
