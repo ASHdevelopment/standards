@@ -31,6 +31,9 @@ Provide overall description of this section.
 <a name="code-examples--javascript"></a><a name="3.1"></a>
 ### [3.1](#code-examples--javascript): JavaScript
 
+When writing code examples, use four spaces for indentation when needed.
+> Why? Within the context of code examples, indentation with four spaces makes code blocks easier to read.
+
 ``` javascript 
 // Provide Bad example
 
