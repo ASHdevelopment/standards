@@ -17,6 +17,8 @@
 	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
 1. **[Testing](#testing)**
 1. **[Definition of Ready](#deployment-checklist)**
+1. **[Addons](#addons)**
+  [ [Versioning](#versioning) ]
 
 <a name="general-structure"></a>
 ## General Structure
@@ -425,3 +427,20 @@ Create a build definition for the app that will:
 
 ### 11. Checklist Violations
 `npm test` (in the build definition) will catch errors and reject build
+
+
+
+## Addons
+
+### 9.1 Versioning
+
+1. We define `1.0.0` release as the first version ready to be used by the end user. It may not be feature complete, but it should bring some benefit to our customers. `1.0.0` release should include tests and be bug free according to the developer. As soon as the package is ready to be used in production, it needs to be on version `1.0.0`.
+
+We follow [Semantic Versioning](https://semver.org/) standards for versioning our addons:
+1. **Major** version should be used when making incompatible API changes.
+
+1. **Minor** version should be used when adding new functionality in a backward compatible manner.
+> Note: When updating `ember-cli` , use **minor** update.
+
+1. **Patch** version should be used when making backward compatible bug fixes, documentation updates, small enhancements (e.g., performance) that do not add new feature, or dependency updates.
+
