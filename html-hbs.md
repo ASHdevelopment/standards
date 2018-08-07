@@ -18,7 +18,7 @@ N/A
 **Good**
 ```handlebars
 {{ash-plugin
-	message="this is the message"
+    message="this is the message"
 }}
 ```
 
@@ -26,7 +26,7 @@ or
 
 ```handlebars
 {{ash-plugin
-	message='this is the message'
+    message='this is the message'
 }}
 ```
 ## Properties
@@ -42,10 +42,10 @@ or
 **Good**
 ```handlebars
 {{ash-plugin
-	message="this is the message"
-	isNew=true
-	list=[1,4,5,8]
-	foo=(action 'bar')
+    message="this is the message"
+    isNew=true
+    list=[1,4,5,8]
+    foo=(action 'bar')
 }}
 ```
 ## Comments

@@ -24,14 +24,14 @@
 
 
 **Bad**
- ```html
- <input type='...' class='...' id='...' .... etc. />
- ```
+```html
+    <input type='...' class='...' id='...' .... etc. />
+```
 
 **Good**
- ```html
- <input id='...' class='...' type='...' ... etc. />
- ```
+```html
+    <input id='...' class='...' type='...' ... etc. />
+```
 
 <a name="quotes"></a>
 ## 2. Quotes
@@ -43,20 +43,20 @@
 **Bad**
 ```html
 <div class="class1"> //changing this to single quotes to fit your style
-      <p class='class2'>This is paragraph content.</p>
+    <p class='class2'>This is paragraph content.</p>
 </div>
 ```
 
 **Good**
 ```html
 <div class='class1'>
-      <p class='class2'>This is paragraph content.</p>
+    <p class='class2'>This is paragraph content.</p>
 </div>
 
 //or
 
 <div class="class1">
-      <p class="class2">This is paragraph content.</p>
+    <p class="class2">This is paragraph content.</p>
 </div>
 ```
 
@@ -68,21 +68,21 @@
 
    When a button is needed to submit a form, ``<button>`` should be the tag used with a ``type='submit'``.
 
-  ```html
+```html
 <button class='primaryButton' type='submit'>Submit</button>
-  ```
+```
 ### 3.2 Links
   For a link to another page just needs to be styled like a button, use the ``<a>`` tag like you normally would.
 
-  ```html
-  <a href='#' class='primaryButton'>Link</a>
-  ```
+```html
+<a href='#' class='primaryButton'>Link</a>
+```
 
 ### 3.3  Button
 
  If the button doesn't fit any of the scenarios above, it should just simply be a  ``<button>`` tag.
 
-  ```html
+```html
 <button class='primaryButton' type='button'>Button</button>
 ```
 
@@ -97,33 +97,7 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 **Bad**
 ```html
 <form>
-  <p>The best Beatle is:</p>
-  <label for="john">John</label>
-  <input type="radio" name="bestBeatle" id="john" disabled>
-  <label for="ringo">Ringo</label>
-  <input type="radio" name="bestBeatle" id="ringo" disabled>
-  <label for="geoge">George</label>
-  <input type="radio" name="bestBeatle" id="george" disabled>
-  <label for="pete">Pete</label>
-  <input type="radio" name="bestBeatle" id="pete">
-  <label for="paul">Paul</label>
-  <input type="radio" name="bestBeatle" id="paul" checked>
-
-  <p>Which artist released the following albums?</p>
-  <label for="who">Quadrophenia</label>
-  <input id="who">
-  <label for="queen">A Night at the Opera</label>
-  <input id="queen">
-  <label for="beachBoys">Pet Sounds</label>
-  <input id="beachBoys">
-</form>
-```
-
-**Good**
-```html
-<form>
-  <fieldset>
-    <legend>The best Beatle is:</legend>
+    <p>The best Beatle is:</p>
     <label for="john">John</label>
     <input type="radio" name="bestBeatle" id="john" disabled>
     <label for="ringo">Ringo</label>
@@ -134,17 +108,43 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
     <input type="radio" name="bestBeatle" id="pete">
     <label for="paul">Paul</label>
     <input type="radio" name="bestBeatle" id="paul" checked>
-  </fieldset>
 
-  <fieldset>
-    <legend>Which artist released the following albums?</legend>
+    <p>Which artist released the following albums?</p>
     <label for="who">Quadrophenia</label>
     <input id="who">
     <label for="queen">A Night at the Opera</label>
     <input id="queen">
     <label for="beachBoys">Pet Sounds</label>
-    <input id="beachBoys">  
-  </fieldset>
+    <input id="beachBoys">
+</form>
+```
+
+**Good**
+```html
+<form>
+    <fieldset>
+        <legend>The best Beatle is:</legend>
+        <label for="john">John</label>
+        <input type="radio" name="bestBeatle" id="john" disabled>
+        <label for="ringo">Ringo</label>
+        <input type="radio" name="bestBeatle" id="ringo" disabled>
+        <label for="geoge">George</label>
+        <input type="radio" name="bestBeatle" id="george" disabled>
+        <label for="pete">Pete</label>
+        <input type="radio" name="bestBeatle" id="pete">
+        <label for="paul">Paul</label>
+        <input type="radio" name="bestBeatle" id="paul" checked>
+    </fieldset>
+
+    <fieldset>
+        <legend>Which artist released the following albums?</legend>
+        <label for="who">Quadrophenia</label>
+        <input id="who">
+        <label for="queen">A Night at the Opera</label>
+        <input id="queen">
+        <label for="beachBoys">Pet Sounds</label>
+        <input id="beachBoys">  
+    </fieldset>
 </form>
 ```
 <a name="comments"></a>
@@ -155,37 +155,37 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 
  Add comments on closing tags when 3 levels of the same type of tags are used in a row. Start counting from the most nested tag outwards and on the 3rd type of that closing tag begin comments.
 
- **Bad**
- ```html
- <section class="nestyness">
-   <div class='class1'>
-     <div class='class2'>
-       <div class='class3'>
-         <div class='class4'>
-           <p class='classP'>This is paragraph content.</p>
-           <p class='classP'>This is paragraph content.</p>
-         </div>
-      </div>
+**Bad**
+```html
+<section class="nestyness">
+    <div class='class1'>
+        <div class='class2'>
+            <div class='class3'>
+                <div class='class4'>
+                    <p class='classP'>This is paragraph content.</p>
+                    <p class='classP'>This is paragraph content.</p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
  ```
 
- **Good**
- ```html
- <section class="nestyness">
-   <div class='class1'>
-     <div class='class2'>
-       <div class='class3'>
-         <div class='class4'>
-           <p class='classP'>This is paragraph content.</p>
-           <p class='classP'>This is paragraph content.</p>
-         </div>
-      </div>
-    </div><!--end class2-->
-  </div><!--end class1-->
+**Good**
+```html
+<section class="nestyness">
+    <div class='class1'>
+        <div class='class2'>
+            <div class='class3'>
+                <div class='class4'>
+                    <p class='classP'>This is paragraph content.</p>
+                    <p class='classP'>This is paragraph content.</p>
+                </div>
+            </div>
+        </div><!--end class2-->
+    </div><!--end class1-->
 </section>
- ```
+```
 <a name="semantics"></a>
 ## 6. Semantics
    > Semantics help make the web page easier for people and browsers to understand/use.

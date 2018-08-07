@@ -82,8 +82,8 @@ JavaScript modules make the framework easier to document, make the distinction b
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  session: Ember.inject.service(),
-  title: 'ASH Development'
+    session: Ember.inject.service(),
+    title: 'ASH Development'
 });
 
 //Good
@@ -91,8 +91,8 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
-  session: service(),
-  title: 'ASH Development'
+    session: service(),
+    title: 'ASH Development'
 });
 ```
 <a name="destructuring--get-set"></a>
@@ -129,7 +129,7 @@ Any new code written by ASH should only contain one-way data-binding. Third-part
 {{!--Bad--}}
 {{!--parent-component.hbs--}}
 {{my-cheesy-component 
-  myData = model
+    myData = model
 }}
 ```
 ```Javascript
@@ -141,33 +141,33 @@ set(this, 'model.cheese', 'gouda')
 {{!--Good--}}
 {{!--parent-component.hbs--}}
 {{my-cheesy-component 
-  myData = model
-  changeCheese = (action 'newCheesePlease')
+    myData = model
+    changeCheese = (action 'newCheesePlease')
 }}
 ```
 ```Javascript
 //my-cheesy-component.js
 actions: {
-  quesoChanger(e) {
-  e.preventDefault();
-  get(this, 'changeCheese')(get(this, 'cheese'));
-  }
+    quesoChanger(e) {
+        e.preventDefault();
+        get(this, 'changeCheese')(get(this, 'cheese'));
+    }
 }
 ```
 
 ```hbs
 {{!--my-cheesy-component.hbs--}}
 <form onSubmit=(action 'quesoChanger')>
-  <input type='text' value={{cheese}} onChange={{action (mut cheese) value="target.value"}}>
-  <button type='submit'>Change Cheese</button>
+    <input type='text' value={{cheese}} onChange={{action (mut cheese) value="target.value"}}>
+    <button type='submit'>Change Cheese</button>
 </form>
 ```
 ```Javascript
 //parent component.js, router, or controller
 actions: {
-  newCheesePlease(cheeseType){
-    set(this, 'model.cheese', cheeseType);
-  }
+    newCheesePlease(cheeseType){
+        set(this, 'model.cheese', cheeseType);
+    }
 }
 ```
 *Twiddle Demo: <a href="https://ember-twiddle.com/386c86a1ad7fa9d15e9cc1f699e5f539">click here</a>*
@@ -184,16 +184,16 @@ When a computed property depends on multiple properties of the same object, spec
 ```javascript 
 // Bad 
 fullname: computed('user.firstname', 'user.lastname', function() {
-  const { firstname, lastname } = get(this, 'user');
+    const { firstname, lastname } = get(this, 'user');
 
-  return `${firstname} ${lastname}`;
+    return `${firstname} ${lastname}`;
 })
 
 // Good
 fullname: computed('user.{firstname,lastname}', function() {
-  const { firstname, lastname } = get(this, 'user');
+    const { firstname, lastname } = get(this, 'user');
 
-  return `${firstname} ${lastname}`;
+    return `${firstname} ${lastname}`;
 })
 ```
 
@@ -233,42 +233,42 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 // Bad
 // app/style/appName.scss
 .chats {
-  padding: 1rem;
-  display: flex;
-  background: $color1;
+    padding: 1rem;
+    display: flex;
+    background: $color1;
 
-  .chatMsg {
-    font-family: $font1;
-    font-weight: 700;
-    text-transform: uppercase;    
-    background: $color2;
-    color: $color1;
-    transition: all 1s ease-in-out;
-  }
+    .chatMsg {
+        font-family: $font1;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: $color2;
+        color: $color1;
+        transition: all 1s ease-in-out;
+    }
 }
 
 // Good
 // base/social.scss
 .chats {
-  background: $color1;
+    background: $color1;
 
-  .chatMsg {
-    font-family: $font1;
-    font-weight: 700;
-    text-transform: uppercase;    
-    background: $color2;
-    color: $color1;
-  }
+    .chatMsg {
+        font-family: $font1;
+        font-weight: 700;
+        text-transform: uppercase;
+        background: $color2;
+        color: $color1;
+    }
 }
 
 // app/style/appName.scss
 .chats {
-  padding: 1rem;
-  display: flex;
+    padding: 1rem;
+    display: flex;
 
-  .chatMsg {
-    transition: all 1s ease-in-out;
-  }
+    .chatMsg {
+        transition: all 1s ease-in-out;
+    }
 }
 ```
 <a name="actions"></a>
@@ -282,16 +282,16 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ```html
 //Bad
 <form>
-  <input id="firstName" type="text" />
-  <input id="lastName" type="text" />
-  <button type="submit" {{action 'SubmitForm'}}> Submit</button>
+    <input id="firstName" type="text" />
+    <input id="lastName" type="text" />
+    <button type="submit" {{action 'SubmitForm'}}> Submit</button>
 </form>
 
 //Good
 <form {{action 'SubmitForm' on='submit'}}>
-  <input id="firstName" type="text" />
-  <input id="lastName" type="text" />
-  <button type="submit"> Submit</button>
+    <input id="firstName" type="text" />
+    <input id="lastName" type="text" />
+    <button type="submit"> Submit</button>
 </form>
 
 ```
@@ -300,12 +300,12 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 ```html
 //Bad
 <div class="container" {{action 'showHide'}}>
- <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
 </div>
 
 //Good
 <div class="container">
- <button type="submit" {{action 'showHide'}}>Submit</button>
+    <button type="submit" {{action 'showHide'}}>Submit</button>
 </div>
 ```
 
@@ -323,31 +323,31 @@ import Route from '@ember/routing/route';
 import { get, set } from '@ember/object';
 
 export default Route.extend({
-  genericError: 'Hmm, something went wrong.',
+    genericError: 'Hmm, something went wrong.',
 
-  actions: {
-    error(error){
-      //grabbing app container for a place to put the error so it will show to the user
-      const app = document.getElementById('app-container');
+    actions: {
+        error(error){
+            //grabbing app container for a place to put the error so it will show to the user
+            const app = document.getElementById('app-container');
 
-      //getting the content for the error to show the user
-      if(typeof error === 'string') {
-        //if its a string set the errorToShow property to that string
-        set(this, 'errorToShow', error);
-      } else if (error && error.message) {
-        //if it has an error.message log the message to the console for debugging
-        console.error(error.message);
-        //if it is not a string set the errorToShow property to the genericError
-        set(this, 'errorToShow', get(this, 'genericError'))
-      } else {
-        //if it is not a string set the errorToShow property to the genericError
-        set(this, 'errorToShow', get(this, 'genericError'))
-      }
+            //getting the content for the error to show the user
+            if(typeof error === 'string') {
+                //if its a string set the errorToShow property to that string
+                set(this, 'errorToShow', error);
+            } else if (error && error.message) {
+                //if it has an error.message log the message to the console for debugging
+                console.error(error.message);
+                //if it is not a string set the errorToShow property to the genericError
+                set(this, 'errorToShow', get(this, 'genericError'))
+            } else {
+                //if it is not a string set the errorToShow property to the genericError
+                set(this, 'errorToShow', get(this, 'genericError'))
+            }
 
-      //adds the error to the app container for users to see error message, so they are not left with a blank app container
-      app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+            //adds the error to the app container for users to see error message, so they are not left with a blank app container
+            app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+        }
     }
-  }
 });
 ```
 <a name="testing"></a>
@@ -368,7 +368,7 @@ The `scripts` section in your __package.json__ file should include the following
 "scripts": {
     "test": "cross-env COVERAGE=true ember test",
     "test-server": "cross-env COVERAGE=true ember test --server"
-  }
+}
 ```
 
 
