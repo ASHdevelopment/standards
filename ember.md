@@ -378,7 +378,34 @@ The `scripts` section in your __package.json__ file should include the following
 
 > Why? Unit tests are the most basic test for testing the core functionality of the app and relying on integration and acceptance tests can provide a false sense of code coverage.
 
-All **Ember.computed** properties and **_private** methods should be unit tested and have 100% branch coverage.
+All **Ember.computed** properties and **_private** methods should be unit tested and have 100% **branch coverage**.
+
+**Branch Coverage** means that each branch in a program (e.g., loops, if/else statements), is executed at least once when tests are run. Having 100% branch coverage ensures that all reachable code is executed which in turn helps developers catch any potential issues and address possible corner cases.
+
+Example of good and bad test cases:
+```javascript
+// my-component.js
+_isLocal(location) {
+  if (location === 'SD') {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// Examples of tests given private _isLocal() function defined above:
+
+// BAD test case - only catches one branch
+assert.equal(this._isLocal('CSC'), false, 'CSC office is not local');
+
+// GOOD test case - provides 100% branch coverage, as it covers both branches
+assert.equal(this._isLocal('CSC'), false, 'CSC office is not local');
+assert.equal(this._isLocal('SD'), true, 'SD office is local');
+// also provide test cases for other potential values
+assert.equal(this._isLocal(), false, 'No location provided should still return false (not local)');
+assert.equal(this._isLocal(null), false, 'Unexpected value like null or undefined should also return false (not local)');
+
+```
 
 
 <a name="deployment-checklist"></a>
