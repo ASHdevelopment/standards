@@ -1,7 +1,7 @@
 # Ember
 
 1. **[General Structure](#general-structure)** 
-	[ [Properties](#general-structure--properties) ]
+	[ [Properties](#general-structure--properties) [Multi-property](#general-structure--multiProperty) ]
 1. **[Destructuring](#destructuring)** 
 	[ [Objects](#destructuring--objects) ] 
 	[ [Get/Set](#destructuring--get-set) ]
@@ -67,7 +67,8 @@ foo: undefined
 foo: null
 ```
 
-- 1.4 **Multi prop components should always have a new line per property**
+<a name="general-structure--multiProperty"></a>
+- 1.4 **Multi-property Components**
 
   + All components written in handlebars that have at least one property should be written in a multi-line format.
 
@@ -75,16 +76,16 @@ foo: null
 
 ```Javascript
 // bad
-{{my-component Property1='some string' Property2='some string'}}
+{{my-component CreamSoda='nope' Pepsi='nope'}}
 
 {{my-component
-    Property1='some string' 
-    Property2='some string'}}
+    Sprite='nope' 
+    Fanta='nope'}}
 
 //good
 {{my-component
-    Property1='some string' 
-    Property2='some string'
+    Coke='yes' 
+    SierraMist='yes'
 }}
 ```
 
