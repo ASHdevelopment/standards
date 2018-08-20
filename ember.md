@@ -67,6 +67,27 @@ foo: undefined
 foo: null
 ```
 
+- 1.4 **Multi prop components should always have a new line per property**
+
+  + All components written in handlebars that have at least one property should be written in a multi-line format.
+
+  + Closing handlebars `}}` should be on a new line when writing in a multi-line format
+
+```Javascript
+// bad
+{{my-component Property1='some string' Property2='some string'}}
+
+{{my-component
+    Property1='some string' 
+    Property2='some string'}}
+
+//good
+{{my-component
+    Property1='some string' 
+    Property2='some string'
+}}
+```
+
 <a name="destructuring"></a>
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
