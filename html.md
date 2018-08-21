@@ -64,7 +64,7 @@
 ## 3. Buttons
   > Buttons can submit a form, be a link styled like a button, or simply just a button.
 
-Buttons should always have the `type` attribute set to prevent possible bugs from the default `type=submit`
+Buttons should always have the `type` attribute set to `button` unless it is inside a `form` element. Without this an unexpected form submit will happen if it is clicked on a page with a form since the default is `type=submit`.
 
 ### 3.1 Submit Buttons
 
