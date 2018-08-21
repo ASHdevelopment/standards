@@ -74,34 +74,36 @@ foo: null
 <a name="general-structure--naming-addons"></a>
 ### 2.0 Naming Addons
 
-> Prefix naming prevents conflicts within the consuming app/addon and also gives clarity where the component is coming from in use in the `hbs` template
+> Prefix naming prevents conflicts within the consuming app/addon. The name can also help a user to identify that the component is coming from a specific addon in the `.hbs` file.
 
-- When naming an addon be sure to use a name that can work for many components based on the general function _I.E. ash-expandable contains ash-expandable and ash-exandable-showmore_
+- When naming an addon be sure to use a name that can work for many components based on the general function _I.E. ash-expandable contains ash-expandable-container and ash-exandable-show-more_
 - All public components that can be consumed from the addon should live in the root of the addon prefixed with the name of the addon
 - All private components to be used within the addon only will be located in a folder that has the name of the addon
 
 ```Javascript
 //Bad
-[addon] (ash-starter)
-  - [components] //Public Components
-    - banner.js //could conflict if parent app/addon has a component named banner
-    - modal.js
-    - [private] //Private Components
-      - close-button.js 
+ash-starter/
+  addon/ 
+    - components/ //Public Components
+      - banner.js //could conflict if parent app/addon has a component named banner
+      - modal.js
+      - [private] //Private Components
+        - close-button.js 
       
 
 //Good
-[addon] (ash-starter)
-  - [components] //Public Components
-    - ash-starter-banner.js 
-    - ash-starter-modal.js
-    - [ash-starter] //Private Components
-      - ultimate-combo.js 
-      - mega-crusher.js
-      - [ash-starter-banner] //optional folder if more organization is needed
-        - close-button.js 
-      - [ash-starter-modal] //optional folder if more organization is needed
-        - power-panel.js
+ash-starter/
+  addon/ 
+    - components/ //Public Components
+      - ash-starter-banner.js 
+      - ash-starter-modal.js
+      - ash-starter/ //Private Components
+        - ultimate-combo.js 
+        - mega-crusher.js
+        - ash-starter-banner/ //optional folder if more organization is needed
+          - close-button.js 
+        - ash-starter-modal/ //optional folder if more organization is needed
+          - power-panel.js
 ```
 
 
