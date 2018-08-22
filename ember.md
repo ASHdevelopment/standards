@@ -81,7 +81,7 @@ foo: null
 // bad
 {{my-component CreamSoda='nope' Pepsi='nope'}}
 
-{{Bryan-component theRightWay='nope'}}
+{{bryan-component theRightWay='nope'}}
 
 {{my-component
 	Sprite='nope' 
@@ -93,7 +93,7 @@ foo: null
 	SierraMist='yes'
 }}
 
-{{Everyone-component
+{{everyone-component
 	theRightWay='yes'
 }}
 ```
