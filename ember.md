@@ -68,7 +68,7 @@ foo: undefined
 foo: null
 ```
 
-<!-- <a name="general-structure--multiProperty"></a> -->
+
 - #### 1.4 Multi-property Components
 
 	> Why? Better readability. 
