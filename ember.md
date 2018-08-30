@@ -74,7 +74,7 @@ export default Model.extend({
 });
 ```
 Enforce by adding this rule to `.eslintrc.js`:
-```json
+```
 rules: {
     ember/order-in-models: 2
 }
@@ -142,7 +142,7 @@ export default Controller.extend({
 });
 ```
 Enforce by adding this rule to `.eslintrc.js`:
-```json
+```
 rules: {
     ember/order-in-controllers: 2
 }
@@ -216,7 +216,7 @@ export default Component.extend({
 });
 ```
 Enforce by adding this rule to `.eslintrc.js`:
-```json
+```
 rules: {
     ember/order-in-components: 2
 }
@@ -289,7 +289,7 @@ export default Route.extend({
 });
 ```
 Enforce by adding this rule to `.eslintrc.js`:
-```json
+```
 rules: {
     ember/order-in-routes: 2
 }
