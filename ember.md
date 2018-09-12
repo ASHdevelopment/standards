@@ -27,7 +27,18 @@
 ## General Structure
 
 **Why do we structure our Javascript code?**
-This allows us to follow a consistent coding conventions. Paired with a tool to enforce code structure, such as Eslint, it will provide a way for us to make sure that our code follow a specific specified order.
+This allows us to follow a consistent coding convention. Paired with a tool to enforce code structure, such as Eslint, it will provide a way for us to make sure that our code follows a specified order.
+
+With the use of the `eslint-plugin-ember` addon, add the following rules to the `.eslintrc.js` file in your ember project to enforce the default property order in models, controllers, components, and routes, as outlined in the following sections.
+
+```
+rules: {
+  ember/order-in-models: 2,
+  ember/order-in-controllers: 2,
+  ember/order-in-components: 2,
+  ember/order-in-routes: 2
+}
+```
 
 <a name="general-structure--properties"></a>
 
@@ -72,12 +83,6 @@ export default Model.extend({
     return result;
   })
 });
-```
-Enforce by adding this rule to `.eslintrc.js`:
-```
-rules: {
-    ember/order-in-models: 2
-}
 ```
 
 ### 1.2: Controller Property Order
@@ -140,12 +145,6 @@ export default Controller.extend({
     // custom secret method logic
   },
 });
-```
-Enforce by adding this rule to `.eslintrc.js`:
-```
-rules: {
-    ember/order-in-controllers: 2
-}
 ```
 
 ### 1.3: Component Property Order
@@ -215,12 +214,6 @@ export default Component.extend({
   }
 });
 ```
-Enforce by adding this rule to `.eslintrc.js`:
-```
-rules: {
-    ember/order-in-components: 2
-}
-```
 
 ### 1.4: Route Property Order
 
@@ -287,12 +280,6 @@ export default Route.extend({
     // custom secret method logic
   },
 });
-```
-Enforce by adding this rule to `.eslintrc.js`:
-```
-rules: {
-    ember/order-in-routes: 2
-}
 ```
 
 ### 1.5: Default Unassigned Property
