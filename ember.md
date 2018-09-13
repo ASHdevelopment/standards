@@ -24,50 +24,274 @@
   [ [Versioning](#versioning) ]
 
 <a name="general-structure"></a>
+
 ## General Structure
 
 **Why do we structure our Javascript code?**
-This allows us to follow a consistent coding conventions. Paired with a tool to enforce code structure, such as Eslint, it will provide a way for us to make sure that our code follow a specific specified order.
+This allows us to follow a consistent coding convention. Paired with a tool to enforce code structure, such as Eslint, it will provide a way for us to make sure that our code follows a specified order.
 
-<a name="general-structure--properties"></a>
-### 1.0 Properties
-- 1.1 **Controller/Component Property Order**: follow this order for properties and methods
-  + **Properties**
-    + Put ember specific properties (e.g., `classNames`, `tagNames`) before custom properties (e.g., `someSpecificAshProp : true`)
-  + Component lifecycle hooks (in order) <a href="https://guides.emberjs.com/v2.12.0/components/the-component-lifecycle/">see order in documentation</a>
-  + Custom methods
-  + `actions` go last
-  
-- 1.2 **Model Property Order**: follow this order for defining attributes and relationships:
-	+ Attributes
-	+ Relationships
-	+ Single line function
-	+ Multi line function
+With the use of the `eslint-plugin-ember` addon, add the following rules to the `.eslintrc.js` file in your ember project to enforce the default property order in models, controllers, components, and routes, as outlined in the following sections.
 
-```javascript
-//Bad
-firstName: attr('string'),
-fullName: belongsTo('person'),
-lastName: attr('string')
-
-//Good
-firstName: attr('string'),
-lastName: attr('string'),
-
-fullName: belongsTo('person')
+```
+rules: {
+  ember/order-in-models: 2,
+  ember/order-in-controllers: 2,
+  ember/order-in-components: 2,
+  ember/order-in-routes: 2
+}
 ```
 
-- 1.3 **Default Unassigned Property**
+<a name="general-structure--properties"></a>
+### 1.1 Model Property Order
 
-  + When declaring an unassigned property we should default it to `null` instead of `undefined`.
+1. Attributes
+1. Relations
+1. Single line computed properties
+1. Multi line computed properties
+1. Other structures (custom methods etc.)
 
-  + Why? Because defining a property as `undefined` has the meaning of we didn't define it. By setting it to `null` you are explicitly telling the app that the property has been declared.
+```javascript
+import DS from 'ember-data';
+const { Model, attr, hasMany } = DS;
+import { computed, get } from '@ember/object';
+
+// bad
+export default Model.extend({
+  mood: computed('health', 'hunger', function() {
+    const result = get(this, 'health') * get(this, 'hunger');
+    return result;
+  }),
+
+  hat: attr('string'),
+
+  behaviors: hasMany('behaviour'),
+
+  shape: attr('string')
+});
+
+// good
+export default Model.extend({
+  // 1. Attributes
+  shape: attr('string'),
+
+  // 2. Relations
+  behaviors: hasMany('behaviour'),
+
+  // 3. Computed Properties
+  mood: computed('health', 'hunger', function() {
+    const result = get(this, 'health') * get(this, 'hunger');
+    return result;
+  })
+});
+```
+
+### 1.2: Controller Property Order
+
+1. Controller injections
+1. Service injections
+1. Query params
+1. Default controller's properties
+1. Custom properties
+1. Single line computed properties
+1. Multi line computed properties
+1. Observers
+1. Actions
+1. Custom / private methods
+
+```javascript
+import Controller from '@ember/controller';
+import { computed, get } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { inject as controller } from '@ember/controller';
+
+export default Controller.extend({
+  // 1. Controller injections
+  application: controller(),
+
+  // 2. Service injections
+  currentUser: service(),
+
+  // 3. Query params
+  queryParams: ['view'],
+
+  // 4. Default controller's properties
+  concatenatedProperties: ['concatenatedProperty'],
+
+  // 5. Custom properties
+  attitude: 10,
+
+  // 6. Single line Computed Property
+  health: alias('model.health'),
+
+  // 7. Multiline Computed Property
+  levelOfHappiness: computed('attitude', 'health', function() {
+    return get(this, 'attitude') * get(this, 'health') * Math.random();
+  }),
+
+  // 8. Observers
+  onVahicleChange: observer('vehicle', function() {
+    // observer logic
+  }),
+
+  // 9. All actions
+  actions: {
+    sneakyAction() {
+      return this._secretMethod();
+    },
+  },
+
+  // 10. Custom / private methods
+  _secretMethod() {
+    // custom secret method logic
+  },
+});
+```
+
+### 1.3: Component Property Order
+
+1. Services
+1. Default values
+1. Single line computed properties
+1. Multiline computed properties
+1. Observers
+1. Lifecycle Hooks (in execution order)
+1. Actions
+1. Custom / private methods
+
+```javascript
+import Component from '@ember/component';
+import { computed, get } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+
+export default Component.extend({
+  // 1. Services
+  i18n: service(),
+
+  // 2. Properties
+  role: 'sloth',
+
+  // 3. Empty methods
+  onRoleChange() {},
+
+  // 4. Single line Computed Property
+  vehicle: alias('car'),
+
+  // 5. Multiline Computed Property
+  levelOfHappiness: computed('attitude', 'health', function() {
+    const result = get(this, 'attitude') * get(this, 'health') * Math.random();
+    return result;
+  }),
+
+  // 6. Observers
+  onVehicleChange: observer('vehicle', function() {
+    // observer logic
+  }),
+
+  // 7. Lifecycle Hooks
+  init() {
+    // custom init logic
+  },
+
+  didInsertElement() {
+    // custom didInsertElement logic
+  },
+
+  willDestroyElement() {
+    // custom willDestroyElement logic
+  },
+
+  // 8. All actions
+  actions: {
+    sneakyAction() {
+      return this._secretMethod();
+    }
+  },
+
+  // 9. Custom / private methods
+  _secretMethod() {
+    // custom secret method logic
+  }
+});
+```
+
+### 1.4: Route Property Order
+
+1. Services
+1. Default route's properties
+1. Custom properties
+1. beforeModel() hook
+1. model() hook
+1. afterModel() hook
+1. Other lifecycle hooks in execution order (serialize, redirect, etc)
+1. Actions
+1. Custom / private methods
+
+```javascript
+import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
+import { inject as service } from '@ember/service';
+
+export default Route.extend({
+  // 1. Services
+  currentUser: service(),
+
+  // 2. Default route's properties
+  queryParams: {
+    sortBy: { refreshModel: true },
+  },
+
+  // 3. Custom properties
+  customProp: 'test',
+
+  // 4. beforeModel hook
+  beforeModel() {
+    if (!get(this, 'currentUser.isAdmin')) {
+      this.transitionTo('index');
+    }
+  },
+  
+  // 5. model hook
+  model() {
+    return get(this, 'store').findAll('article');
+  },
+  
+  // 6. afterModel hook
+  afterModel(articles) {
+    articles.forEach((article) => {
+      set(article, 'foo', 'bar');
+    });
+  },
+
+  // 7. Other route's methods
+  setupController(controller) {
+    set(controller, 'foo', 'bar');
+  },
+
+  // 8. All actions
+  actions: {
+    sneakyAction() {
+      return this._secretMethod();
+    },
+  },
+
+  // 9. Custom / private methods
+  _secretMethod() {
+    // custom secret method logic
+  },
+});
+```
+
+### 1.5: Default Unassigned Property
+
+- When declaring an unassigned property we should default it to `null` instead of `undefined`.
+- Why? Because defining a property as `undefined` has the meaning of we didn't define it. By setting it to `null` you are explicitly telling the app that the property has been declared.
   
 ```Javascript
 // bad
 foo: undefined
 
-//good
+// good
 foo: null
 ```
 
