@@ -79,18 +79,18 @@ foo: null
 
 ```Javascript
 // bad
-{{my-component CreamSoda='nope' Pepsi='nope'}}
+{{my-component creamSoda='nope' pepsi='nope'}}
 
 {{bryan-component theRightWay='nope'}}
 
 {{my-component
-	Sprite='nope' 
-	Fanta='nope'}}
+	sprite='nope' 
+	fanta='nope'}}
 
 //good
 {{my-component
-	Coke='yes' 
-	SierraMist='yes'
+	coke='yes' 
+	sierraMist='yes'
 }}
 
 {{everyone-component
