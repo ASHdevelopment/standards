@@ -64,15 +64,17 @@
 ## 3. Buttons
   > Buttons can submit a form, be a link styled like a button, or simply just a button.
 
+Buttons should always have the `type` attribute set to `button` unless it is inside a `form` element. Without this, an unexpected form submit will happen if it is clicked on a page with a form since the default is `type=submit`.
+
 ### 3.1 Submit Buttons
 
-   When a button is needed to submit a form, ``<button>`` should be the tag used with a ``type='submit'``.
+   When a button is needed to submit a form, `<button>` should be the tag used with a `type='submit'`.
 
 ```html
 <button class='primaryButton' type='submit'>Submit</button>
 ```
 ### 3.2 Links
-  For a link to another page just needs to be styled like a button, use the ``<a>`` tag like you normally would.
+ When a link to another page needs to be styled like a button, use the `<a>` tag like you normally would.
 
 ```html
 <a href='#' class='primaryButton'>Link</a>
@@ -80,7 +82,7 @@
 
 ### 3.3  Button
 
- If the button doesn't fit any of the scenarios above, it should just simply be a  ``<button>`` tag.
+ If the button doesn't fit any of the scenarios above, it should just simply be a  `<button type='button'>` tag.
 
 ```html
 <button class='primaryButton' type='button'>Button</button>
