@@ -2,7 +2,8 @@
 
 1. **[General Structure](#general-structure)** 
 	[ [Properties](#general-structure--properties) ]
-    [ [Naming Addons](#general-structure--naming-addons) ]
+	[ [Multi-property](#14-multi-property-components) ]
+  [ [Naming Addons](#general-structure--naming-addons) ]
 1. **[Destructuring](#destructuring)** 
 	[ [Objects](#destructuring--objects) ] 
 	[ [Get/Set](#destructuring--get-set) ]
@@ -295,6 +296,37 @@ foo: undefined
 foo: null
 ```
 
+
+
+- #### 1.4 Multi-property Components
+
+	> Why? Better readability. 
+
+  + All components written in handlebars that have at least one property should be written in a multi-line format.
+
+  + Closing handlebars `}}` should be on a new line when writing in a multi-line format
+
+```Javascript
+// bad
+{{my-component creamSoda='nope' pepsi='nope'}}
+
+{{bryan-component theRightWay='nope'}}
+
+{{my-component
+	sprite='nope' 
+	fanta='nope'}}
+
+//good
+{{my-component
+	coke='yes' 
+	sierraMist='yes'
+}}
+
+{{everyone-component
+	theRightWay='yes'
+}}
+```
+
 <a name="general-structure--naming-addons"></a>
 ### 2.0 Naming Addons
 
@@ -329,7 +361,6 @@ ash-starter/
         - ash-starter-modal/ //optional folder if more organization is needed
           - power-panel.js
 ```
-
 
 <a name="destructuring"></a>
 ## Destructuring
