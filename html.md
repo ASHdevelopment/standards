@@ -1,68 +1,83 @@
 # HTML
 
- 1. **[Attribute Ordering](#attribute-ordering-within-tags)**
+## Table of Contents
+ 1. **[Attribute Ordering](#attribute-ordering-within-tags)** [ [Attribute Order](#11-attribute-order) ]
  1. **[Quotes](#quotes)**
- 1. **[Buttons](#buttons)**
+ 1. **[Inputs](#inputs)**
+ 1. **[Buttons](#buttons)** [ [Submit Buttons](#31-submit-buttons) ] [ [Links](#32-links) ] [ [Buttons](#33-buttons) ]
  1. **[Forms](#forms)**
- 1. **[Comments](#comments)**
- 1. **[Semantics](#semantics)**
+ 1. **[Comments](#comments)** [ [When Things Get Nesty](#51-when-things-get-nesty) ]
+ 1. **[Semantics](#semantics)** [ [`<strong>` vs `<b>`](#61-strong-vs-b) ] [ [`<em>` vs `<i>`](#62-em-vs-i) ]
  1. **[Do NOT Use](#do-not-use)**
 
-<a name="attribute-ordering-within-tags"></a>
-## 1. Attribute Ordering within Tags
+
+## Attribute Ordering
  > Makes code easier to read and easier for a new developer to jump in and find what they are looking for.
 
-  ### 1.1 Attribute Order
-   Ordering from the beginning of the tag to the close of the tag is as follows:
+### 1.1 Attribute Order
+Ordering from the beginning of the tag to the close of the tag is as follows:
 
-  1. id/for
-  1. className
-  1. tag specific (eg: href, type, action)
-  1. element state (eg: value, checked, readonly)
-  1. ARIA/accessibility
-  1. data- attributes
+1. id/for
+1. className
+1. tag specific (eg: href, type, action)
+1. element state (eg: value, checked, readonly)
+1. ARIA/accessibility
+1. data- attributes
 
 
-**Bad**
 ```html
-    <input type='...' class='...' id='...' .... etc. />
+<!-- Bad -->
+<input type='...' class='...' id='...' .... etc. />
 ```
 
-**Good**
 ```html
-    <input id='...' class='...' type='...' ... etc. />
+<!-- Good -->
+<input id='...' class='...' type='...' ... etc. />
 ```
 
-<a name="quotes"></a>
-## 2. Quotes
-  > Hint - it's easier to type single quotes.
+## Quotes
+> Hint - it's easier to type single quotes.
+- Use whatever is comfortable to you
+- Do NOT go back to change code to suit your style
 
-+ Use whatever is comfortable to you
-+ Do NOT go back to change code to suit your style
-
-**Bad**
 ```html
-<div class="class1"> //changing this to single quotes to fit your style
+<!-- Bad -->
+<div class="class1"> <!-- do not change -->
     <p class='class2'>This is paragraph content.</p>
 </div>
 ```
 
-**Good**
 ```html
+<!-- Good -->
 <div class='class1'>
     <p class='class2'>This is paragraph content.</p>
 </div>
-
-//or
 
 <div class="class1">
     <p class="class2">This is paragraph content.</p>
 </div>
 ```
 
-<a name="buttons"></a>
-## 3. Buttons
-  > Buttons can submit a form, be a link styled like a button, or simply just a button.
+## Inputs
+All inputs and labels must have an explicit relationship
+> Why? Having an explicit relationship is recommended by [www.w3.org](https://www.w3.org/WAI/tutorials/forms/labels/) to ensure that assistive technology is able to reference the correct label when presenting a form control.
+
+```html
+<!-- Bad: implicit -->
+<label>
+    First name:
+    <input type="text" name="firstname">
+</label>
+```
+
+```html
+<!-- Good: explicit -->
+<label for="firstname">First name:</label>
+<input id="firstname" type="text" name="firstname">
+```
+
+## Buttons
+> Buttons can submit a form, be a link styled like a button, or simply just a button.
 
 Buttons should always have the `type` attribute set to `button` unless it is inside a `form` element. Without this, an unexpected form submit will happen if it is clicked on a page with a form since the default is `type=submit`.
 
@@ -80,7 +95,7 @@ Buttons should always have the `type` attribute set to `button` unless it is ins
 <a href='#' class='primaryButton'>Link</a>
 ```
 
-### 3.3  Button
+### 3.3 Buttons
 
  If the button doesn't fit any of the scenarios above, it should just simply be a  `<button type='button'>` tag.
 
@@ -88,16 +103,15 @@ Buttons should always have the `type` attribute set to `button` unless it is ins
 <button class='primaryButton' type='button'>Button</button>
 ```
 
-<a name="forms"></a>
-## 4. Forms
+## Forms
 
 Related `input`s should be grouped in a `fieldset`.
  > This helps semantically group related questions and style questions like checkboxes and radios without the need for a `div.checkboxgroup`.
 
 Each `fieldset` should always have a legend to be HTML valid and meet WCAG standards.
 
-**Bad**
 ```html
+<!-- Bad -->
 <form>
     <p>The best Beatle is:</p>
     <label for="john">John</label>
@@ -121,8 +135,8 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 </form>
 ```
 
-**Good**
 ```html
+<!-- Good -->
 <form>
     <fieldset>
         <legend>The best Beatle is:</legend>
@@ -149,16 +163,15 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
     </fieldset>
 </form>
 ```
-<a name="comments"></a>
-## 5. Comments
-  > Comments, why? Because they are handy little helpers!
+## Comments
+> Comments, why? Because they are handy little helpers!
 
 ### 5.1 When Things Get Nesty
 
  Add comments on closing tags when 3 levels of the same type of tags are used in a row. Start counting from the most nested tag outwards and on the 3rd type of that closing tag begin comments.
 
-**Bad**
 ```html
+<!-- Bad -->
 <section class="nestyness">
     <div class='class1'>
         <div class='class2'>
@@ -173,8 +186,8 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 </section>
  ```
 
-**Good**
 ```html
+<!-- Good -->
 <section class="nestyness">
     <div class='class1'>
         <div class='class2'>
@@ -188,22 +201,20 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
     </div><!--end class1-->
 </section>
 ```
-<a name="semantics"></a>
-## 6. Semantics
-   > Semantics help make the web page easier for people and browsers to understand/use.
+## Semantics
+> Semantics help make the web page easier for people and browsers to understand/use.
 
 ### 6.1 `<strong>` vs. `<b>`
- `<strong>` - should always be used when bolding text, this is the more semantic tag of the two options. Text should be bold for a reason therefore we should use the semantic tag to highlight it.
+`<strong>` - should always be used when bolding text, this is the more semantic tag of the two options. Text should be bold for a reason therefore we should use the semantic tag to highlight it.
 
 ### 6.2 `<em>` vs. `<i>`
-  `<em>` - should always be used when italicizing text, this tag adds emphasis in the semantics. Where as, `<i>` only tells the browser the text is just set off from it's normal prose.
+`<em>` - should always be used when italicizing text, this tag adds emphasis in the semantics. Where as, `<i>` only tells the browser the text is just set off from it's normal prose.
 
-<a name="do-not-use"></a>
-## 7. Do NOT Use
-  > These elements make it harder to change the look and feel of the elements in the future with only css
+## Do NOT Use
+> These elements make it harder to change the look and feel of the elements in the future with only css
 
 *DO NOT* use the following elements when writing HTML:
 
- + The break tag -  ``<br>`` or ``<br />``
- + The linerule (or thematic change) -  ``<hr>`` or ``<hr />``
- + The non-breaking space - ``&nbsp;``
+- The break tag -  `<br>` or `<br />`
+- The linerule (or thematic change) -  `<hr>` or `<hr />`
+- The non-breaking space - `&nbsp;`
