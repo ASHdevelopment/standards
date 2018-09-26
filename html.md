@@ -59,7 +59,7 @@ Ordering from the beginning of the tag to the close of the tag is as follows:
 ```
 
 ## Inputs
-All inputs and labels must have an explicit relationship
+All inputs and labels must have an explicit relationship.
 > Why? Having an explicit relationship is recommended by [www.w3.org](https://www.w3.org/WAI/tutorials/forms/labels/) to ensure that assistive technology is able to reference the correct label when presenting a form control.
 
 ```html
@@ -164,7 +164,7 @@ Each `fieldset` should always have a legend to be HTML valid and meet WCAG stand
 </form>
 ```
 ## Comments
-> Comments, why? Because they are handy little helpers!
+> Why? Because they are handy little helpers!
 
 ### 5.1 When Things Get Nesty
 
