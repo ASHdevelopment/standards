@@ -1,7 +1,7 @@
 # HTML
 
 ## Table of Contents
- 1. **[Attribute Ordering](#attribute-ordering-within-tags)** [ [Attribute Order](#11-attribute-order) ]
+ 1. **[Attribute Ordering](#attribute-ordering)** [ [Attribute Order](#11-attribute-order) ]
  1. **[Quotes](#quotes)**
  1. **[Inputs](#inputs)**
  1. **[Buttons](#buttons)** [ [Submit Buttons](#31-submit-buttons) ] [ [Links](#32-links) ] [ [Buttons](#33-buttons) ]
