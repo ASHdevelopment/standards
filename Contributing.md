@@ -15,6 +15,13 @@
 Provide overall description of this section.
 > Why? When description is present it is easier for others to understand what the section is about. 
 
+## Why Statement
+- Add `WHY` statement on top for every standard
+- Use block quote
+
+Example:
+> Why? blah blah blah...
+
 ## Section with Subsections
 
 <a name="section-with-subsections--first-subsection"></a><a name="2.1"></a>
