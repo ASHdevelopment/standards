@@ -13,17 +13,20 @@
 
 ## Section
 Provide overall description of this section.
-> Why? When description is present it is easier for others to understand what the section is about. 
+> Why? Provide reason that ASH adheres to this section of standards.
 
 ## Section with Subsections
 
 <a name="section-with-subsections--first-subsection"></a><a name="2.1"></a>
 ### [2.1](#section-with-subsections--first-subsection): First Subsection
+Provide overall description of this section.
+> Why? Provide reason that ASH adheres to this section of standards.
 
 
 <a name="section-with-subsections--second-subsection"></a><a name="2.2"></a>
 ### [2.2](#section-with-subsections--second-subsection): Second Subsection
-
+Provide overall description of this section.
+> Why? Provide reason that ASH adheres to this section of standards.
 
 
 ## Code Examples
