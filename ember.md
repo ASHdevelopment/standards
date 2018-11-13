@@ -639,10 +639,7 @@ export default Controller.extend({
 // Example code for templates/application.js
 
 {{#if hasServerError}}
-    {{ash-status-message
-        message = errorMessage
-        error = true
-    }}
+    {{errorMessage}}
 {{/if}}
 {{outlet}}
 ```
