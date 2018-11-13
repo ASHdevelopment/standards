@@ -609,41 +609,42 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 <a name="errorHandling--overallApplication"></a>
 ### 7.1 Overall Application Errors
 Every app should contain a base error function within the application route.
-> Why? Developers are not always perfect, this will insure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
+> Why? Developers are not always perfect, this will ensure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
 
 
 ```javascript
-//Example code for route/application.js
+// Example code for routes/application.js
+
 import Route from '@ember/routing/route';
-import { get, set } from '@ember/object';
 
 export default Route.extend({
-    genericError: 'Hmm, something went wrong.',
-
     actions: {
-        error(error){
-            //grabbing app container for a place to put the error so it will show to the user
-            const app = document.getElementById('app-container');
-
-            //getting the content for the error to show the user
-            if(typeof error === 'string') {
-                //if its a string set the errorToShow property to that string
-                set(this, 'errorToShow', error);
-            } else if (error && error.message) {
-                //if it has an error.message log the message to the console for debugging
-                console.error(error.message);
-                //if it is not a string set the errorToShow property to the genericError
-                set(this, 'errorToShow', get(this, 'genericError'))
-            } else {
-                //if it is not a string set the errorToShow property to the genericError
-                set(this, 'errorToShow', get(this, 'genericError'))
-            }
-
-            //adds the error to the app container for users to see error message, so they are not left with a blank app container
-            app.innerHTML = `<div class='error'>${get(this, 'errorToShow')}</div>`
+        error(/*error*/){ 
+            this.controllerFor('application').set('hasServerError', true);
         }
     }
 });
+
+// Example code for controllers/application.js
+
+import Controller from '@ember/controller';
+
+export default Controller.extend({
+    hasServerError: false,
+    errorMessage: 'Hmm, something went wrong.'
+});
+```
+
+```handlebars
+// Example code for templates/application.js
+
+{{#if hasServerError}}
+    {{ash-status-message
+        message = errorMessage
+        error = true
+    }}
+{{/if}}
+{{outlet}}
 ```
 <a name="testing"></a>
 ## Testing
