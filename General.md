@@ -11,15 +11,15 @@ When not overridden by a more specific rule, we use [lowerCamelCase](https://en.
 > Why? This reduces the thought required when naming items and produces a consistent code base.
 
 ```javascript
+//Bad
+let dessertsize = 'only wafer thin';
+
+function DistributeCilantro() {
+
 // Good
 const yearsOfPower = 1000;
 
 function deprecateAshForm() {
 
 class Rectangle { //ES6 and Ember classes still use UpperCamelCase by general consensus
-
-//Bad
-let dessertsize = 'only wafer thin';
-
-function DistributeCilantro() {
 ```
