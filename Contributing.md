@@ -1,14 +1,36 @@
 # Document Title 
 
-## Table of Content 
+## Table of Contents 
 1. **[Section](#section)**
 1. **[Section with Subsections](#section-with-subsections)**
-	[ [First Subsection](#section-with-subsections--first-subsection) ] 
-	[ [Second Subsection](#section-with-subsections--second-subsection) ]
+	[ [First Subsection](#21-first-subsection) ] 
+	[ [Second Subsection](#22-second-subsection) ]
 1. **[Code Examples](#code-examples)**
-	[ [JavaScript](#code-examples--javascript) ] 
-	[ [Handlebars](#code-examples--handlebars) ]
-	[ [CSS](#code-examples--css) ]
+	[ [JavaScript](#31-javascript) ] 
+	[ [Handlebars](#32-handlebars) ]
+	[ [CSS](#33-css) ]
+
+	*Example:*  
+- Primary section links should be in bold
+- Basic markdown links can be linked to the dasherized name of the section title _(links are not case-sensitive, so to save keystrokes and for consistency, use lowercase)_
+	```markdown
+	1. **[Section](#section)**
+
+	## Section
+	```
+- Subsection links should be inline with their parent section link and contained in square brackets with surrounding spaces `[ ]`
+- Markdown links to sections with floating point numbers in the title can be written in the dasherized format of the title, omitting special characters such as decimals and colons
+	```markdown
+	2. **[Section with Subsections](#section-with-subsections)**
+	  [ [First Subsection](#21-first-subsection) ] 
+	  [ [Second Subsection](#22-second-subsection) ]
+	
+	## Section with Subsections
+	
+	### 2.1: First Subsection
+	
+	### 2.2: Second Subsection
+	```
 
 
 ## Section
@@ -17,44 +39,39 @@ Provide overall description of this section.
 
 ## Section with Subsections
 
-<a name="section-with-subsections--first-subsection"></a><a name="2.1"></a>
-### [2.1](#section-with-subsections--first-subsection): First Subsection
+
+### 2.1: First Subsection
 
 
-<a name="section-with-subsections--second-subsection"></a><a name="2.2"></a>
-### [2.2](#section-with-subsections--second-subsection): Second Subsection
-
+### 2.2: Second Subsection
 
 
 ## Code Examples
 
-<a name="code-examples--javascript"></a><a name="3.1"></a>
-### [3.1](#code-examples--javascript): JavaScript
+### 3.1: JavaScript
 
 When writing code examples, use four spaces for indentation when needed.
 > Why? Within the context of code examples, indentation with four spaces makes code blocks easier to read.
 
-``` javascript 
+```javascript 
 // Provide Bad example
 
 
 // Provide Good example
 ```
 
-<a name="code-examples--handlebars"></a><a name="3.2"></a>
-### [3.2](#code-examples--handlebars): Handlebars
+### 3.2: Handlebars
 
-``` handlebars 
+```handlebars 
 <!-- Provide Bad example -->
 
 
 <!-- Provide Good example -->
 ```
 
-<a name="code-examples--css"></a><a name="3.2"></a>
-### [3.2](#code-examples--css): CSS
+### 3.3: CSS
 
-``` css 
+```css 
 /* Provide Bad example */
 
 
