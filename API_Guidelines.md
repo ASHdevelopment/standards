@@ -630,19 +630,75 @@ Because PST is 8 hours behind UTC, the date will display 12/31/2016.
 
 ## On-Failure
 
-For any error, the server should respond with the correct status code as well as a message in the response body.
+For any error, the server should respond with the correct status code as well as a message in the response body. There are 2 methods available for formatting the error response:
 
-### Errors
+### Standard HTTP Response
 
-If a response is considered a failure, the JSON payload is expected to include
-a top-level key `errors`, detailing any specific issues. If the JSON payload does not
-include a top level `errors` key, then we will need to munge the data.
+When only a single error message or result is needed, feel free to use a normal HTTP response:
 
-```js
+```sh
+GET /api/members
+[500] A member with this fitnessId already exists
+```
 
+Ember will automatically parse this response for you:
+
+```javascript
+	model.save()
+		.catch(err => {
+			console.log(err.errors[0].status) //'500'
+			console.log(err.errors[0].detail) //'A member with this fitnessId already exists'
+		})
+```
+
+### ServiceStack Error Response
+
+If you may need to return multiple messages, such as when validating a form, you can use the ServiceStack standard error response. Note that this is not directly parseable by Ember - you will need to add adapter code to serialize it.
+
+```javascript
+GET /api/members
+[500]
+"responseStatus": {
+    "errorCode": "ArgumentException",
+    "message": "Invalid Request",
+    "stackTrace": "[Omitted for this example]",
+    "errors": [
+        {
+            "errorCode": "InValid",
+            "fieldName": "CurrentUsername",
+            "message": "Oops! Username is incorrect."
+        },
+        {
+            "errorCode": "InValid",
+            "fieldName": "CurrentPassword",
+            "message": "Oops! Password is incorrect."
+        }
+    ],
+    "meta": null
+}
+```
+The ServiceStack response needs to be serialized into the standard Ember error response:
+```javascript
+{
+    "errors": [
+        {
+            "detail": "Oops! Username is incorrect.",
+            "source": {
+                "pointer": "CurrentUsername"
+            }
+        },
+        {
+            "detail": "Oops! Password is incorrect.",
+            "source": {
+                "pointer": "CurrentPassword"
+            }
+        }
+    ]
+}
+```
+
+```javascript
 // Somewhere in Ember-land, attempting to save a model.
-
-// Omitted for brevity...
 
 actions: {
     save(model) {
@@ -658,65 +714,30 @@ actions: {
 
 ```
 
-```js
-
-// Ideal JSON error payload
-
-{
-    "errors": [
-        {
-            "detail": "First name is required",
-            "source": {
-                "pointer": "data/attributes/first-name"
-            }
-        },
-        {
-            "detail": "Email is required",
-            "source": {
-                "pointer": "data/attributes/email"
-            }
-        }
-    ]
-}
-
-```
-
 Thanks to Ember Data, we have access to our errors via our `model`.
 
-```js
+```javascript
+Ember.get(this, 'model.errors.CurrentUsername')
+// => { "attribute": "CurrentUsername", "message": "Oops! Username is incorrect." }
 
-// Somewhere in Ember-land...
-
-// Omitted for brevity...
-
-Ember.get(this, 'model.errors.first-name')
-// returns a `first-name` error object!
-// => { "attribute": "firstName", "message": "First name is required" }
-
-Ember.get(this, 'model.errors.email')
-// returns an `email` error object!
-// => { "attribute": "email", "message": "Email is required" }
-
+Ember.get(this, 'model.errors.CurrentPassword')
+// => { "attribute": "CurrentPassword", "message": "Oops! Password is incorrect." }
 ```
 
 Or, you can render them in a template!
 
 ```hbs
-
-{{!-- Somewhere in Handlebars --}}
-
 {{#each model.errors as |error|}}
-    {{#if error.firstName}}
+    {{#if error.CurrentUsername}}
         <div class="error">
-            {{error.firstName.message}}
+            {{error.CurrentUsername.message}}
         </div>
     {{/if}}
 
-    {{#if error.lastName}}
+    {{#if error.CurrentPassword}}
         <div class="error">
-            {{error.lastName.message}}
+            {{error.CurrentPassword.message}}
         </div>
     {{/if}}
 {{/each}}
-
 ```

@@ -1,30 +1,28 @@
 # Ember
 
 1. **[General Structure](#general-structure)** 
-	[ [Properties](#general-structure--properties) ]
-	[ [Multi-property](#14-multi-property-components) ]
-  [ [Naming Addons](#general-structure--naming-addons) ]
+	[ [Properties](#11-model-property-order) ]
+  [ [Naming Addons](#20-naming-addons) ]
 1. **[Destructuring](#destructuring)** 
-	[ [Objects](#destructuring--objects) ] 
-	[ [Get/Set](#destructuring--get-set) ]
+	[ [Objects](#21-destructuring-objects) ] 
+	[ [Get/Set](#22-using-`get`-and-`set`) ]
 1. **[Data](#data)**
-	[ [Data Binding](#data--data-binding) ]
+	[ [Data Binding](#31-data-binding) ]
 1. **[Computed Properties](#computed-properties)**
-  [ [Brace Expansion](#computed-properties--brace-expansion) ]
+  [ [Brace Expansion](#41-brace-expansion) ]
 1. **[CSS](#css)**
-	[ [Usage](#css--usage) ]
+	[ [Usage](#51-usage) ]
+	[ [Namespacing](#52-namespacing) ]
 1. **[Actions](#actions)**
-	[ [Location](#actions--location) ]
-1. **[Error Handling](#errorHandling)** 
-	[ [ Overall Application Errors](#errorHandling--overallApplication) ]
+	[ [Location](#61-location) ]
+1. **[Error Handling](#error-handling)** 
+	[ [ Overall Application Errors](#71-overall-application-errors) ]
 1. **[Testing](#testing)**
-  [ [Test Scripts](#testing--test-scripts) ]
-  [ [Unit Tests](#testing--unit-tests) ]
-1. **[Definition of Ready](#deployment-checklist)**
+  [ [Test Scripts](#81-test-scripts) ]
+  [ [Unit Tests](#82-unit-tests) ]
+1. **[Definition of Ready](#definition-of-ready)**
 1. **[Addons](#addons)**
-  [ [Versioning](#versioning) ]
-
-<a name="general-structure"></a>
+  [ [Versioning](#91-versioning) ]
 
 ## General Structure
 
@@ -42,7 +40,6 @@ rules: {
 }
 ```
 
-<a name="general-structure--properties"></a>
 ### 1.1 Model Property Order
 
 1. Attributes
@@ -327,7 +324,6 @@ foo: null
 }}
 ```
 
-<a name="general-structure--naming-addons"></a>
 ### 2.0 Naming Addons
 
 > Prefix naming prevents conflicts within the consuming app/addon. The name can also help a user to identify that the component is coming from a specific addon in the `.hbs` file.
@@ -362,12 +358,10 @@ ash-starter/
           - power-panel.js
 ```
 
-<a name="destructuring"></a>
 ## Destructuring
 Extract multiple values from data stored in objects and arrays.
 > Why? Destructuring allows you to import only which classes you need and then extract (or destructure) only the properties that you need. This makes our modules more efficient.
 
-<a name="destructuring--objects"></a>
 ### 2.1 Destructuring Objects
 In Ember 2.16 and above the recommended way to access framework code in Ember applications is via the JavaScript modules API. This makes Ember feel less overwhelming to new users and start faster. These effects are felt because of replacing the Ember global with a first-class system for importing just the parts of the framework you need.
 JavaScript modules make the framework easier to document, make the distinction between public and private API much easier to maintain, and provide opportunities for performance work such as tree-shaking.
@@ -390,7 +384,6 @@ export default Component.extend({
     title: 'ASH Development'
 });
 ```
-<a name="destructuring--get-set"></a>
 ### 2.2 Using `get` and `set`
 Destructuring `get` and `set` will allow you pass in a POJO, rather than being limited to just the current object with the `this` keyword.
 
@@ -410,10 +403,8 @@ get(someObject, 'isUpdated'); //true
 ```
 
 
-<a name="data"></a>
 ## Data
 
-<a name="data--data-binding"></a>
 ### 3.1 Data Binding
 
 Any new code written by ASH should only contain one-way data-binding. Third-party addons using two-way data-binding is ok, but be cautious and conscious of the side effects it can have.
@@ -467,10 +458,8 @@ actions: {
 ```
 *Twiddle Demo: <a href="https://ember-twiddle.com/386c86a1ad7fa9d15e9cc1f699e5f539">click here</a>*
 
-<a name="computed-properties"></a>
 ## Computed Properties
 
-<a name="computed-properties--brace-expansion"></a>
 ### 4.1 Brace Expansion
 
 When a computed property depends on multiple properties of the same object, specify the properties using brace expansion.
@@ -493,10 +482,8 @@ fullname: computed('user.{firstname,lastname}', function() {
 ```
 
 
-<a name="css"></a>
 ## CSS
 
-<a name="css--usage"></a>
 ### 5.1 Usage
 CSS is permitted (and encouraged) in apps and addons under certain circumstances
 
@@ -566,10 +553,47 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
     }
 }
 ```
-<a name="actions"></a>
+
+### 5.2 Namespacing
+We should namespace our CSS in Ember apps and addons so the styles cannot leak out. This can be done in SASS by enclosing all of the styles specific to that component within a container class and assigning that container class to the component. When not working with a component, the container class can be placed in the markup manually.
+> Why? This reduces side-effects, which can be a difficult category of bug to track down. 
+
+#### SCSS
+`addon\styles\component-styles\my-component.scss`
+```scss
+//BAD
+.button-primary {
+  color: red; //All other button-primary classes will now be red, including other components
+}
+
+//GOOD - Place styles and other SASS content within the container class
+.ashMyComponent {
+  .button-primary {
+    color: red; //Will only modify button-primary within the component
+  }
+}
+...
+```
+#### Component implementation
+`addon\components\my-component.js`
+```javascript
+//Use a container class in the code
+export default Component.extend({
+  layout,
+  classNames: ['ashMyComponent'],
+...
+```
+#### Template implementation
+`addon\templates\my-template.hbs`
+```handlebars
+<!-- Use a container element like div or section -->
+<section class="ashMyComponent">
+  <button class="button-primary">Drink Me</button>
+</section>
+```
+
 ## Actions
 
-<a name="actions--location"></a>
 ### 6.1 Location
 
  - Form Actions should be placed on the form element
@@ -604,9 +628,8 @@ CSS is permitted (and encouraged) in apps and addons under certain circumstances
 </div>
 ```
 
-<a name="errorHandling"></a>
 ## Error Handling
-<a name="errorHandling--overallApplication"></a>
+
 ### 7.1 Overall Application Errors
 Every app should contain a base error function within the application route.
 > Why? Developers are not always perfect, this will ensure that even missed errors from other components, controllers or routes will be handled at the application level. Uncaught errors lead to a bad user experiences.
@@ -643,10 +666,8 @@ export default Controller.extend({
 {{/if}}
 {{outlet}}
 ```
-<a name="testing"></a>
 ## Testing
 
-<a name="testing--test-scripts"></a>
 ### 8.1 Test Scripts
 
 > Why? To allow us to establish and hold to a standard of code coverage in all of our apps with meaningful test writing and the ability to gate deployments when those standards are not met.
@@ -664,7 +685,6 @@ The `scripts` section in your __package.json__ file should include the following
 }
 ```
 
-<a name='testing--unit-tests'></a>
 ### 8.2 Unit Tests
 
 > Why? Unit tests are the most basic test for testing the core functionality of the app and relying on integration and acceptance tests can provide a false sense of code coverage.
@@ -699,7 +719,6 @@ assert.equal(this._isLocal(null), false, 'Unexpected value like null or undefine
 ```
 
 
-<a name="deployment-checklist"></a>
 ## Definition of Ready
 
 ### 1. Linted
