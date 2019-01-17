@@ -9,6 +9,7 @@
 	[ [Single Record](#4.2-GET-a-single-record) ]
 	[ [Querying Multiple Records](#4.3-GET-multiple-records-using-a-query)  ]
 	[ [Querying a Single Record](#4.4-GET-a-single-record-using-a-query) ]
+	[ [Querying Using an Array](#4.5-querying-using-an-array) ]
 1. **[POST](#post)**
 1. **[PUT](#put)**
 1. **[DELETE](#delete)**
@@ -215,7 +216,45 @@ Payload (If no data is found, then an empty array is returned)
 }
 ```
 
-<a name="post"></a>
+## 4.5 Querying Using an Array
+
+Arrays can be passed to some ember-data methods such as `query()`. By default the querystring will be serialized like so:
+
+```javascript
+store.query('person', { ids: [1, 2, 3] });
+
+// => GET "/api/v1/person?ids%5B%5D=1&ids%5B%5D=2&ids%5B%5D=3"
+// Decodes to:
+// => GET "/api/v1/person?ids[]=1&ids[]=2&ids[]=3"
+```
+
+Our back end architecture does not handle this querystring format by default. There is another option found by modifying the underlying ajax object in the adapter:
+
+```javascript
+DS.RESTAdapter.extend({
+	ajax(url, type, options) { 
+		if (options) {
+			options.traditional = true; //This is the significant setting
+		}
+		return this._super(...arguments);
+	}
+});
+
+store.query('person', { ids: [1, 2, 3] });
+// => GET "/api/v1/person?ids=1&ids=2&ids=3"
+// Note that the brackets are removed
+```
+
+However, we discourage this approach for the following reasons:
+
+- The ajax() parameter [is private](https://emberjs.com/api/ember-data/3.4/classes/DS.RESTAdapter/methods/ajax?anchor=ajax&show=inherited%2Cprivate) and could change without warning.
+
+- What if we turn off jQuery?
+
+- The traditional parameter creates [shallow copies only](http://api.jquery.com/jQuery.param/) - it will not serialize more complex objects.
+
+The preferred approach is to use the default Ember serialization and use [this technique]() in the back end code so that it properly parses the querystring.
+
 ## POST
 
 ### Creating Records
@@ -322,7 +361,6 @@ While you can add a new property in the `PUT` request, it's not good practice, s
 
 The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
-<a name="delete"></a>
 ## DELETE
 
 ### Deleting a Record
@@ -361,7 +399,6 @@ Payload
 
 > The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
 
-<a name="relationships"></a>
 ## Model Relationships
 
 ### 8.1 Side-loaded Without Query
