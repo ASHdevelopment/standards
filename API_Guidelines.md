@@ -253,7 +253,7 @@ However, we discourage this approach for the following reasons:
 
 - The traditional parameter creates [shallow copies only](http://api.jquery.com/jQuery.param/) - it will not serialize more complex objects.
 
-The preferred approach is to use the default Ember serialization and use [this technique]() in the back end code so that it properly parses the querystring.
+The preferred approach is to use the default Ember serialization and use the technique detailed on the CAST wiki in the back end code so that it properly parses the querystring.
 
 ## POST
 
