@@ -228,33 +228,6 @@ store.query('person', { ids: [1, 2, 3] });
 // => GET "/api/v1/person?ids[]=1&ids[]=2&ids[]=3"
 ```
 
-Our back end architecture does not handle this querystring format by default. There is another option found by modifying the underlying ajax object in the adapter:
-
-```javascript
-DS.RESTAdapter.extend({
-	ajax(url, type, options) { 
-		if (options) {
-			options.traditional = true; //This is the significant setting
-		}
-		return this._super(...arguments);
-	}
-});
-
-store.query('person', { ids: [1, 2, 3] });
-// => GET "/api/v1/person?ids=1&ids=2&ids=3"
-// Note that the brackets are removed
-```
-
-However, we discourage this approach for the following reasons:
-
-- The ajax() parameter [is private](https://emberjs.com/api/ember-data/3.4/classes/DS.RESTAdapter/methods/ajax?anchor=ajax&show=inherited%2Cprivate) and could change without warning.
-
-- What if we turn off jQuery?
-
-- The traditional parameter creates [shallow copies only](http://api.jquery.com/jQuery.param/) - it will not serialize more complex objects.
-
-The preferred approach is to use the default Ember serialization and use the technique detailed on the CAST wiki in the back end code so that it properly parses the querystring.
-
 ## POST
 
 ### Creating Records
