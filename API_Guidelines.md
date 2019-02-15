@@ -5,20 +5,21 @@
 1. **[URL Names](#url-names)**
 1. **[ID's](#ids)**
 1. **[GET](#get)** 
-	[ [Multiple Records](#4.1-GET-all-records) ]
-	[ [Single Record](#4.2-GET-a-single-record) ]
-	[ [Querying Multiple Records](#4.3-GET-multiple-records-using-a-query)  ]
-	[ [Querying a Single Record](#4.4-GET-a-single-record-using-a-query) ]
+	[ [Multiple Records](#41-get-all-records) ]
+	[ [Single Record](#42-get-a-single-record) ]
+	[ [Querying Multiple Records](#43-get-multiple-records-using-a-query)  ]
+	[ [Querying a Single Record](#44-get-a-single-record-using-a-query) ]
+	[ [Querying Using an Array](#45-querying-using-an-array) ]
 1. **[POST](#post)**
 1. **[PUT](#put)**
 1. **[DELETE](#delete)**
 1. **[Model Relationships](#model-relationships)**
-	[ [Side-loaded Without Query](#8.1-Side-loaded-Without-Query) ]
-	[ [Embedded Data Without Query](#8.2-embedded-data-without-query) ]
-	[ [Embedded Data With Query](#8.3-embedded-data-with-query) ]
-	[ [Async Loading](#8.4-async-loading) ]
+	[ [Side-loaded Without Query](#81-side-loaded-without-query) ]
+	[ [Embedded Data Without Query](#82-embedded-data-without-query) ]
+	[ [Embedded Data With Query](#83-embedded-data-with-query) ]
+	[ [Async Loading](#84-async-loading) ]
 1. **[Dates](#dates)**
-1. **[On Failure](#On-Failure)**
+1. **[On Failure](#on-failure)**
 
 ## Introduction
 ASH adheres to REST standards and uses Ember's [RESTAdapter](http://emberjs.com/api/data/classes/DS.RESTAdapter.html). The following is a combination of REST and Ember-specific guidelines to help facilitate API development at ASH. Adhering to these guidelines will allow for the simplest and most painless use of the Ember Data library. Much of this was adopted from Ember Data's API documentation, so for more reading, check the [Ember Data documentation](http://emberjs.com/api/data/).However, Ember Data is not the only reason behind this structure, it helps to create a consistent API architecture making it easier to plug into other platforms and frameworks (e.g., backend, native apps, etc.).
@@ -215,7 +216,18 @@ Payload (If no data is found, then an empty array is returned)
 }
 ```
 
-<a name="post"></a>
+## 4.5 Querying Using an Array
+
+Arrays can be passed to some ember-data methods such as `query()`. By default the querystring will be serialized like so:
+
+```javascript
+store.query('person', { ids: [1, 2, 3] });
+
+// => GET "/api/v1/person?ids%5B%5D=1&ids%5B%5D=2&ids%5B%5D=3"
+// Decodes to:
+// => GET "/api/v1/person?ids[]=1&ids[]=2&ids[]=3"
+```
+
 ## POST
 
 ### Creating Records
@@ -322,7 +334,6 @@ While you can add a new property in the `PUT` request, it's not good practice, s
 
 The api can also return a `204` with an empty payload, but **this is not preferred**. It's preferred to use a `200` so the API can compute or serialize any data and send back to the front end.
 
-<a name="delete"></a>
 ## DELETE
 
 ### Deleting a Record
@@ -361,7 +372,6 @@ Payload
 
 > The Ember App Expects a 204 with No Content because, is terminated by the first empty line after the header fields because it cannot contain a message body.
 
-<a name="relationships"></a>
 ## Model Relationships
 
 ### 8.1 Side-loaded Without Query
