@@ -20,7 +20,6 @@
 * Class names should be lowerCamelCased
 * When using multiple selectors for a style declaration, put each selector on its own line
 * Each property goes a new line
-* For style properties, put a space after the semicolon (`:`)
 * Put closing braces `}` of style declarations on a new line
 
 **Bad**

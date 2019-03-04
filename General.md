@@ -23,3 +23,30 @@ function deprecateAshForm() {
 
 class Rectangle { //ES6 and Ember classes still use UpperCamelCase by general consensus
 ```
+
+## Formatiing
+> Why? All of our code should be formatted so that it is clean, concise, and easily readable by any developer on the team
+* For properties, put a space after the semicolon (`:`)
+
+**Bad**
+```css
+.CrazyCase { 
+    property:rule; 
+}
+```
+```js
+const attributes = {
+    attr:"attrValue",
+};
+```
+**Good**
+```css
+.className,
+    property: rule;
+}
+```
+```js
+const attributes = {
+    attr: "attrValue",
+};
+```
