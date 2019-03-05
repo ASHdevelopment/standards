@@ -753,7 +753,24 @@ Test the app in every browser that we support.
 
 If Mirage is being used, and the real API is available, test with both sets of data in each browser.  
 
-*Current Supported Browsers: ie11, firefox, safari (desktop and mobile), and chrome*
+*Current Supported Browsers: ie11, edge, firefox, safari, and chrome*
+
+This is what your `targets.js` file should look like within your ember project: 
+```js
+'use strict';
+
+const browsers = [
+    'ie 11',
+    'last 2 edge versions',
+    'last 2 Chrome versions',
+    'last 2 Firefox versions',
+    'last 2 Safari versions'
+];
+
+module.exports = {
+    browsers
+};
+```
 
 ### 10. Build Pipelines Defined
 Configure **stg.ashui** build with Mirage data  

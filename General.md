@@ -26,7 +26,7 @@ class Rectangle { //ES6 and Ember classes still use UpperCamelCase by general co
 
 ## Formatiing
 > Why? All of our code should be formatted so that it is clean, concise, and easily readable by any developer on the team
-* For properties, put a space after the semicolon (`:`)
+* For properties, put a space after the semicolon (`;`)
 
 **Bad**
 ```css
