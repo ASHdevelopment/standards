@@ -308,9 +308,11 @@ Payload
 :
 ```javascript
 {
-  "title": "Goodfellers",
-  "year": "1990",
-  "radioheadOnSoundtrack": false
+    "movie": {
+        "title": "Goodfellers",
+        "year": "1990",
+        "radioheadOnSoundtrack": false
+    }
 }
 ```
 
