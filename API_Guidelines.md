@@ -624,15 +624,6 @@ var offsetWithoutDaylightSaving =  '2017-12-10T15:26-0400'
 ### Daylight Saving Time
 It's important to remember that UTC is different in the USA any given date, depending on if we are in the middle of daylight saving or not.
 
-### Dates Only (without time)
-If the API passes a date without a time, it will be converted to that date at midnight UTC.
-
-```javascript
-var newYearsDay = '2017-01-01';
-new Date(newYearsDay); //Sat Dec 31 2016 16:00:00 GMT-0800 (Pacific Standard Time)
-```
-
-Because PST is 8 hours behind UTC, the date will display 12/31/2016.
 
 ## On-Failure
 
