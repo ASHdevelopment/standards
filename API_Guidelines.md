@@ -602,13 +602,9 @@ The JavaScript can then make individual requests to `api.com/actors/1`, `api.com
 ## Dates
 
 ### DateTime Options
-DateTime properties should use the ISO 8601 format below.
+DateTime properties should use the ISO 8601 format including timezones, as shown below:
 
 ```javascript
-//No matter where the user is, they will see the time as 3:26pm
-//local to their timezone
-var local ='2017-05-10T15:26';
-
 //The Z at the end means that this is 3:26 UTC time. Depending
 //on how this date is implimented client-side, the user will
 //see their local conversion. For instance, 11:26am EST during
